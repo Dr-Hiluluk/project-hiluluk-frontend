@@ -1,0 +1,89 @@
+$palette: (
+  gray: (
+    0: #f8f9fa,
+    1: #f1f3f5,
+    2: #e9ecef,
+    3: #dee2e6,
+    4: #ced4da,
+    5: #adb5bd,
+    6: #868e96,
+    7: #495057,
+    8: #343a40,
+    9: #212529,
+  ),
+  cyan: (
+    0: #e3fafc,
+    1: #c5f6fa,
+    2: #99e9f2,
+    3: #66d9e8,
+    4: #3bc9db,
+    5: #22b8cf,
+    6: #15aabf,
+    7: #1098ad,
+    8: #0c8599,
+    9: #0b7285,
+  ),
+);
+
+.div.template {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: map-get(map-get($palette, gray), 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div.white-box {
+  .logo-area {
+    display: block;
+    padding-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
+  padding: 2rem;
+  width: 360px;
+  background: white;
+}
+
+.div.auth-form {
+  h3 {
+    margin: 0;
+    color: map-get(map-get($palette, gray), 8);
+    margin-bottom: 1rem;
+  }
+}
+
+.input {
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid map-get(map-get($palette, gray), 5);
+  padding-bottom: 0.5rem;
+  outline: none;
+  width: 100%;
+  &:focus {
+    color: map-get(map-get($palette, gray), 8);
+    border-bottom: 1px solid map-get(map-get($palette, gray), 7);
+  }
+  & + & {
+    margin-top: 1rem;
+  }
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: right;
+  a {
+    color: map-get(map-get($palette, gray), 6);
+    text-decoration: underline;
+    &:hover {
+      color: map-get(map-get($palette, gray), 9);
+    }
+  }
+}
