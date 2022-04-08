@@ -80,8 +80,8 @@ export const login = ({
 });
 
 // 사가 생성
-const registerSaga = createRequestSaga(REGISTER, AuthApi.register);
-const loginSaga = createRequestSaga(LOGIN, AuthApi.login);
+const registerSaga = createRequestSaga(REGISTER, AuthApi.register, "auth");
+const loginSaga = createRequestSaga(LOGIN, AuthApi.login, "auth");
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
@@ -142,12 +142,14 @@ const auth = (
           initialState[action.payload.form as keyof AuthInitialStateType];
       });
     case REGISTER_SUCCESS:
+      console.log("REG_SUC:", action);
       return {
         ...state,
         authError: null,
         auth: action.payload.auth,
       };
     case REGISTER_FAILURE:
+      console.log("REG_FAIL:", action);
       return {
         ...state,
         authError: action.payload.authError,

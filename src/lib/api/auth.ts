@@ -15,6 +15,8 @@ class AuthApi {
     name: string;
     nickname: string;
   }) => client.post("/api/auth/register", { email, password, name, nickname });
+
+  static check = () => client.get("/api/auth/check");
 }
 
 export { AuthApi };

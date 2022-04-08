@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ReducerType } from "../../../modules";
 import { changeField, initializeForm, login } from "../../../modules/auth";
 import { AuthForm } from "./AuthForm";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   const { form, auth, authError } = useSelector(({ auth }: ReducerType) => ({
     form: auth.login,
     auth: auth.auth,
@@ -27,15 +29,17 @@ export const LoginForm = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (auth) {
+      console.log("로그인 성공");
+      console.log(auth);
+      navigation("/");
+    }
     if (authError) {
       console.log("로그인 에러");
       console.log(authError);
     }
-    if (auth) {
-      console.log("로그인 성공");
-      console.log(auth);
-    }
-  }, [auth, authError]);
+  }, [auth, authError, navigation]);
+
   return (
     <AuthForm
       type="login"

@@ -13,6 +13,7 @@ interface AuthFormType {
 
 export const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
   const text = type === "login" ? "로그인" : "회원가입";
+
   return (
     <div className="div auth-form">
       <h3>{text}</h3>

@@ -6,14 +6,22 @@ export const CHECK_FAILURE = "user/CHECK_FAILURE" as const;
 export interface tempSetUserDispatch {
   type: typeof TEMP_SET_USER;
   payload: {
-    user: any;
+    user: {
+      id: number;
+      name: string;
+      nickname: string;
+    };
   };
 }
 
 export interface checkSuccessDispatch {
   type: typeof CHECK_SUCCESS;
   payload: {
-    user: any;
+    user: {
+      id: number;
+      name: string;
+      nickname: string;
+    };
   };
 }
 
@@ -23,3 +31,8 @@ export interface checkFailureDispatch {
     error: any;
   };
 }
+
+export type UserDispatchType =
+  | tempSetUserDispatch
+  | checkSuccessDispatch
+  | checkFailureDispatch;
