@@ -46,9 +46,9 @@ $palette: (
     font-size: 1.125rem;
   }
   &.cyan {
-    background: map-get(map-get($palette, cyan), 5);
+    background: map-get(map-get($palette, cyan), 6);
     &:hover {
-      background: map-get(map-get($palette, cyan), 4);
+      background: map-get(map-get($palette, cyan), 5);
     }
   }
 }
