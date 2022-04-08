@@ -48,11 +48,6 @@
 }
 
 .div.auth-form {
-  .head-area {
-    font-size: 1.2rem;
-    height: 40px;
-    font-weight: bold;
-  }
   color: $oc-gray-8;
 }
 
@@ -107,6 +102,7 @@
     width: 30%;
     height: 100%;
     font-size: 0.9rem;
+    font-weight: bold;
     color: $oc-gray-7;
   }
 }

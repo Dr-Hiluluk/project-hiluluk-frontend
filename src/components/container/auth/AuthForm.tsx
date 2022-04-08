@@ -17,7 +17,7 @@ export const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
   const text = type === "login" ? "로그인" : "회원가입";
   return (
     <div className="div auth-form">
-      <div className="div head-area">{text}</div>
+      <h3>{text}</h3>
       <form onSubmit={onSubmit}>
         {type === "register" && (
           <div className="div input-area">
