@@ -118,13 +118,27 @@
   align-items: stretch;
   margin-top: 40px;
   padding-top: 20px;
+  //padding-bottom: 20px;
   width: 100%;
   border-top: 1px solid $oc-gray-5;
 
   .social-login-icon {
-    transition: all 0.5s linear;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 5rem;
+    font-size: 0.8rem;
+  }
+  .social-login-text {
+    padding-top: 0.5rem;
+  }
+
+  .social-login-effect {
+    transition: all 0.1s linear;
     &:hover {
-      transform: scale(5);
+      transform: scale(1.05);
     }
   }
 }
