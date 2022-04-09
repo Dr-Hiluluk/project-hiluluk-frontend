@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import React from "react";
 import "./common.scss";
 
@@ -15,7 +14,10 @@ import "./common.scss";
 
 export const Button = (props: any) => {
   return (
-    <button className={`btn ${props.fullWidth} ${props.cyan}`}>
+    <button
+      className={`btn ${props.fullWidth} ${props.cyan}`}
+      disabled={props.disabled}
+    >
       {props.children}
     </button>
   );
