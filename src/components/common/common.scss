@@ -1,29 +1,4 @@
-$palette: (
-  gray: (
-    0: #f8f9fa,
-    1: #f1f3f5,
-    2: #e9ecef,
-    3: #dee2e6,
-    4: #ced4da,
-    5: #adb5bd,
-    6: #868e96,
-    7: #495057,
-    8: #343a40,
-    9: #212529,
-  ),
-  cyan: (
-    0: #e3fafc,
-    1: #c5f6fa,
-    2: #99e9f2,
-    3: #66d9e8,
-    4: #3bc9db,
-    5: #22b8cf,
-    6: #15aabf,
-    7: #1098ad,
-    8: #0c8599,
-    9: #0b7285,
-  ),
-);
+@import "~open-color/open-color";
 
 .btn {
   border: none;
@@ -34,9 +9,9 @@ $palette: (
   color: white;
   outline: none;
   cursor: pointer;
-  background-color: map-get(map-get($palette, gray), 8);
+  background-color: $oc-gray-8;
   &:hover {
-    background-color: map-get(map-get($palette, gray), 6);
+    background-color: $oc-gray-6;
   }
   &.fullWidth {
     margin-top: 1rem;
@@ -46,9 +21,16 @@ $palette: (
     font-size: 1.125rem;
   }
   &.cyan {
-    background: map-get(map-get($palette, cyan), 6);
-    &:hover {
-      background: map-get(map-get($palette, cyan), 5);
-    }
+    background: $oc-cyan-5;
   }
+  &:disabled {
+    background: $oc-cyan-1;
+  }
+}
+
+.span.error {
+  color: $oc-red-6;
+  margin: 5px 0px 10px 0px;
+  font-size: 12px;
+  font-weight: 600;
 }

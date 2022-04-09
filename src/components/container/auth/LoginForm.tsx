@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ReducerType } from "../../../modules";
 import { changeField, initializeForm, login } from "../../../modules/auth";
-import { AuthForm } from "./AuthForm";
+import AuthForm from "./AuthForm";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ export const LoginForm = () => {
     const { value, name } = e.target;
     dispatch(changeField({ form: "login", key: name, value }));
   };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (data: any, e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login({ email: form.email, password: form.password }));
+    dispatch(login({ email: data.email, password: data.password }));
   };
 
   // 컴포넌트 처음 렌더링시 form 초기화 작업

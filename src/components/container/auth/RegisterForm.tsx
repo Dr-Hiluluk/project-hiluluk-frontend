@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ReducerType } from "../../../modules";
 import { changeField, initializeForm, register } from "../../../modules/auth";
 import { check } from "../../../modules/user";
-import { AuthForm } from "./AuthForm";
+import AuthForm from "./AuthForm";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -23,9 +23,8 @@ export const RegisterForm = () => {
     dispatch(changeField({ form: "register", key: name, value: value }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { name, nickname, email, password, passwordConfirm } = form;
+  const onSubmit = (data: any, e: React.FormEvent<HTMLFormElement>) => {
+    const { name, nickname, email, password, passwordConfirm } = data;
     if (password !== passwordConfirm) {
       return;
     }
@@ -58,7 +57,7 @@ export const RegisterForm = () => {
       console.log("check API 성공");
       console.log("checkUser:", user);
     } else {
-      console.log("check user error");
+      console.log("check API 실패");
       console.log(userError);
     }
   }, [user, userError]);

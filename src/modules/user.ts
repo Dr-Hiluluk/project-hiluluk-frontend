@@ -51,7 +51,6 @@ const user = (
         ...state,
       };
     case CHECK_SUCCESS:
-      console.log("check:", action);
       return {
         ...state,
         user: action.payload.user,

@@ -1,11 +1,7 @@
 import React from "react";
 
 const PostListPage = () => {
-  return (
-    <div>
-      <span>Home</span>
-    </div>
-  );
+  return <div>Home</div>;
 };
 
 export default PostListPage;
