@@ -10,7 +10,8 @@ import {
 import { Button } from "../../common/Button";
 import { FormError } from "../../common/FormError";
 import "./auth.scss";
-
+import GoogleLoginbtn from "../../../static/svg/GoogleLoginbtn.svg";
+import KakaoLoginbtn from "../../../static/svg/KakaoLoginbtn.svg";
 interface AuthFormType {
   type: string;
   form: AuthReducerType["login"] | AuthReducerType["register"];
@@ -40,7 +41,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
         })}
       >
         {type === "register" && (
-          <div>
+          <div className="div input-area">
             <input
               className="input"
               {...register("name", {
@@ -115,7 +116,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
         />
         <FormError message={formState.errors.password?.message} />
         {type === "register" && (
-          <div>
+          <div className="div input-area">
             <input
               className="input"
               {...register("passwordConfirm", {
@@ -150,13 +151,48 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           {text}
         </Button>
       </form>
-      <footer className="footer">
+      {type === "login" && (
+        <div className="div find-and-signup-area">
+          <div className="div find-and-signup">
+            <Link to="/findID">아이디 찾기</Link>
+          </div>
+          <div className="div vertical-line" />
+          <div className="div find-and-signup">
+            <Link to="/findPW">비밀번호 찾기</Link>
+          </div>
+          <div className="div vertical-line" />
+          <div className="div find-and-signup">
+            <Link to="/register">회원가입</Link>
+          </div>
+        </div>
+      )}
+      {type === "login" && (
+        <div className="div social-login-area">
+          <div className="div social-login-effect">
+            <Link to="/login-to-google">
+              <div className="div social-login-icon">
+                <img className="img icon" src={GoogleLoginbtn} alt="google" />
+                <div className="div social-login-text">구글 로그인</div>
+              </div>
+            </Link>
+          </div>
+          <div className="div social-login-effect">
+            <Link to="/jogin-to-kakao">
+              <div className="div social-login-icon">
+                <img className="img icon" src={KakaoLoginbtn} alt="kakao" />
+                <div className="div social-login-text">카카오 로그인</div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      )}
+      {/* <footer className="footer">
         {type === "login" ? (
           <Link to="/register">회원가입</Link>
         ) : (
           <Link to="/login">로그인</Link>
         )}
-      </footer>
+      </footer> */}
     </div>
   );
 };

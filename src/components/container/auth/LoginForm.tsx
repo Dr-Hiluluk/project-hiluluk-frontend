@@ -19,7 +19,6 @@ export const LoginForm = () => {
     dispatch(changeField({ form: "login", key: name, value }));
   };
   const onSubmit = (data: any, e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     dispatch(login({ email: data.email, password: data.password }));
   };
 
