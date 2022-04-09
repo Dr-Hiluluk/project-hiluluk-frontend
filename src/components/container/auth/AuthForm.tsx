@@ -103,14 +103,20 @@ export const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
       )}
       {type === "login" && (
         <div className="div social-login-area">
-          <div className="div social-login-icon">
+          <div className="div social-login-effect">
             <Link to="/login-to-google">
-              <img className="img icon" src={GoogleLoginbtn} alt="google" />
+              <div className="div social-login-icon">
+                <img className="img icon" src={GoogleLoginbtn} alt="google" />
+                <div className="div social-login-text">구글 로그인</div>
+              </div>
             </Link>
           </div>
-          <div className="div social-login-icon">
+          <div className="div social-login-effect">
             <Link to="/jogin-to-kakao">
-              <img className="img icon" src={KakaoLoginbtn} alt="kakao" />
+              <div className="div social-login-icon">
+                <img className="img icon" src={KakaoLoginbtn} alt="kakao" />
+                <div className="div social-login-text">카카오 로그인</div>
+              </div>
             </Link>
           </div>
         </div>
