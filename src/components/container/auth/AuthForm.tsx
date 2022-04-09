@@ -142,6 +142,12 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
             <FormError message={formState.errors.passwordConfirm?.message} />
           </div>
         )}
+        {type === "login" && (
+          <div className="div login-maintain-area">
+            <input type="checkbox" id="login-maintain" name="scales" />
+            <label htmlFor="login-maintain">로그인 유지</label>
+          </div>
+        )}
         <Button
           className="btn"
           cyan="cyan"
