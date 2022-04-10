@@ -73,7 +73,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
                 pattern: {
                   value: USERNAME_EXP,
                   message:
-                    "5-20자의 영문 소문자,숫자와 특수기호(_,-)만 사용 가능합니다.",
+                    "5-20자의 영문 소문자,숫자와 특수기호(_),(-)만 사용 가능합니다.",
                 },
                 required: {
                   value: true,
@@ -188,7 +188,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           <div className="div social-login-effect">
             <Link to="/login-to-google">
               <div className="div social-login-icon">
-                <img className="img icon" src={GoogleLoginbtn} alt="google" />
+                <img src={GoogleLoginbtn} alt="google" />
                 <div className="div social-login-text">구글 로그인</div>
               </div>
             </Link>
@@ -196,7 +196,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           <div className="div social-login-effect">
             <Link to="/jogin-to-kakao">
               <div className="div social-login-icon">
-                <img className="img icon" src={KakaoLoginbtn} alt="kakao" />
+                <img src={KakaoLoginbtn} alt="kakao" />
                 <div className="div social-login-text">카카오 로그인</div>
               </div>
             </Link>
