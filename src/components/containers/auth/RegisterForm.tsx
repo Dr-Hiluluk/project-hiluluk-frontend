@@ -53,7 +53,7 @@ export const RegisterForm = () => {
   // user 잘 설정되어있는지 확인
   useEffect(() => {
     console.log("user:", user);
-    if (user.name) {
+    if (user.id) {
       console.log("check API 성공");
       console.log("checkUser:", user);
     } else {
@@ -64,7 +64,7 @@ export const RegisterForm = () => {
 
   // 로그인 상태 유지
   useEffect(() => {
-    if (user.name) {
+    if (user.id) {
       navigation("/");
       try {
         localStorage.setItem("user", JSON.stringify(user));
