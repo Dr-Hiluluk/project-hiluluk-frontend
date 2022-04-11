@@ -1,10 +1,11 @@
-import { takeLatest } from "redux-saga/effects";
+import { call, takeLatest } from "redux-saga/effects";
 import { AuthApi } from "../lib/api/auth";
 import createRequestSaga from "../lib/createRequestSaga";
 import {
   CHECK,
   CHECK_FAILURE,
   CHECK_SUCCESS,
+  LOGOUT,
   TEMP_SET_USER,
   UserDispatchType,
   userInitialStateType,
@@ -16,9 +17,19 @@ export const tempSetUser = (user: any) => ({
     user,
   },
 });
-
 export const check = () => ({ type: CHECK });
+export const logout = () => ({ type: LOGOUT });
+
 const checkSaga = createRequestSaga(CHECK, AuthApi.check, "user");
+
+function* logoutSaga() {
+  try {
+    yield call(AuthApi.logout);
+    localStorage.removeItem("user");
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 function checkFailureSaga() {
   try {
@@ -31,11 +42,12 @@ function checkFailureSaga() {
 export function* userSaga() {
   yield takeLatest(CHECK, checkSaga);
   yield takeLatest(CHECK_FAILURE, checkFailureSaga);
+  yield takeLatest(LOGOUT, logoutSaga);
 }
 
 const initialState = {
   user: {
-    id: -1,
+    id: 0,
     name: "",
     nickname: "",
   },
@@ -64,6 +76,12 @@ const user = (
         ...state,
         user: initialState.user,
         userError: action.payload.error,
+      };
+    case LOGOUT:
+      console.log("logoutAction:", action);
+      return {
+        ...state,
+        user: initialState.user,
       };
     default:
       return state;

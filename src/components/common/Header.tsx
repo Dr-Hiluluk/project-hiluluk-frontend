@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { Button } from "./Button/Button";
 import { Responsive } from "./Responsive";
 import LogoDrHiluluk from "../../static/svg/LogoDrHiluluk.svg";
@@ -7,10 +7,10 @@ import { userInitialStateType } from "../../modules/user.type";
 
 interface headerType {
   user?: userInitialStateType["user"];
+  onLogout: MouseEventHandler<any> | undefined;
 }
 
-export const Header = ({ user }: headerType) => {
-  console.log("user:", user);
+export const Header = ({ user, onLogout }: headerType) => {
   return (
     <>
       <div className="header-block">
@@ -21,7 +21,7 @@ export const Header = ({ user }: headerType) => {
           {user?.name ? (
             <div className="right">
               <div className="user-info">{user.nickname}</div>
-              <Button cyan="cyan" fullWidth="fullWidth">
+              <Button cyan="cyan" fullWidth="fullWidth" onClick={onLogout}>
                 로그아웃
               </Button>
             </div>

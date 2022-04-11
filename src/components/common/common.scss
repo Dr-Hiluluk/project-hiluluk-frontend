@@ -68,7 +68,7 @@
 }
 
 .wrapper {
-  @extend.block;
+  @extend .block;
   height: 4rem;
   display: flex;
   align-items: center;
@@ -79,8 +79,9 @@
   height: 2em;
 }
 
-.rigth {
+.right {
   display: flex;
+  align-items: center;
 }
 
 .user-info {
