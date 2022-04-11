@@ -1,0 +1,40 @@
+import React from "react";
+import { Button } from "./Button/Button";
+import { Responsive } from "./Responsive";
+import LogoDrHiluluk from "../../static/svg/LogoDrHiluluk.svg";
+import { Link } from "react-router-dom";
+import { userInitialStateType } from "../../modules/user.type";
+
+interface headerType {
+  user?: userInitialStateType["user"];
+}
+
+export const Header = ({ user }: headerType) => {
+  console.log("user:", user);
+  return (
+    <>
+      <div className="header-block">
+        <Responsive className="wrapper">
+          <Link to="/">
+            <img className="logo" src={LogoDrHiluluk} alt="logo" />
+          </Link>
+          {user?.name ? (
+            <div className="right">
+              <div className="user-info">{user.nickname}</div>
+              <Button cyan="cyan" fullWidth="fullWidth">
+                로그아웃
+              </Button>
+            </div>
+          ) : (
+            <div className="right">
+              <Button to="/login" cyan="cyan" fullWidth="fullWidth">
+                로그인
+              </Button>
+            </div>
+          )}
+        </Responsive>
+      </div>
+      <div className="spacer" />
+    </>
+  );
+};

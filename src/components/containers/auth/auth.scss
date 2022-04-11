@@ -1,6 +1,6 @@
 @import "~open-color/open-color";
 
-.div.template {
+.template {
   position: absolute;
   left: 0;
   top: 0;
@@ -18,7 +18,7 @@
   display: flex;
 }
 
-.div.white-box {
+.white-box {
   .logo-area {
     .logo {
       width: 250px;
@@ -34,11 +34,10 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 0px 50px 70px 50px;
   width: 500px;
-  //height: 700px;
   background: $oc-white;
 }
 
-.div.inner-area {
+.inner-area {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -47,11 +46,11 @@
   //display: block;
 }
 
-.div.auth-form {
+.auth-form {
   color: $oc-gray-8;
 }
 
-.div.input-area {
+.input-area {
   display: flex;
   width: 100%;
   height: 70px;
@@ -73,7 +72,7 @@
   }
 }
 
-.div.login-maintain-area {
+.login-maintain-area {
   width: 100%;
   height: 50px;
   display: flex;
@@ -90,7 +89,7 @@
   }
 }
 
-.div.find-and-signup-area {
+.find-and-signup-area {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -110,11 +109,11 @@
   }
 }
 
-.div.vertical-line {
+.vertical-line {
   border-left: 1px solid $oc-gray-5;
 }
 
-.div.social-login-area {
+.social-login-area {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
