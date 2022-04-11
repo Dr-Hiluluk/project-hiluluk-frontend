@@ -3,6 +3,15 @@ export const CHECK = "user/CHECK" as const;
 export const CHECK_SUCCESS = "user/CHECK_SUCCESS" as const;
 export const CHECK_FAILURE = "user/CHECK_FAILURE" as const;
 
+export interface userInitialStateType {
+  user: {
+    id: number;
+    name: string;
+    nickname: string;
+  };
+  userError: null;
+}
+
 export interface tempSetUserDispatch {
   type: typeof TEMP_SET_USER;
   payload: {

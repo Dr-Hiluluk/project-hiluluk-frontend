@@ -7,6 +7,22 @@ export const LOGIN = "auth/LOGIN" as const;
 export const LOGIN_SUCCESS = "auth/LOGIN_SUCCESS" as const;
 export const LOGIN_FAILURE = "auth/LOGIN_FAILURE" as const;
 
+export interface AuthInitialStateType {
+  register: {
+    name: string;
+    nickname: string;
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  auth: any;
+  authError: any;
+}
+
 export interface changeFieldDispatch {
   type: typeof CHANGE_FIELD;
   payload: {

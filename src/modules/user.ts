@@ -7,6 +7,7 @@ import {
   CHECK_SUCCESS,
   TEMP_SET_USER,
   UserDispatchType,
+  userInitialStateType,
 } from "./user.type";
 
 export const tempSetUser = (user: any) => ({
@@ -19,17 +20,17 @@ export const tempSetUser = (user: any) => ({
 export const check = () => ({ type: CHECK });
 const checkSaga = createRequestSaga(CHECK, AuthApi.check, "user");
 
-export function* userSaga() {
-  yield takeLatest(CHECK, checkSaga);
+function checkFailureSaga() {
+  try {
+    localStorage.removeItem("user");
+  } catch (e) {
+    console.log("localStorage is not working");
+  }
 }
 
-interface userInitialStateType {
-  user: {
-    id: number;
-    name: string;
-    nickname: string;
-  };
-  userError: null;
+export function* userSaga() {
+  yield takeLatest(CHECK, checkSaga);
+  yield takeLatest(CHECK_FAILURE, checkFailureSaga);
 }
 
 const initialState = {
@@ -49,8 +50,10 @@ const user = (
     case TEMP_SET_USER:
       return {
         ...state,
+        user: action.payload.user,
       };
     case CHECK_SUCCESS:
+      console.log("action:", action.payload);
       return {
         ...state,
         user: action.payload.user,

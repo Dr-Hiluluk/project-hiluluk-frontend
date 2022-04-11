@@ -4,6 +4,7 @@ import { AuthApi } from "../lib/api/auth";
 import createRequestSaga from "../lib/createRequestSaga";
 import {
   AuthDispatchType,
+  AuthInitialStateType,
   CHANGE_FIELD,
   INITIALIZE_FROM,
   LOGIN,
@@ -85,22 +86,6 @@ const loginSaga = createRequestSaga(LOGIN, AuthApi.login, "auth");
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
-}
-
-export interface AuthInitialStateType {
-  register: {
-    name: string;
-    nickname: string;
-    email: string;
-    password: string;
-    passwordConfirm: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  auth: any;
-  authError: any;
 }
 
 const initialState: AuthInitialStateType = {
