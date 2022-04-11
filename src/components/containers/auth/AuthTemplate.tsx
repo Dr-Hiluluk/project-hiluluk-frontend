@@ -9,14 +9,14 @@ interface childProps {
 
 export const AuthTemplate = ({ children }: childProps) => {
   return (
-    <div className="div template">
-      <div className="div white-box">
-        <div className="div logo-area">
+    <div className="template">
+      <div className="white-box">
+        <div className="logo-area">
           <Link to="/">
-            <img className="img logo" src={LogoDrHiluluk} alt="logo" />
+            <img className="logo" src={LogoDrHiluluk} alt="logo" />
           </Link>
         </div>
-        <div className="div inner-area">{children}</div>
+        <div className="inner-area">{children}</div>
       </div>
     </div>
   );

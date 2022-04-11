@@ -4,6 +4,6 @@ export const FormError = ({ message }: any) => {
   return message === "" ||
     message == null ||
     typeof message == "undefined" ? null : (
-    <span className="span error">{message}</span>
+    <span className="error">{message}</span>
   );
 };

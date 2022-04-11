@@ -7,7 +7,7 @@ import {
   PASSWORD_EXP,
   USERNAME_EXP,
 } from "../../../utils/variables";
-import { Button } from "../../common/Button";
+import { Button } from "../../common/Button/Button";
 import { FormError } from "../../common/FormError";
 import "./auth.scss";
 import GoogleLoginbtn from "../../../static/svg/GoogleLoginbtn.svg";
@@ -33,7 +33,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
   });
 
   return (
-    <div className="div auth-form">
+    <div className="auth-form">
       <h3>{text}</h3>
       <form
         onSubmit={handleSubmit((data: any, e: any) => {
@@ -41,7 +41,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
         })}
       >
         {type === "register" && (
-          <div className="div input-area">
+          <div className="input-area">
             <input
               className="input"
               {...register("name", {
@@ -66,7 +66,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           </div>
         )}
         {type === "register" && (
-          <div className="div input-area">
+          <div className="input-area">
             <input
               className="input"
               {...register("nickname", {
@@ -87,7 +87,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
             <FormError message={formState.errors.nickname?.message} />
           </div>
         )}
-        <div className="div input-area">
+        <div className="input-area">
           <input
             className="input"
             {...register("email", {
@@ -107,7 +107,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           />
           <FormError message={formState.errors.email?.message} />
         </div>
-        <div className="div input-area">
+        <div className="input-area">
           <input
             className="input"
             {...register("password", {
@@ -127,7 +127,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           <FormError message={formState.errors.password?.message} />
         </div>
         {type === "register" && (
-          <div className="div input-area">
+          <div className="input-area">
             <input
               className="input"
               {...register("passwordConfirm", {
@@ -154,7 +154,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           </div>
         )}
         {type === "login" && (
-          <div className="div login-maintain-area">
+          <div className="login-maintain-area">
             <input type="checkbox" id="login-maintain" name="scales" />
             <label htmlFor="login-maintain">로그인 유지</label>
           </div>
@@ -169,35 +169,35 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
         </Button>
       </form>
       {type === "login" && (
-        <div className="div find-and-signup-area">
-          <div className="div find-and-signup">
+        <div className="find-and-signup-area">
+          <div className="find-and-signup">
             <Link to="/findID">아이디 찾기</Link>
           </div>
-          <div className="div vertical-line" />
-          <div className="div find-and-signup">
+          <div className="vertical-line" />
+          <div className="find-and-signup">
             <Link to="/findPW">비밀번호 찾기</Link>
           </div>
-          <div className="div vertical-line" />
-          <div className="div find-and-signup">
+          <div className="vertical-line" />
+          <div className="find-and-signup">
             <Link to="/register">회원가입</Link>
           </div>
         </div>
       )}
       {type === "login" && (
-        <div className="div social-login-area">
-          <div className="div social-login-effect">
+        <div className="social-login-area">
+          <div className="social-login-effect">
             <Link to="/login-to-google">
-              <div className="div social-login-icon">
+              <div className="social-login-icon">
                 <img src={GoogleLoginbtn} alt="google" />
-                <div className="div social-login-text">구글 로그인</div>
+                <div className="social-login-text">구글 로그인</div>
               </div>
             </Link>
           </div>
-          <div className="div social-login-effect">
-            <Link to="/jogin-to-kakao">
-              <div className="div social-login-icon">
+          <div className="social-login-effect">
+            <Link to="/login-to-kakao">
+              <div className="social-login-icon">
                 <img src={KakaoLoginbtn} alt="kakao" />
-                <div className="div social-login-text">카카오 로그인</div>
+                <div className="social-login-text">카카오 로그인</div>
               </div>
             </Link>
           </div>

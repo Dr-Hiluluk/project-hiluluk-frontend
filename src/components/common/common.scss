@@ -1,35 +1,6 @@
-@import "~open-color/open-color";
+@import "./../../styles/utils.scss";
 
-.btn {
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.25rem 1rem;
-  color: white;
-  outline: none;
-  cursor: pointer;
-  background-color: $oc-gray-8;
-  &:hover {
-    background-color: $oc-gray-6;
-  }
-  &.fullWidth {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    width: 100%;
-    font-size: 1.125rem;
-  }
-  &.cyan {
-    background: $oc-cyan-6;
-  }
-  &:disabled {
-    background: $oc-cyan-2;
-    //opacity: 50%;
-  }
-}
-
-.span.error {
+.error {
   color: $oc-red-6;
   margin: 5px 0px 10px 0px;
   font-size: 12px;
@@ -37,21 +8,23 @@
 }
 
 // /*css-icon-component
-.div.icon-area {
+.icon-area {
   height: 100px;
   //icon 사이즈 조절(세로 기준 자동 비율)
   font-size: 1rem * 100 / 16;
   // font-size=16px 이라고 가정하고 계산
   display: inline-flex;
 }
-.div.icon-centering {
+
+.icon-centering {
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
 }
-.img.icon-coloring {
+
+.icon-coloring {
   height: 100%;
   //padding: 5px;
   //필요시 padding
@@ -60,12 +33,62 @@
 }
 // css-icon-component*/
 
-.div.color {
+.color {
   color: $oc-gray-9;
   background: $oc-pink-1;
 }
-.div.home-icon {
+
+.home-icon {
   .logo {
     display: flex;
   }
+}
+
+// responsive block
+.block {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 1024px;
+  margin: 0 auto; // 중앙 정렬
+
+  // 브라우저 크기에 따라 가로 크기 변경
+  @media (max-width: 1024px) {
+    width: 768px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.header-block {
+  position: fixed;
+  width: 100%;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.wrapper {
+  @extend.block;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 2em;
+}
+
+.rigth {
+  display: flex;
+}
+
+.user-info {
+  font-weight: 800;
+  margin-right: 1rem;
+}
+
+// 헤더가 fixed로 되어 있기 때문에 페이지 콘텐츠가 4rem 아래에 나타나도록 하는 div
+.spacer {
+  height: 4rem;
 }
