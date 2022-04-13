@@ -33,17 +33,6 @@
 }
 // css-icon-component*/
 
-.color {
-  color: $oc-gray-9;
-  background: $oc-pink-1;
-}
-
-.home-icon {
-  .logo {
-    display: flex;
-  }
-}
-
 // responsive block
 .block {
   padding-left: 1rem;
@@ -86,6 +75,8 @@
 
 .user-info {
   font-weight: 800;
+  display: flex;
+  flex-direction: row;
   margin-right: 1rem;
 }
 
