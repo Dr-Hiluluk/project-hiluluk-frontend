@@ -1,0 +1,58 @@
+@import "../../../styles/utils.scss";
+
+.tag-box-block {
+  width: 100%;
+  border-top: 1px solid $oc-cyan-2;
+  padding-top: 2rem;
+  h4 {
+    color: $oc-cyan-8;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.tag-form {
+  border: 1px solid $oc-cyan-8;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  width: 256px;
+  input,
+  button {
+    // outline: none;
+    border: none;
+    font-size: 1rem;
+  }
+
+  input {
+    padding: 0.5rem;
+    flex: 1;
+    // min-width: 0;
+  }
+
+  button {
+    cursor: pointer;
+    padding: 0 1rem;
+    border: none;
+    background: $oc-cyan-8;
+    color: white;
+    font-weight: bold;
+    &:hover {
+      background: $oc-cyan-6;
+    }
+  }
+}
+
+.tag {
+  margin-right: 0.5rem;
+  color: $oc-cyan-6;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.tag-list-block {
+  display: flex;
+  margin-top: 0.5rem;
+}

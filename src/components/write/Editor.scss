@@ -1,0 +1,31 @@
+@import "../../styles/utils.scss";
+@import "../common/common.scss";
+
+.editor-block {
+  @extend .block;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.title-input {
+  font-size: 3rem;
+  outline: none;
+  padding-bottom: 0.5rem;
+  border: none;
+  border-bottom: 1px solid $oc-cyan-4;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.quill-wrapper {
+  // 최소 크기 지정 및 padding 제거
+  .ql-editor {
+    padding: 0;
+    min-height: 320px;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  .ql-editor.ql-blank:before {
+    left: 0px;
+  }
+}
