@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import "../components/common/common.scss";
 import { IoIosSearch } from "react-icons/io";
 import { HeaderContainer } from "../components/containers/common/HeaderContainer";
-import { Ctgr } from "../components/common/Ctgr/Ctgr";
+import CategoryTab from "../components/common/CategoryTab/CategoryTab";
 
 const PostListPage = () => {
   return (
     <>
       <HeaderContainer />
 
-      <Ctgr />
+      <CategoryTab />
       <div>1안녕하세요.</div>
       <div>2안녕하세요.</div>
       <div>3안녕하세요.</div>

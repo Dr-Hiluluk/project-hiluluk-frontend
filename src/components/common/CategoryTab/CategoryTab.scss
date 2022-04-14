@@ -56,31 +56,30 @@
   width: 100%;
   text-align: center;
   font-weight: 500;
+  .icon {
+    position: relative;
+    display: block;
+    left: 1px;
+    line-height: 75px;
+    font-size: 2.5rem;
+    text-align: center;
+    transition: 0.5s;
+    color: $oc-gray-9;
+  }
+  .text {
+    position: absolute;
+    color: $oc-gray-9;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    transition: 0.7s;
+    opacity: 0;
+    transform: translateY(-35px);
+  }
 }
 
-.ctgr ul li a .icon {
-  position: relative;
-  display: block;
-  left: 1px;
-  line-height: 75px;
-  font-size: 2.5rem;
-  text-align: center;
-  transition: 0.5s;
-  color: $oc-gray-9;
-}
 .ctgr ul li.active a .icon {
   transform: translateY(45px);
-}
-
-.ctgr ul li a .text {
-  position: absolute;
-  color: $oc-gray-9;
-  font-weight: 500;
-  font-size: 1.1rem;
-  letter-spacing: 0.05rem;
-  transition: 0.7s;
-  opacity: 0;
-  transform: translateY(-35px);
 }
 .ctgr ul li.active a .text {
   opacity: 1;
@@ -101,7 +100,7 @@
 .indicator::before {
   content: "";
   position: absolute;
-  top: 33.5px;
+  top: 33.2px;
   left: -21px;
   width: 16px;
   height: 8px;
@@ -113,7 +112,7 @@
 .indicator::after {
   content: "";
   position: absolute;
-  top: 33.5px;
+  top: 33.2px;
   right: -21px;
   width: 16px;
   height: 8px;
@@ -123,39 +122,9 @@
   box-shadow: -10px 0 0 0 $oc-pink-2;
 }
 
-.ctgr ul li:nth-child(1).active ~ .indicator {
-  transform: translateX(calc((0 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(2).active ~ .indicator {
-  transform: translateX(calc((1 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(3).active ~ .indicator {
-  transform: translateX(calc((2 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(4).active ~ .indicator {
-  transform: translateX(calc((3 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(5).active ~ .indicator {
-  transform: translateX(calc((4 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(6).active ~ .indicator {
-  transform: translateX(calc((5 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(7).active ~ .indicator {
-  transform: translateX(calc((6 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(8).active ~ .indicator {
-  transform: translateX(calc((7 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(9).active ~ .indicator {
-  transform: translateX(calc((8 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(10).active ~ .indicator {
-  transform: translateX(calc((9 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(11).active ~ .indicator {
-  transform: translateX(calc((10 / 12) * (1024px - 2rem)));
-}
-.ctgr ul li:nth-child(12).active ~ .indicator {
-  transform: translateX(calc((11 / 12) * (1024px - 2rem)));
+// #{$i} 문자열 //$i 변수
+@for $i from 1 to 13 {
+  .ctgr ul li:nth-child(#{$i}).active ~ .indicator {
+    transform: translateX(calc(((#{$i} / 12) - (1 / 12)) * (1024px - 2rem)));
+  }
 }

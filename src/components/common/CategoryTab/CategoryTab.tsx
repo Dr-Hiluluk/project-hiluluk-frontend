@@ -15,27 +15,29 @@ import {
   IoSkull,
   IoWater,
 } from "react-icons/io5";
-import "./Ctgr.scss";
+import "./CategoryTab.scss";
 
 const activeLink = (e: string) => {
   const list = document.querySelectorAll(".list");
-  const ctgrNum: HTMLElement | any = document.getElementById(e);
+  const ctgrNum: HTMLElement | null = document.getElementById(e);
   const isActive = () => {
     for (let i = 0; i < list.length; i++) {
-      let j: HTMLElement | any = document.getElementById(String(i + 1));
-      j.className = "list";
+      let j: HTMLElement | null = document.getElementById(String(i + 1));
+      if (j) {
+        j.className = "list";
+      }
     }
   };
   // ctgrNum.className === "list" :닫혀있는 상태
-  if (ctgrNum.className === "list") {
+  if (ctgrNum && ctgrNum.className === "list") {
     isActive();
     ctgrNum.className = "list active";
-  } else if (ctgrNum.className === "list active") {
+  } else if (ctgrNum && ctgrNum.className === "list active") {
     isActive();
   }
 };
 
-export const Ctgr = () => {
+const CategoryTab = () => {
   return (
     <div className="ctgr-area">
       <Responsive className="ctgr-wrapper">
@@ -216,3 +218,5 @@ export const Ctgr = () => {
     </div>
   );
 };
+
+export default CategoryTab;
