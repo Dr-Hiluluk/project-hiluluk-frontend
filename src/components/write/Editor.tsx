@@ -16,7 +16,7 @@ const Editor = () => {
           container: [
             [{ header: "1" }, { header: "2" }],
             ["bold", "italic", "underline", "strike"],
-            [{ list: "ordered" }, { list: "bullet" }],
+            [{ list: "ordered" }, { list: "bullet" }, { color: [] }],
             ["blockquote", "code-block", "link", "image"],
           ],
         },
