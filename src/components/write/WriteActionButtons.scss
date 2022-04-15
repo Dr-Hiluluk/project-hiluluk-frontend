@@ -1,0 +1,13 @@
+@import "../../styles/utils.scss";
+
+.write-action-button-block {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  button + button {
+    margin-left: 0.5rem;
+  }
+  button {
+    height: 2.125rem;
+    // margin-left: 0.5rem;
+  }
+}
