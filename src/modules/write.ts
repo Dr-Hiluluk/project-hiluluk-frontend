@@ -13,7 +13,7 @@ export const changeField = ({
 }: {
   key: string;
   value: string;
-}) => ({ type: CHANGE_FIELD, key, value });
+}) => ({ type: CHANGE_FIELD, payload: { key, value } });
 
 const initialState = {
   title: "",
@@ -30,6 +30,7 @@ const write = (
       return initialState;
     case CHANGE_FIELD:
       return produce(state, (draft) => {
+        console.log("action:", action);
         draft[action.payload.key as keyof initializeStateType] =
           action.payload.value;
       });
