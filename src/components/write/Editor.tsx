@@ -13,6 +13,7 @@ interface editorType {
 const Editor = ({ onChangeField, title, body }: editorType) => {
   const quillInstance = useRef<any>(null);
   const quillElement = useRef<any>(null);
+
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
       theme: "bubble",
