@@ -12,7 +12,7 @@ export const changeField = ({
   value,
 }: {
   key: string;
-  value: string;
+  value: string[];
 }) => ({ type: CHANGE_FIELD, payload: { key, value } });
 
 const initialState = {

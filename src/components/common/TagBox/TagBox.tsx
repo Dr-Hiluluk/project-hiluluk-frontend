@@ -3,6 +3,7 @@ import React, {
   FormEvent,
   memo,
   useCallback,
+  useEffect,
   useState,
 } from "react";
 import "../TagBox/TagBox.scss";
@@ -20,7 +21,7 @@ const TagList = memo(({ tags, onRemove }: any) => (
   </div>
 ));
 
-const TagBox = () => {
+const TagBox = ({ tags, onChangeTags }: any) => {
   const [input, setInput] = useState<string>("");
   const [localTags, setLocalTags] = useState<string[]>([]);
 
@@ -28,16 +29,20 @@ const TagBox = () => {
     (tag: string) => {
       if (!tag) return;
       if (localTags.includes(tag)) return;
-      setLocalTags((prev): string[] => [...prev, tag]);
+      const nextTags = [...localTags, tag];
+      setLocalTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags],
   );
 
   const removeTag = useCallback(
     (tag: string) => {
-      setLocalTags((prev): string[] => prev.filter((item) => item !== tag));
+      const nextTags = localTags.filter((item) => item !== tag);
+      setLocalTags(nextTags);
+      onChangeTags(nextTags);
     },
-    [localTags],
+    [localTags, onChangeTags],
   );
 
   const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +58,11 @@ const TagBox = () => {
     },
     [input, insertTag],
   );
+
+  useEffect(() => {
+    setLocalTags(tags);
+  }, [tags]);
+
   return (
     <div className="tag-box-block">
       <h4>태그</h4>
