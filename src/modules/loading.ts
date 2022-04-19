@@ -1,19 +1,25 @@
-const START_LOADING = "loading/START_LOADING";
-const FINISH_LOADING = "loading/FINISH_LOADING";
+import {
+  FINISH_LOADING,
+  LoadingDispatchType,
+  START_LOADING,
+} from "./loading.type";
 
 export const startLoaidng = (requestType: any) => ({
   type: START_LOADING,
-  requestType,
+  payload: requestType,
 });
 
 export const finishLoading = (requestType: any) => ({
   type: FINISH_LOADING,
-  requestType,
+  payload: requestType,
 });
 
 const initialState = {};
 
-const loading = (state: any = initialState, action: any): any => {
+const loading = (
+  state: any = initialState,
+  action: LoadingDispatchType,
+): any => {
   switch (action.type) {
     case START_LOADING:
       return { ...state, [action.payload]: true };

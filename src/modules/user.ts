@@ -65,7 +65,6 @@ const user = (
         user: action.payload.user,
       };
     case CHECK_SUCCESS:
-      console.log("action:", action.payload);
       return {
         ...state,
         user: action.payload.user,
@@ -78,7 +77,6 @@ const user = (
         userError: action.payload.error,
       };
     case LOGOUT:
-      console.log("logoutAction:", action);
       return {
         ...state,
         user: initialState.user,

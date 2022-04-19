@@ -104,12 +104,6 @@ const initialState: AuthInitialStateType = {
   authError: null,
 };
 
-// type AuthActionType =
-//   | ReturnType<typeof changeField>
-//   | ReturnType<typeof initializeForm>
-//   | ReturnType<typeof register>
-//   | ReturnType<typeof login>;
-
 export type AuthReducerType = ReturnType<typeof auth>;
 
 const auth = (
