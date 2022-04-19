@@ -1,7 +1,16 @@
 import React from "react";
 import { Button } from "../common/Button/Button";
 import "./WriteActionButtons.scss";
-const WriteActionButtons = ({ onCancel, onPublish }: any) => {
+
+interface writeActionButtonsType {
+  onCancel: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onPublish: React.MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+const WriteActionButtons = ({
+  onCancel,
+  onPublish,
+}: writeActionButtonsType) => {
   return (
     <div className="write-action-button-block">
       <Button onClick={onPublish} cyan="cyan">
