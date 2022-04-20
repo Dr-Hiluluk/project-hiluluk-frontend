@@ -48,7 +48,7 @@ const initialState = {
   title: "",
   body: "",
   tags: [],
-  post: "",
+  post: null,
   postError: null,
 };
 
