@@ -1,10 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import "../components/common/common.scss";
+import { HeaderContainer } from "../components/containers/common/HeaderContainer";
+import PostViewerContainer from "../components/containers/post/PostViewerContainer";
 
 const PostPage = () => {
-  const { postId } = useParams();
-  return <div>PostPage{postId}</div>;
+  return (
+    <>
+      <HeaderContainer />
+      <PostViewerContainer />
+    </>
+  );
 };
 
 export default PostPage;

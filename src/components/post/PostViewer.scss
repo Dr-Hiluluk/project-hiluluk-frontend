@@ -1,0 +1,47 @@
+@import "../../styles/utils.scss";
+@import "../common/common.scss";
+
+.post-viewer-block {
+  @extend .block;
+  margin-top: 4rem;
+}
+
+.post-head {
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid $oc-cyan-2;
+  h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.sub-info {
+  margin-top: 1rem;
+  color: $oc-gray-6;
+  span + span:before {
+    color: $oc-gray-5;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    content: "\B7";
+  }
+}
+
+.tags {
+  margin-top: 0.5rem;
+  .tag {
+    display: inline-block;
+    color: $oc-cyan-7;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    &:hover {
+      color: $oc-cyan-6;
+    }
+  }
+}
+
+.post-content {
+  font-size: 1.3125rem;
+  color: $oc-gray-8;
+}

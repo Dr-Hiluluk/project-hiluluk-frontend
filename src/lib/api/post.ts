@@ -10,6 +10,10 @@ class PostApi {
     body: string;
     tags: string[];
   }) => client.post("/api/post", { title, body, tags });
+
+  static readPost = ({ id }: any) => {
+    return client.get(`/api/post/${id}`);
+  };
 }
 
 export default PostApi;
