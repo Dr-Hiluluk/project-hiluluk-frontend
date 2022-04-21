@@ -105,7 +105,6 @@ const CategoryTab = () => {
               id="indicator"
               className={indicatorActive ? "indicator" : ""}
             />
-
           </ul>
         </div>
       </Responsive>
