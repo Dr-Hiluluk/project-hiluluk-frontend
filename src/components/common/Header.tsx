@@ -27,6 +27,7 @@ export const Header = ({ user, onLogout }: headerType) => {
             </div>
           ) : (
             <div className="right">
+              <div className="user-info">Nick</div>
               <Button to="/login" cyan="cyan" fullWidth="fullWidth">
                 로그인
               </Button>

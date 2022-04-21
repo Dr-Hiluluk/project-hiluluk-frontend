@@ -21,7 +21,7 @@ class CustomAxios {
     const http = axios.create({
       baseURL: process.env.BASE_API,
       headers: headersConfig,
-      timeout: 5000,
+      timeout: 30000,
     });
 
     // Interceptors configuration:
