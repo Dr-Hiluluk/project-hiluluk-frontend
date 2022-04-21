@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Responsive } from "../Responsive";
 import {
@@ -19,233 +19,92 @@ import {
 import "./CategoryTab.scss";
 
 const CategoryTab = () => {
-  const list = document.querySelectorAll(".list");
-  const activeLink = (e: string) => {
-    const ctgrNum: HTMLElement | null = document.getElementById(e);
-    const isActive = () => {
-      for (let i = 0; i < list.length; i++) {
-        let j: HTMLElement | null = document.getElementById(String(i + 1));
-        j && (j.className = "list");
-      }
-    };
-    // ctgrNum.className === "list" :닫혀있는 상태
-    if (ctgrNum && ctgrNum.className === "list") {
-      isActive();
-      ctgrNum.className = "list active";
-    } else if (ctgrNum && ctgrNum.className === "list active") {
-      isActive();
-    }
-  };
-
-  console.log(list);
-  //const [active, setActive] = useState("");
   const [active, setActive] = useState([
-    { id: 1, isActive: false },
-    { id: 2, isActive: false },
-    { id: 3, isActive: false },
-    { id: 4, isActive: false },
-    { id: 5, isActive: false },
-    { id: 6, isActive: false },
-    { id: 7, isActive: false },
-    { id: 8, isActive: false },
-    { id: 9, isActive: false },
-    { id: 10, isActive: false },
-    { id: 11, isActive: false },
-    { id: 12, isActive: false },
+    { id: 1, isActive: false, categoryName: "전신", categoryIcon: <IoBody /> },
+    { id: 2, isActive: false, categoryName: "머리", categoryIcon: <IoHappy /> },
+    { id: 3, isActive: false, categoryName: "정신", categoryIcon: <IoHeart /> },
+    { id: 4, isActive: false, categoryName: "얼굴", categoryIcon: <IoSad /> },
+    { id: 5, isActive: false, categoryName: "목", categoryIcon: <IoMic /> },
+    {
+      id: 6,
+      isActive: false,
+      categoryName: "가슴/등",
+      categoryIcon: <IoPerson />,
+    },
+    { id: 7, isActive: false, categoryName: "복부", categoryIcon: <IoShirt /> },
+    {
+      id: 8,
+      isActive: false,
+      categoryName: "비뇨기",
+      categoryIcon: <IoMaleFemaleSharp />,
+    },
+    {
+      id: 9,
+      isActive: false,
+      categoryName: "팔과 손",
+      categoryIcon: <IoHandLeft />,
+    },
+    {
+      id: 10,
+      isActive: false,
+      categoryName: "다리와 발",
+      categoryIcon: <IoFootsteps />,
+    },
+    {
+      id: 11,
+      isActive: false,
+      categoryName: "뼈/근육",
+      categoryIcon: <IoSkull />,
+    },
+    {
+      id: 12,
+      isActive: false,
+      categoryName: "피부",
+      categoryIcon: <IoWater />,
+    },
   ]);
 
-  const [inputs, setInputs] = useState({
-    id: "",
-    isActive: "",
-  });
-  const { id, isActive } = inputs;
+  const [indicatorActive, setIndicatorActive] = useState(false);
 
-  const handleButtonClick = (btn: number) => {
-    //const { targetId, targetIsAcive } = e.target;
-    //btn--;
-    console.log(btn);
+  const handleButtonClick = (idNumber: number) => {
     setActive(
       active.map((btn) =>
-        btn.id === active[btn.id].id ? { ...btn, isActive: true } : btn,
+        idNumber === btn.id
+          ? { ...btn, isActive: !btn.isActive }
+          : { ...btn, isActive: false },
       ),
     );
   };
-  console.log(active);
+
+  useEffect(() => {
+    const activeLength = active.filter((item) => item.isActive === true).length;
+    activeLength === 1 ? setIndicatorActive(true) : setIndicatorActive(false);
+  }, [active]);
+
   return (
-    <div className="ctgr-area">
-      <Responsive className="ctgr-wrapper">
-        <div className="ctgr">
+    <div className="category-area">
+      <Responsive className="category-wrapper">
+        <div className="category">
           <ul>
-            <li
-              id="1"
-              className={active[0].isActive ? "list active" : "list"}
-              onClick={() => handleButtonClick(0)}
-              // onClick={() => {
-              //   activeLink("1");
-              // }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoBody />
-                </span>
-                <span className="text">전신</span>
-              </Link>
-            </li>
-            <li
-              id="2"
-              className="list"
-              onClick={() => {
-                activeLink("2");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoHappy />
-                </span>
-                <span className="text">머리</span>
-              </Link>
-            </li>
-            <li
-              id="3"
-              className="list"
-              onClick={() => {
-                activeLink("3");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoHeart />
-                </span>
-                <span className="text">정신</span>
-              </Link>
-            </li>
-            <li
-              id="4"
-              className="list"
-              onClick={() => {
-                activeLink("4");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoSad />
-                </span>
-                <span className="text">얼굴</span>
-              </Link>
-            </li>
-            <li
-              id="5"
-              className="list"
-              onClick={() => {
-                activeLink("5");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoMic />
-                </span>
-                <span className="text">목</span>
-              </Link>
-            </li>
-            <li
-              id="6"
-              className="list"
-              onClick={() => {
-                activeLink("6");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoPerson />
-                </span>
-                <span className="text">가슴/등</span>
-              </Link>
-            </li>
-            <li
-              id="7"
-              className="list"
-              onClick={() => {
-                activeLink("7");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoShirt />
-                </span>
-                <span className="text">복부</span>
-              </Link>
-            </li>
-            <li
-              id="8"
-              className="list"
-              onClick={() => {
-                activeLink("8");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoMaleFemaleSharp />
-                </span>
-                <span className="text">비뇨기</span>
-              </Link>
-            </li>
-            <li
-              id="9"
-              className="list"
-              onClick={() => {
-                activeLink("9");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoHandLeft />
-                </span>
-                <span className="text">팔과 손</span>
-              </Link>
-            </li>
-            <li
-              id="10"
-              className="list"
-              onClick={() => {
-                activeLink("10");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoFootsteps />
-                </span>
-                <span className="text">다리와 발</span>
-              </Link>
-            </li>
-            <li
-              id="11"
-              className="list"
-              onClick={() => {
-                activeLink("11");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoSkull />
-                </span>
-                <span className="text">뼈/근육</span>
-              </Link>
-            </li>
-            <li
-              id="12"
-              className="list"
-              onClick={() => {
-                activeLink("12");
-              }}
-            >
-              <Link to="/">
-                <span className="icon">
-                  <IoWater />
-                </span>
-                <span className="text">피부</span>
-              </Link>
-            </li>
-            <div id="indic" className="indicator" />
+            {active.map((button) => (
+              <li
+                key={button.id}
+                id={button.id.toString()}
+                className={
+                  active[button.id - 1].isActive ? "list active" : "list"
+                }
+                onClick={() => handleButtonClick(button.id)}
+              >
+                <Link to="/">
+                  <span className="icon">{button.categoryIcon}</span>
+                  <span className="text">{button.categoryName}</span>
+                </Link>
+              </li>
+            ))}
+            <div
+              id="indicator"
+              className={indicatorActive ? "indicator" : ""}
+            />
           </ul>
         </div>
       </Responsive>

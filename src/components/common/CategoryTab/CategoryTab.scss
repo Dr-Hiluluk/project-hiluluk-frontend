@@ -1,53 +1,53 @@
 @import "/src/styles/utils.scss";
 
-.ctgr-area {
+.category-area {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: $oc-gray-8;
+  color: $oc-cyan-1;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $oc-pink-1;
+  background: $oc-cyan-1;
 }
 
-.ctgr-wrapper {
+.category-wrapper {
   @media (max-width: 1024px) {
     width: 100%;
   }
 }
 
-.ctgr {
+.category {
   position: relative;
   width: 1024px;
   height: 70px;
-  //background: $oc-blue-1;
+  background: $oc-cyan-1;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ctgr ul {
+.category ul {
   padding-left: 1rem;
   padding-right: 1rem;
   width: 100%;
-  //background: $oc-blue-2;
+  background: $oc-cyan-1;
   display: flex;
 }
 
-.ctgr ul li {
+.category ul li {
   position: relative;
   list-style: none;
   width: (1/12) * 1024px;
   height: 70px;
   z-index: 1;
-  //background: $oc-blue-3;
+  background: $oc-cyan-1;
 }
 
-.ctgr ul li a {
+.category ul li a {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -78,10 +78,10 @@
   }
 }
 
-.ctgr ul li.active a .icon {
+.category ul li.active a .icon {
   transform: translateY(45px);
 }
-.ctgr ul li.active a .text {
+.category ul li.active a .text {
   opacity: 1;
   transform: translateY(0px);
 }
@@ -91,41 +91,42 @@
   top: 45%;
   width: (1 / 12) * 1024px;
   height: (1 / 12) * 1024px;
-  background: $oc-pink-1;
-
+  color: $oc-cyan-1;
+  background: $oc-cyan-1;
   border-radius: 50%;
-  border: 5px solid $oc-pink-1;
+  border: 5px solid $oc-cyan-1;
   transition: 0.3s;
-}
-.indicator::before {
-  content: "";
-  position: absolute;
-  top: 33.2px;
-  left: -21px;
-  width: 16px;
-  height: 8px;
 
-  background: transparent;
-  border-top-right-radius: 20px;
-  box-shadow: 10px 0 0 0 $oc-pink-1;
-}
-.indicator::after {
-  content: "";
-  position: absolute;
-  top: 33.2px;
-  right: -21px;
-  width: 16px;
-  height: 8px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 33.2px;
+    left: -21px;
+    width: 16px;
+    height: 8px;
 
-  background: transparent;
-  border-top-left-radius: 20px;
-  box-shadow: -10px 0 0 0 $oc-pink-1;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 10px 0 0 0 $oc-cyan-1;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 33.2px;
+    right: -21px;
+    width: 16px;
+    height: 8px;
+
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -10px 0 0 0 $oc-cyan-1;
+  }
 }
 
 // #{$i} 문자열 //$i 변수
 // through 는 끝 값 포함
 @for $i from 1 through 12 {
-  .ctgr ul li:nth-child(#{$i}).active ~ .indicator {
+  .category ul li:nth-child(#{$i}).active ~ .indicator {
     transform: translateX(calc(((#{$i} / 12) - (1 / 12)) * (1024px - 2rem)));
   }
 }
