@@ -9,13 +9,9 @@ const PostListPage = () => {
   return (
     <>
       <HeaderContainer />
-
       <CategoryTab />
-      <div>1안녕하세요.</div>
-      <div>2안녕하세요.</div>
-      <div>3안녕하세요.</div>
-      <div>4안녕하세요.</div>
-      <div>5안녕하세요.</div>
+      <div>안녕하세요.</div>
+
     </>
   );
 };
