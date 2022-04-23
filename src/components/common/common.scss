@@ -84,3 +84,29 @@
 .spacer {
   height: 4rem;
 }
+
+.sub-info_block {
+  &.margin-top {
+    margin-top: 1rem;
+  }
+  color: $oc-gray-6;
+  span + span:before {
+    color: $oc-gray-4;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    content: "\B7";
+  }
+}
+
+.tags_block {
+  margin-top: 0.5rem;
+  .tag {
+    display: inline-block;
+    color: $oc-cyan-7;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    &:hover {
+      color: $oc-cyan-6;
+    }
+  }
+}

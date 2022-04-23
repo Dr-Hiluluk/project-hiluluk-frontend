@@ -1,9 +1,18 @@
 import React from "react";
+import SubInfo from "../common/SubInfo";
+import Tags from "../common/Tags";
 import "../post/PostViewer.scss";
 
 const PostViewer = ({ post, error, loading }: any) => {
   if (error) {
-    console.log(error);
+    console.log(error.response);
+    if (error.response && error.response.status === 404) {
+      return (
+        <div className="post-viewer-block">존재하지 않는 포스트입니다.</div>
+      );
+    } else {
+      return <div className="post-viewer-block">오류 발생!</div>;
+    }
   }
   if (loading || !post) {
     return null;
@@ -15,19 +24,12 @@ const PostViewer = ({ post, error, loading }: any) => {
     <div className="post-viewer-block">
       <div className="post-head">
         <h1>{title}</h1>
-        <div className="sub-info">
-          <span>
-            <b>{user.nickname}</b>
-          </span>
-          <span>{new Date(createdAt).toLocaleDateString()}</span>
-        </div>
-        <div className="tags">
-          {tags.map((tag: any, index: number) => (
-            <div className="tag" key={index}>
-              #{tag.content}
-            </div>
-          ))}
-        </div>
+        <SubInfo
+          nickname={user.nickname}
+          createdAt={createdAt}
+          marginTop={"margin-top"}
+        />
+        <Tags tags={tags} />
       </div>
       <div
         className="post-content"

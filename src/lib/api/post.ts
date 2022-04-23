@@ -1,5 +1,5 @@
 import client from "./client";
-client.initHttp();
+import qs from "qs";
 class PostApi {
   static createPost = ({
     title,
@@ -13,6 +13,22 @@ class PostApi {
 
   static readPost = ({ id }: any) => {
     return client.get(`/api/post/${id}`);
+  };
+  static readPostList = ({
+    page,
+    nickname,
+    tag,
+  }: {
+    page: string;
+    nickname: string;
+    tag: string;
+  }) => {
+    const queryString = qs.stringify({
+      page,
+      nickname,
+      tag,
+    });
+    return client.get(`/api/post?${queryString}`);
   };
 }
 

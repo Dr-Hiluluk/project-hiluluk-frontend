@@ -1,0 +1,38 @@
+@import "../../styles/utils.scss";
+@import "../common/common.scss";
+
+.post-list_block {
+  @extend .block;
+  margin-top: 3rem;
+}
+
+.post-list_write-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3rem;
+}
+
+.post-item_block {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  // 첫번째 포스트는 padding-top 없음
+  &:first-child {
+    padding-top: 0;
+  }
+  & + & {
+    border-top: 1px solid $oc-cyan-2;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    &:hover {
+      color: $oc-gray-6;
+    }
+  }
+  p {
+    margin-top: 2rem;
+  }
+}

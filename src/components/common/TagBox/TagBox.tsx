@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import "../TagBox/TagBox.scss";
+import "./TagBox.scss";
 const TagItem = memo(({ tag, onRemove }: any) => (
   <div className="tag" onClick={() => onRemove(tag)}>
     #{tag}

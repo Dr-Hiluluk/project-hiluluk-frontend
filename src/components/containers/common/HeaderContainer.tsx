@@ -13,6 +13,5 @@ export const HeaderContainer = () => {
     dispatch(logout());
   };
 
-  console.log("headerUser:", user);
   return <Header user={user} onLogout={onLogout} />;
 };
