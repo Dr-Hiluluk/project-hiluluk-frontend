@@ -17,8 +17,10 @@ export default function createRequestSaga(
 
   return function* (action: any): any {
     yield put(startLoaidng(type)); // 로딩 시작
+    let error = "";
     try {
       const response = yield call(request, action.payload);
+      error = response;
       console.log("sagaAction:", action);
       console.log("sagaResponse:", response);
       yield put({
@@ -31,7 +33,7 @@ export default function createRequestSaga(
       yield put({
         type: FAILURE,
         payload: {
-          [`${reducerName}Error`]: e,
+          [`${reducerName}Error`]: error,
         },
         error: true,
       });

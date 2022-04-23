@@ -17,30 +17,6 @@
   }
 }
 
-.sub-info {
-  margin-top: 1rem;
-  color: $oc-gray-6;
-  span + span:before {
-    color: $oc-gray-5;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    content: "\B7";
-  }
-}
-
-.tags {
-  margin-top: 0.5rem;
-  .tag {
-    display: inline-block;
-    color: $oc-cyan-7;
-    text-decoration: none;
-    margin-right: 0.5rem;
-    &:hover {
-      color: $oc-cyan-6;
-    }
-  }
-}
-
 .post-content {
   font-size: 1.3125rem;
   color: $oc-gray-8;
