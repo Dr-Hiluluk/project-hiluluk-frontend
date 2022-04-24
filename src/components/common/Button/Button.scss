@@ -25,6 +25,7 @@
   }
   &:disabled {
     background: $oc-cyan-2;
+    cursor: not-allowed;
     //opacity: 50%;
   }
 }

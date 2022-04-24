@@ -8,9 +8,9 @@ export const createRequestActionTypes = (type: string) => {
 };
 
 export default function createRequestSaga(
-  type: any,
+  type: string,
   request: any,
-  reducerName: any,
+  reducerName: string,
 ) {
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
@@ -28,7 +28,7 @@ export default function createRequestSaga(
         payload: {
           [reducerName]: response.data.data,
         },
-        meta: response.data,
+        meta: response,
       });
     } catch (e) {
       yield put({

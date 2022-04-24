@@ -7,6 +7,7 @@ export const READ_POST_LIST_FAILURE =
 export interface postListInitialStateType {
   postList: any;
   postListError: any;
+  lastPage: number;
 }
 
 export interface readPostListSuccessDispatch {
@@ -14,6 +15,7 @@ export interface readPostListSuccessDispatch {
   payload: {
     postList: any;
   };
+  meta: any;
 }
 
 export interface readPostListFailureDispatch {
@@ -21,6 +23,7 @@ export interface readPostListFailureDispatch {
   payload: {
     postListError: any;
   };
+  meta: any;
 }
 
 export type readPostListType =
