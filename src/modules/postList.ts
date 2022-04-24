@@ -31,6 +31,7 @@ export function* postListSaga() {
 const initialState: postListInitialStateType = {
   postList: null,
   postListError: null,
+  lastPage: 1,
 };
 
 const postList = (
@@ -42,6 +43,7 @@ const postList = (
       return {
         ...state,
         postList: action.payload.postList,
+        lastPage: parseInt(action.meta.headers["last-page"], 10),
       };
     case READ_POST_LIST_FAILURE:
       return {
