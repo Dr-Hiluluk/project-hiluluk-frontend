@@ -17,30 +17,32 @@ const buildLink = ({ nickname, tag, page }: paginationProps) => {
 
 const Pagination = ({ page, lastPage, nickname, tag }: paginationProps) => {
   return (
-    <div className="pagination_block">
-      <Button
-        disabled={page == 1}
-        cyan="cyan"
-        to={
-          page === 1
-            ? undefined
-            : buildLink({ nickname, tag, page: Number(page) - 1 })
-        }
-      >
-        이전
-      </Button>
-      <div className="pagination_page-number">{page}</div>
-      <Button
-        disabled={page == lastPage}
-        cyan="cyan"
-        to={
-          page === lastPage
-            ? undefined
-            : buildLink({ nickname, tag, page: Number(page) + 1 })
-        }
-      >
-        다음
-      </Button>
+    <div className="pagination_area">
+      <div className="pagination_block">
+        <Button
+          disabled={page == 1}
+          cyan="button-cyan"
+          to={
+            page === 1
+              ? undefined
+              : buildLink({ nickname, tag, page: Number(page) - 1 })
+          }
+        >
+          이전
+        </Button>
+        <div className="pagination_page-number">{page}</div>
+        <Button
+          disabled={page == lastPage}
+          cyan="button-cyan"
+          to={
+            page === lastPage
+              ? undefined
+              : buildLink({ nickname, tag, page: Number(page) + 1 })
+          }
+        >
+          다음
+        </Button>
+      </div>
     </div>
   );
 };

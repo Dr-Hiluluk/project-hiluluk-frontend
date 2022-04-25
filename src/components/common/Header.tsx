@@ -21,14 +21,22 @@ export const Header = ({ user, onLogout }: headerType) => {
           {user?.name ? (
             <div className="right">
               <div className="user-info">{user.nickname}</div>
-              <Button cyan="cyan" fullWidth="fullWidth" onClick={onLogout}>
+              <Button
+                cyan="button-cyan"
+                fullWidth="button-fullWidth"
+                onClick={onLogout}
+              >
                 로그아웃
               </Button>
             </div>
           ) : (
             <div className="right">
               <div className="user-info">Nick</div>
-              <Button to="/login" cyan="cyan" fullWidth="fullWidth">
+              <Button
+                to="/login"
+                cyan="button-cyan"
+                fullWidth="button-fullWidth"
+              >
                 로그인
               </Button>
             </div>

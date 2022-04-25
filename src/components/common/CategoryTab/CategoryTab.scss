@@ -65,6 +65,10 @@
     text-align: center;
     transition: 0.5s;
     color: $oc-gray-9;
+    &:hover {
+      transition: all 0.2s linear;
+      transform: scale(1.15);
+    }
   }
   .text {
     position: absolute;

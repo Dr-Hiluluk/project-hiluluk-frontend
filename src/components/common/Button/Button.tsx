@@ -25,7 +25,7 @@ export const Button = (props: customButtonProps) => {
 
   return (
     <button
-      className={`btn ${props.fullWidth} ${props.cyan}`}
+      className={`button ${props.fullWidth} ${props.cyan}`}
       disabled={props.disabled}
       onClick={onClick}
     >
