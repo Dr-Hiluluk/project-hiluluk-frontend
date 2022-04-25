@@ -8,15 +8,26 @@ import "./PostList.scss";
 const PostItem = ({ post }: any) => {
   return (
     <div className="post-item_block">
-      <Link to={`/@${post.user.nickname}/${post.id}`}>
-        <h2>{post.title}</h2>
-      </Link>
-      <SubInfo
-        nickname={post.user.nickname}
-        createdAt={new Date(post.createdAt)}
-      />
-      <Tags tags={post.tags} />
-      <p>{post.body}</p>
+      <div className="post-item_block-body">
+        <div className="post-item_block-head">
+          <Link to={`/@${post.user.nickname}/${post.id}`}>
+            <h2>{post.title}</h2>
+          </Link>
+        </div>
+
+        <p>{post.body}</p>
+      </div>
+
+      <div className="post-item_block-tail">
+        <Tags tags={post.tags} />
+
+        <div className="post-item_block-tail-userInfo">
+          <SubInfo
+            nickname={post.user.nickname}
+            createdAt={new Date(post.createdAt)}
+          />
+        </div>
+      </div>
     </div>
   );
 };
@@ -29,14 +40,14 @@ const PostList = ({ postList, postListError, loading, isUser }: any) => {
     <div className="post-list_block">
       <div className="post-list_write-button-wrapper">
         {isUser.nickname && (
-          <Button cyan="cyan" to="/write">
+          <Button cyan="button-cyan" to="/write">
             새 글 작성하기
           </Button>
         )}
       </div>
 
       {!loading && postList && (
-        <div>
+        <div className="post-item_area">
           {postList.map((post: any) => (
             <PostItem post={post} key={post.id} />
           ))}
