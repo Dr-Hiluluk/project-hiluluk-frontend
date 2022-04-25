@@ -96,8 +96,8 @@ const CategoryTab = () => {
                 onClick={() => handleButtonClick(button.id)}
               >
                 <Link to="/">
-                  <span className="icon">{button.categoryIcon}</span>
-                  <span className="text">{button.categoryName}</span>
+                  <span className="category-icon">{button.categoryIcon}</span>
+                  <span className="category-text">{button.categoryName}</span>
                 </Link>
               </li>
             ))}
