@@ -9,8 +9,10 @@ import {
   READ_POST_LIST_SUCCESS,
 } from "./postList.type";
 
-interface queryStringType {
-  [key: string]: string | qs.ParsedQs | string[] | qs.ParsedQs[] | undefined;
+export interface queryStringType {
+  page?: string | qs.ParsedQs | undefined | number;
+  nickname?: string | qs.ParsedQs | undefined;
+  tag?: string | qs.ParsedQs | qs.ParsedQs[] | undefined | number;
 }
 
 export const readPostList = ({ page, nickname, tag }: queryStringType) => ({

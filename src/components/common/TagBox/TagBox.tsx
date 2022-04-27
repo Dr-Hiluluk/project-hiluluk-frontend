@@ -13,23 +13,25 @@ const TagItem = memo(({ tag, onRemove }: any) => (
   </div>
 ));
 
-const TagList = memo(({ tags, onRemove }: any) => (
-  <div className="tag-list-block">
-    {tags.map((tag: string) => (
-      <TagItem key={tag} tag={tag} onRemove={onRemove} />
-    ))}
-  </div>
-));
+const TagList = memo(({ tags, onRemove }: any) => {
+  return (
+    <div className="tag-list-block">
+      {tags.map(({ content }: { content: string }, index: number) => (
+        <TagItem key={index} tag={content} onRemove={onRemove} />
+      ))}
+    </div>
+  );
+});
 
 const TagBox = ({ tags, onChangeTags }: any) => {
   const [input, setInput] = useState<string>("");
-  const [localTags, setLocalTags] = useState<string[]>([]);
+  const [localTags, setLocalTags] = useState<Object[]>([]);
 
   const insertTag = useCallback(
     (tag: string) => {
       if (!tag) return;
       if (localTags.includes(tag)) return;
-      const nextTags = [...localTags, tag];
+      const nextTags = [...localTags, { content: tag }];
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },

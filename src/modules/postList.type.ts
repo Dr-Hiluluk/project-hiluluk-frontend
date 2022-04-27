@@ -14,6 +14,7 @@ export interface readPostListSuccessDispatch {
   type: typeof READ_POST_LIST_SUCCESS;
   payload: {
     postList: any;
+    lastPage: number;
   };
   meta: any;
 }

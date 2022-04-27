@@ -5,6 +5,11 @@ import createRequestSaga from "../lib/createRequestSaga";
 import {
   CHANGE_FIELD,
   INITIALIZE,
+  SET_ORIGINAL_POST,
+  updatePostDispatch,
+  UPDATE_POST,
+  UPDATE_POST_FAILURE,
+  UPDATE_POST_SUCCESS,
   WriteDispatchType,
   writeInitialStateType,
   WRITE_POST,
@@ -38,18 +43,52 @@ export const writePost = ({
   },
 });
 
-// writePost saga 생성
+export const setOriginalPost = ({ post }: any) => ({
+  type: SET_ORIGINAL_POST,
+  payload: {
+    post,
+  },
+});
+
+export const updatePost = ({
+  postId,
+  title,
+  body,
+  tags,
+}: {
+  postId: number;
+  title: string;
+  body: string;
+  tags: string[];
+}): updatePostDispatch => ({
+  type: UPDATE_POST,
+  payload: {
+    postId,
+    body,
+    title,
+    tags,
+  },
+});
+
+// writePost saga, updatePost saga 생성
 const writePostSaga = createRequestSaga(WRITE_POST, PostApi.createPost, "post");
+const updatePostSaga = createRequestSaga(
+  UPDATE_POST,
+  PostApi.updatePost,
+  "post",
+);
 export function* writeSaga() {
   yield takeLatest(WRITE_POST, writePostSaga);
+  yield takeLatest(UPDATE_POST, updatePostSaga);
 }
 
-const initialState = {
+const initialState: writeInitialStateType = {
   title: "",
   body: "",
   tags: [],
   post: null,
   postError: null,
+  originalPostId: null,
 };
 
 const write = (
@@ -69,6 +108,24 @@ const write = (
         post: action.payload.post,
       };
     case WRITE_POST_FAILURE:
+      return {
+        ...state,
+        postError: action.payload.postError,
+      };
+    case SET_ORIGINAL_POST:
+      return {
+        ...state,
+        title: action.payload.post.title,
+        body: action.payload.post.body,
+        tags: action.payload.post.tags,
+        originalPostId: action.payload.post.id,
+      };
+    case UPDATE_POST_SUCCESS:
+      return {
+        ...state,
+        post: action.payload.post,
+      };
+    case UPDATE_POST_FAILURE:
       return {
         ...state,
         postError: action.payload.postError,
