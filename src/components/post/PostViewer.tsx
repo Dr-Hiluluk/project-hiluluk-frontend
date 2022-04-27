@@ -3,6 +3,7 @@ import SubInfo from "../common/SubInfo";
 import Tags from "../common/Tags";
 import "../post/PostViewer.scss";
 import { IoCaretUpOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const PostViewer = ({ post, error, loading, actionButtons }: any) => {
   if (error) {
@@ -22,6 +23,9 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
 
   return (
     <div className="post-viewer-block">
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <div className="post-head-wrapper">
         <h1>{title}</h1>
         <SubInfo nickname={user.nickname} createdAt={createdAt} />
