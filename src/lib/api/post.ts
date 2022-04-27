@@ -48,6 +48,9 @@ class PostApi {
       body,
       tags,
     });
+
+  static deletePost = ({ postId }: { postId: number }) =>
+    client.delete(`/api/post/${postId}`);
 }
 
 export default PostApi;

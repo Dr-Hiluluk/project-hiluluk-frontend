@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import PostApi from "../../../lib/api/post";
 import { ReducerType } from "../../../modules";
 import { readPost, unloadPost } from "../../../modules/post";
 import { setOriginalPost } from "../../../modules/write";
@@ -33,6 +34,15 @@ const PostViewerContainer = () => {
     navigation("/write");
   };
 
+  const onDelete = async () => {
+    try {
+      await PostApi.deletePost({ postId: read.id });
+      navigation("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const ownPost = (user && user.id) === (read && read.user.id);
 
   return (
@@ -40,7 +50,9 @@ const PostViewerContainer = () => {
       post={read}
       error={readError}
       loading={loading}
-      actionButtons={ownPost && <PostActionButtons onEdit={onEdit} />}
+      actionButtons={
+        ownPost && <PostActionButtons onEdit={onEdit} onDelete={onDelete} />
+      }
     />
   );
 };
