@@ -19,7 +19,7 @@ const PostItem = ({ post }: any) => {
       </div>
 
       <div className="post-item_block-tail">
-        <Tags tags={post.tags} />
+        {/* <Tags tags={post.tags} /> */}
 
         <div className="post-item_block-tail-userInfo">
           <SubInfo

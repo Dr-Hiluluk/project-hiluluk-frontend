@@ -4,20 +4,80 @@
 .post-viewer-block {
   @extend .block;
   margin-top: 4rem;
+
+  padding-bottom: 5rem;
+  background: $oc-grape-0;
 }
 
-.post-head {
-  padding-bottom: 3rem;
-  margin-bottom: 3rem;
+.post-head-wrapper {
+  margin-bottom: 2rem;
   border-bottom: 1px solid $oc-cyan-2;
   h1 {
     font-size: 3rem;
     line-height: 1.5;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 2rem;
   }
+
+  background: $oc-grape-0;
+}
+
+.post-tag-container {
+  min-height: 2rem;
+  margin-top: 1rem;
+  display: flex;
+
+  background: $oc-grape-0;
 }
 
 .post-content {
+  min-height: 20rem;
+  margin-top: 3rem;
+  margin-bottom: 1.3125rem;
   font-size: 1.3125rem;
   color: $oc-gray-8;
+
+  background: $oc-grape-1;
+}
+
+.post-scrolltotop {
+  position: fixed;
+
+  bottom: 2rem;
+  right: 2rem;
+
+  width: 4rem;
+  height: 4rem;
+
+  overflow: hidden;
+  border-radius: 1rem;
+
+  .post-scrolltotop-icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 4rem;
+    color: $oc-cyan-2;
+    background: $oc-gray-2;
+
+    .post-scrolltotop-icon_active {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 4rem;
+      color: $oc-cyan-8;
+      background: $oc-gray-4;
+    }
+
+    &:hover {
+      transition: all 0.2s linear;
+      transform: translateY(-4rem);
+    }
+  }
 }
