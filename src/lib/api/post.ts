@@ -14,6 +14,7 @@ class PostApi {
   static readPost = ({ id }: any) => {
     return client.get(`/api/post/${id}`);
   };
+
   static readPostList = ({
     page,
     nickname,
@@ -30,6 +31,23 @@ class PostApi {
     });
     return client.get(`/api/post?${queryString}`);
   };
+
+  static updatePost = ({
+    postId,
+    title,
+    body,
+    tags,
+  }: {
+    postId: number;
+    title: string;
+    body: string;
+    tags: string[];
+  }) =>
+    client.patch(`/api/post/${postId}`, {
+      title,
+      body,
+      tags,
+    });
 }
 
 export default PostApi;

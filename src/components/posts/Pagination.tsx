@@ -1,10 +1,10 @@
-import qs, { ParsedQs } from "qs";
+import qs from "qs";
 import React from "react";
 import { Button } from "../common/Button/Button";
 import "./Pagination.scss";
 
 interface paginationProps {
-  page: string | number | string[] | ParsedQs | ParsedQs[];
+  page: number;
   lastPage?: number;
   nickname: string | undefined;
   tag: any;
@@ -20,7 +20,7 @@ const Pagination = ({ page, lastPage, nickname, tag }: paginationProps) => {
     <div className="pagination_area">
       <div className="pagination_block">
         <Button
-          disabled={page == 1}
+          disabled={page === 1}
           cyan="button-cyan"
           to={
             page === 1
@@ -32,7 +32,7 @@ const Pagination = ({ page, lastPage, nickname, tag }: paginationProps) => {
         </Button>
         <div className="pagination_page-number">{page}</div>
         <Button
-          disabled={page == lastPage}
+          disabled={page === lastPage}
           cyan="button-cyan"
           to={
             page === lastPage

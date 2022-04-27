@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { ReducerType } from "../../../modules";
 import PostList from "../../posts/PostList";
 import qs from "qs";
-import { readPostList } from "../../../modules/postList";
+import { queryStringType, readPostList } from "../../../modules/postList";
 
 const PostListContainer = () => {
   const { postList, postListError, loading, user } = useSelector(
@@ -21,11 +21,11 @@ const PostListContainer = () => {
   const location = useLocation();
   useEffect(() => {
     const { nickname } = match;
-    const { tag, page } = qs.parse(location.search, {
+    const { tag, page }: queryStringType = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
     dispatch(readPostList({ tag, nickname, page }));
-  }, [dispatch, location.search]);
+  }, [dispatch, location.search, match]);
 
   return (
     <PostList

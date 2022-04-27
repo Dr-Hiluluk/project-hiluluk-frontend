@@ -52,8 +52,7 @@ export const RegisterForm = () => {
 
   // user 잘 설정되어있는지 확인
   useEffect(() => {
-    console.log("user:", user);
-    if (user.id) {
+    if (user.nickname) {
       console.log("check API 성공");
       console.log("checkUser:", user);
     } else {

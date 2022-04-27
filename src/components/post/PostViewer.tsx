@@ -4,9 +4,8 @@ import Tags from "../common/Tags";
 import "../post/PostViewer.scss";
 import { IoCaretUpOutline } from "react-icons/io5";
 
-const PostViewer = ({ post, error, loading }: any) => {
+const PostViewer = ({ post, error, loading, actionButtons }: any) => {
   if (error) {
-    console.log(error.response);
     if (error.response && error.response.status === 404) {
       return (
         <div className="post-viewer-block">존재하지 않는 포스트입니다.</div>
@@ -20,7 +19,7 @@ const PostViewer = ({ post, error, loading }: any) => {
   }
 
   const { title, body, user, createdAt, tags } = post;
-  console.log(post);
+
   return (
     <div className="post-viewer-block">
       <div className="post-head-wrapper">
@@ -29,15 +28,8 @@ const PostViewer = ({ post, error, loading }: any) => {
         <div className="post-tag-container">
           <Tags tags={tags} />
         </div>
+        {actionButtons}
       </div>
-      <div
-        className="post-content"
-        dangerouslySetInnerHTML={{ __html: body }}
-      />
-      <div
-        className="post-content"
-        dangerouslySetInnerHTML={{ __html: body }}
-      />
       <div
         className="post-content"
         dangerouslySetInnerHTML={{ __html: body }}
