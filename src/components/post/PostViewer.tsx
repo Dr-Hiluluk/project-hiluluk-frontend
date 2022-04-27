@@ -2,6 +2,7 @@ import React from "react";
 import SubInfo from "../common/SubInfo";
 import Tags from "../common/Tags";
 import "../post/PostViewer.scss";
+import { IoCaretUpOutline } from "react-icons/io5";
 
 const PostViewer = ({ post, error, loading, actionButtons }: any) => {
   if (error) {
@@ -21,20 +22,26 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
 
   return (
     <div className="post-viewer-block">
-      <div className="post-head">
+      <div className="post-head-wrapper">
         <h1>{title}</h1>
-        <SubInfo
-          nickname={user.nickname}
-          createdAt={createdAt}
-          marginTop={"margin-top"}
-        />
-        <Tags tags={tags} />
+        <SubInfo nickname={user.nickname} createdAt={createdAt} />
+        <div className="post-tag-container">
+          <Tags tags={tags} />
+        </div>
         {actionButtons}
       </div>
       <div
         className="post-content"
         dangerouslySetInnerHTML={{ __html: body }}
       />
+      <div className="post-scrolltotop">
+        <div className="post-scrolltotop-icon">
+          <IoCaretUpOutline />
+          <div className="post-scrolltotop-icon_active">
+            <IoCaretUpOutline />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

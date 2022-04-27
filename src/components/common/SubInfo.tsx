@@ -5,12 +5,11 @@ import "./common.scss";
 interface subInfoProps {
   nickname: string;
   createdAt: any;
-  marginTop?: string;
 }
 
-const SubInfo = ({ nickname, createdAt, marginTop = "" }: subInfoProps) => {
+const SubInfo = ({ nickname, createdAt }: subInfoProps) => {
   return (
-    <div className={`sub-info_block ${marginTop}`}>
+    <div className="sub-info_block">
       <span>
         <b>
           <Link to={`/@${nickname}`}>{nickname}</Link>
