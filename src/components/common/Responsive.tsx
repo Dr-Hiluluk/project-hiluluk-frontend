@@ -1,10 +1,10 @@
-import React, { ReactChild, ReactChildren } from "react";
+import React from "react";
 
-interface responsiveType {
-  children: ReactChildren;
+interface responsiveType extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
 }
 
-export const Responsive = ({ children, ...rest }: any) => {
+export const Responsive = ({ children, ...rest }: responsiveType) => {
   return (
     <div className="block" {...rest}>
       {children}
