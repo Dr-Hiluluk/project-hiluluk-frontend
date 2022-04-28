@@ -6,8 +6,8 @@ import { EMAIL_EXP, PASSWORD_EXP, USERNAME_EXP } from "../../utils/variables";
 import { Button } from "../../components/common/Button/Button";
 import { FormError } from "../../components/common/FormError";
 import "./auth.scss";
-import GoogleLoginbtn from "../../../static/svg/GoogleLoginbtn.svg";
-import KakaoLoginbtn from "../../../static/svg/KakaoLoginbtn.svg";
+import GoogleLoginbtn from "../../static/svg/GoogleLoginbtn.svg";
+import KakaoLoginbtn from "../../static/svg/KakaoLoginbtn.svg";
 
 interface AuthFormType {
   type: string;

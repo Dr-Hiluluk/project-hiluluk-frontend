@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../common/Button/Button";
 import SubInfo from "../common/SubInfo";
-import Tags from "../common/Tags";
 import "./PostList.scss";
 
 const PostItem = ({ post }: any) => {
@@ -19,8 +18,6 @@ const PostItem = ({ post }: any) => {
       </div>
 
       <div className="post-item_block-tail">
-        {/* <Tags tags={post.tags} /> */}
-
         <div className="post-item_block-tail-userInfo">
           <SubInfo
             nickname={post.user.nickname}

@@ -1,7 +1,7 @@
 import React, { ReactChild, ReactChildren } from "react";
 import { Link } from "react-router-dom";
 import "./auth.scss";
-import LogoDrHiluluk from "../../../static/svg/LogoDrHiluluk.svg";
+import LogoDrHiluluk from "../../static/svg/LogoDrHiluluk.svg";
 
 interface childProps {
   children: ReactChild | ReactChildren;
