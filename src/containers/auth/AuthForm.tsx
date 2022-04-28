@@ -1,17 +1,14 @@
 import React, { memo } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { AuthReducerType } from "../../../modules/auth";
-import {
-  EMAIL_EXP,
-  PASSWORD_EXP,
-  USERNAME_EXP,
-} from "../../../utils/variables";
-import { Button } from "../../common/Button/Button";
-import { FormError } from "../../common/FormError";
+import { AuthReducerType } from "../../modules/auth";
+import { EMAIL_EXP, PASSWORD_EXP, USERNAME_EXP } from "../../utils/variables";
+import { Button } from "../../components/common/Button/Button";
+import { FormError } from "../../components/common/FormError";
 import "./auth.scss";
 import GoogleLoginbtn from "../../../static/svg/GoogleLoginbtn.svg";
 import KakaoLoginbtn from "../../../static/svg/KakaoLoginbtn.svg";
+
 interface AuthFormType {
   type: string;
   form: AuthReducerType["login"] | AuthReducerType["register"];

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ReducerType } from "../../../modules";
-import { updatePost, writePost } from "../../../modules/write";
-import WriteActionButtons from "../../write/WriteActionButtons";
+import { ReducerType } from "../../modules";
+import { updatePost, writePost } from "../../modules/write";
+import WriteActionButtons from "../../components/write/WriteActionButtons";
 
 const WriteActionButtonsContainer = () => {
   const navigation = useNavigate();

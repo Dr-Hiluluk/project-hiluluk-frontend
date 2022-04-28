@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ReducerType } from "../../../modules";
-import { changeField, initializeForm, register } from "../../../modules/auth";
-import { check } from "../../../modules/user";
+import { ReducerType } from "../../modules";
+import { changeField, initializeForm, register } from "../../modules/auth";
+import { check } from "../../modules/user";
 import AuthForm from "./AuthForm";
 
 export const RegisterForm = () => {

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import PostApi from "../../../lib/api/post";
-import { ReducerType } from "../../../modules";
-import { readPost, unloadPost } from "../../../modules/post";
-import { setOriginalPost } from "../../../modules/write";
-import PostActionButtons from "../../post/PostActionButtons";
-import PostViewer from "../../post/PostViewer";
+import PostApi from "../../lib/api/post";
+import { ReducerType } from "../../modules";
+import { readPost, unloadPost } from "../../modules/post";
+import { setOriginalPost } from "../../modules/write";
+import PostActionButtons from "../../components/post/PostActionButtons";
+import PostViewer from "../../components/post/PostViewer";
 
 const PostViewerContainer = () => {
   const { postId } = useParams();

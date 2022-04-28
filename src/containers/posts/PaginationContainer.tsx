@@ -2,9 +2,9 @@ import qs from "qs";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { ReducerType } from "../../../modules";
-import { queryStringType } from "../../../modules/postList";
-import Pagination from "../../posts/Pagination";
+import { ReducerType } from "../../modules";
+import { queryStringType } from "../../modules/postList";
+import Pagination from "../../components/posts/Pagination";
 
 const PaginationContainer = () => {
   const { lastPage, postList, loading } = useSelector(

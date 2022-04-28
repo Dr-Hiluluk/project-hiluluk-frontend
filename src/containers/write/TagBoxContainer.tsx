@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReducerType } from "../../../modules";
-import { changeField } from "../../../modules/write";
+import { ReducerType } from "../../modules";
+import { changeField } from "../../modules/write";
 
-import TagBox from "../../common/TagBox/TagBox";
+import TagBox from "../../components/common/TagBox/TagBox";
 
 const TagBoxContainer = () => {
   const dispatch = useDispatch();

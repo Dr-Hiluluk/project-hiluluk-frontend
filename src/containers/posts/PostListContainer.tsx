@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { ReducerType } from "../../../modules";
-import PostList from "../../posts/PostList";
+import { ReducerType } from "../../modules";
+import PostList from "../../components/posts/PostList";
 import qs from "qs";
-import { queryStringType, readPostList } from "../../../modules/postList";
+import { queryStringType, readPostList } from "../../modules/postList";
 
 const PostListContainer = () => {
   const { postList, postListError, loading, user } = useSelector(
