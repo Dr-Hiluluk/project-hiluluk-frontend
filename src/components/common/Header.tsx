@@ -1,9 +1,9 @@
 import React, { MouseEventHandler } from "react";
 import { Button } from "./Button/Button";
 import { Responsive } from "./Responsive";
-import LogoDrHiluluk from "../../static/svg/LogoDrHiluluk.svg";
 import { Link } from "react-router-dom";
 import { userInitialStateType } from "../../modules/user.type";
+import { logo } from "../../static/svg";
 
 interface headerType {
   user?: userInitialStateType["user"];
@@ -16,7 +16,7 @@ export const Header = ({ user, onLogout }: headerType) => {
       <div className="header-block">
         <Responsive className="wrapper">
           <Link to="/">
-            <img className="logo" src={LogoDrHiluluk} alt="logo" />
+            <img className="logo" src={logo} alt="logo" />
           </Link>
           {user?.name ? (
             <div className="right">

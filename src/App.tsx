@@ -7,6 +7,8 @@ import RegisterPage from "./pages/RegisterPage";
 import WritePage from "./pages/WritePage";
 import PostPage from "./pages/PostPage";
 import { Helmet } from "react-helmet-async";
+import NotFoundPage from "./pages/NotFoundPage";
+import ErrorBoundary from "./components/error/ErrorBoundary";
 
 function App() {
   return (
@@ -14,14 +16,17 @@ function App() {
       <Helmet>
         <title>Dr.Hiluluk</title>
       </Helmet>
-      <Routes>
-        <Route path="/" element={<PostListPage />} />
-        <Route path="/@:nickname" element={<PostListPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/write" element={<WritePage />} />
-        <Route path="/@:nickname/:postId" element={<PostPage />} />
-      </Routes>
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<PostListPage />} />
+          <Route path="/@:nickname" element={<PostListPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/write" element={<WritePage />} />
+          <Route path="/@:nickname/:postId" element={<PostPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </ErrorBoundary>
     </>
   );
 }

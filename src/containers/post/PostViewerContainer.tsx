@@ -7,11 +7,13 @@ import { readPost, unloadPost } from "../../modules/post";
 import { setOriginalPost } from "../../modules/write";
 import PostActionButtons from "../../components/post/PostActionButtons";
 import PostViewer from "../../components/post/PostViewer";
+import useNotFound from "../../lib/hooks/useNotFound";
 
 const PostViewerContainer = () => {
   const { postId } = useParams();
   const dispatch = useDispatch();
   const navigation = useNavigate();
+  const { showNotFound } = useNotFound();
 
   const { read, readError, loading, user } = useSelector(
     ({ loading, post, user }: ReducerType) => ({
@@ -28,6 +30,15 @@ const PostViewerContainer = () => {
       dispatch(unloadPost());
     };
   }, [dispatch, postId]);
+
+  useEffect(() => {
+    console.log("read:", read);
+    console.log("loading:", loading);
+    if (!loading && !read) {
+      dispatch(showNotFound());
+      return;
+    }
+  }, [dispatch, read, showNotFound, loading]);
 
   const onEdit = () => {
     dispatch(setOriginalPost({ post: read }));

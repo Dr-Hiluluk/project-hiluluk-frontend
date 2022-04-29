@@ -1,7 +1,7 @@
 import React, { ReactChild, ReactChildren } from "react";
 import { Link } from "react-router-dom";
 import "./auth.scss";
-import LogoDrHiluluk from "../../static/svg/LogoDrHiluluk.svg";
+import { logo } from "../../static/svg";
 
 interface childProps {
   children: ReactChild | ReactChildren;
@@ -13,7 +13,7 @@ export const AuthTemplate = ({ children }: childProps) => {
       <div className="white-box">
         <div className="logo-area">
           <Link to="/">
-            <img className="logo" src={LogoDrHiluluk} alt="logo" />
+            <img className="logo" src={logo} alt="logo" />
           </Link>
         </div>
         <div className="inner-area">{children}</div>

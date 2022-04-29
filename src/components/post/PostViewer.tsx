@@ -18,7 +18,7 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
   if (loading || !post) {
     return null;
   }
-
+  console.log("postViewerLoading:", loading);
   const { title, body, user, createdAt, tags } = post;
 
   return (
