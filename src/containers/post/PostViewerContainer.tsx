@@ -32,13 +32,13 @@ const PostViewerContainer = () => {
   }, [dispatch, postId]);
 
   useEffect(() => {
-    console.log("read:", read);
-    console.log("loading:", loading);
-    if (!loading && !read) {
-      dispatch(showNotFound());
-      return;
+    if (readError) {
+      if (readError.response && readError.response.status === 404) {
+        dispatch(showNotFound()); // 404 처리
+        return;
+      }
     }
-  }, [dispatch, read, showNotFound, loading]);
+  }, [dispatch, readError, showNotFound]);
 
   const onEdit = () => {
     dispatch(setOriginalPost({ post: read }));
