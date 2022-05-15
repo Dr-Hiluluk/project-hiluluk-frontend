@@ -6,8 +6,7 @@ import { EMAIL_EXP, PASSWORD_EXP, USERNAME_EXP } from "../../utils/variables";
 import { Button } from "../../components/common/Button/Button";
 import { FormError } from "../../components/common/FormError";
 import "./auth.scss";
-import GoogleLoginbtn from "../../static/svg/GoogleLoginbtn.svg";
-import KakaoLoginbtn from "../../static/svg/KakaoLoginbtn.svg";
+import { googleLogin, kakaoLogin } from "../../static/svg";
 
 interface AuthFormType {
   type: string;
@@ -185,7 +184,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           <div className="social-login-effect">
             <Link to="/login-to-google">
               <div className="social-login-icon">
-                <img src={GoogleLoginbtn} alt="google" />
+                <img src={googleLogin} alt="google" />
                 <div className="social-login-text">구글 로그인</div>
               </div>
             </Link>
@@ -193,7 +192,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           <div className="social-login-effect">
             <Link to="/login-to-kakao">
               <div className="social-login-icon">
-                <img src={KakaoLoginbtn} alt="kakao" />
+                <img src={kakaoLogin} alt="kakao" />
                 <div className="social-login-text">카카오 로그인</div>
               </div>
             </Link>

@@ -6,15 +6,15 @@ import { IoCaretUpOutline } from "react-icons/io5";
 import { Helmet } from "react-helmet-async";
 
 const PostViewer = ({ post, error, loading, actionButtons }: any) => {
-  if (error) {
-    if (error.response && error.response.status === 404) {
-      return (
-        <div className="post-viewer-block">존재하지 않는 포스트입니다.</div>
-      );
-    } else {
-      return <div className="post-viewer-block">오류 발생!</div>;
-    }
-  }
+  // if (error) {
+  //   if (error.response && error.response.status === 404) {
+  //     return (
+  //       <div className="post-viewer-block">존재하지 않는 포스트입니다.</div>
+  //     );
+  //   } else {
+  //     return <div className="post-viewer-block">오류 발생!</div>;
+  //   }
+  // }
   if (loading || !post) {
     return null;
   }
