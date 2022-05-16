@@ -21,11 +21,7 @@ const WriteActionButtonsContainer = () => {
 
   const onPublish = () => {
     if (originalPostId) {
-      const contents = tags.map((tag: any) => tag.content);
-
-      dispatch(
-        updatePost({ postId: originalPostId, title, body, tags: contents }),
-      );
+      dispatch(updatePost({ postId: originalPostId, title, body, tags }));
       return;
     }
     dispatch(writePost({ title, body, tags }));
