@@ -8,8 +8,8 @@ interface customButtonProps
     HTMLButtonElement
   > {
   to?: string;
-  fullWidth?: string;
-  cyan?: string;
+  fullWidth?: boolean;
+  cyan?: boolean;
 }
 
 export const Button = (props: customButtonProps) => {
@@ -25,7 +25,9 @@ export const Button = (props: customButtonProps) => {
 
   return (
     <button
-      className={`button ${props.fullWidth} ${props.cyan}`}
+      className={`button ${props.fullWidth ? "fullWidth" : ""} ${
+        props.cyan ? "cyan" : ""
+      }`}
       disabled={props.disabled}
       onClick={onClick}
     >

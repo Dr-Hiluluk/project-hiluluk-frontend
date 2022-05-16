@@ -13,14 +13,14 @@
   &:hover {
     background-color: $oc-gray-6;
   }
-  &.button-fullWidth {
+  &.fullWidth {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     width: 100%;
     font-size: 1.125rem;
     min-width: 6.5rem;
   }
-  &.button-cyan {
+  &.cyan {
     background: $oc-cyan-6;
   }
   &:disabled {

@@ -21,7 +21,7 @@ const Pagination = ({ page, lastPage, nickname, tag }: paginationProps) => {
       <div className="pagination_block">
         <Button
           disabled={page === 1}
-          cyan="button-cyan"
+          cyan
           to={
             page === 1
               ? undefined
@@ -33,7 +33,7 @@ const Pagination = ({ page, lastPage, nickname, tag }: paginationProps) => {
         <div className="pagination_page-number">{page}</div>
         <Button
           disabled={page === lastPage}
-          cyan="button-cyan"
+          cyan
           to={
             page === lastPage
               ? undefined
