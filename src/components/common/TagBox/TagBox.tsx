@@ -42,7 +42,6 @@ const TagBox = ({ tags, onChangeTags }: any) => {
   const removeTag = useCallback(
     (tag: string) => {
       const nextTags = localTags.filter((item: Tag) => item.content !== tag);
-      console.log("remove", tag, nextTags);
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
