@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../common/Button/Button";
-
+import "./ErrorScreenTemplate.scss";
 interface errorScreenTemplateProps {
   image: string;
   message: string;
@@ -20,7 +20,9 @@ const ErrorScreenTemplate = ({
       <div className="error-screen-template_message">{message}</div>
       {buttonText && (
         <div className="error-screen-template_button-wrapper">
-          <Button onClick={onButtonClick}>{buttonText}</Button>
+          <Button cyan onClick={onButtonClick}>
+            {buttonText}
+          </Button>
         </div>
       )}
     </div>

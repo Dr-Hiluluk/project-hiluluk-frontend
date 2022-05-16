@@ -37,7 +37,7 @@ const PostList = ({ postList, postListError, loading, isUser }: any) => {
     <div className="post-list_block">
       <div className="post-list_write-button-wrapper">
         {isUser.nickname && (
-          <Button cyan="button-cyan" to="/write">
+          <Button cyan to="/write">
             새 글 작성하기
           </Button>
         )}

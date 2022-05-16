@@ -1,0 +1,35 @@
+.error-screen-template_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 20rem;
+    height: auto;
+    @media (max-width: 767px) {
+      width: 12rem;
+    }
+  }
+}
+
+.error-screen-template_message {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 1.5;
+  margin-top: 2rem;
+  @media (max-width: 767px) {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+}
+
+.error-screen-template_button-wrapper {
+  margin-top: 2rem;
+  @media (max-width: 767px) {
+    margin-top: 1rem;
+  }
+}

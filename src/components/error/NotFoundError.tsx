@@ -23,10 +23,11 @@ export const NotFoundError = () => {
     <>
       <Helmet>
         <title>404 - Dr.hiluluk</title>
+        // meta 추가 하기
       </Helmet>
       <ErrorScreenTemplate
         image={undrawPageNotFound}
-        message="콘텐츠가 없습니다."
+        message="텅! 비었습니다."
         buttonText="홈으로"
         onButtonClick={() => {
           navigation("/");
