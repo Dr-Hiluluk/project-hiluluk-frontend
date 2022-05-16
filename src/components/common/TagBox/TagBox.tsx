@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { Tag } from "../Tags";
 import "./TagBox.scss";
 const TagItem = memo(({ tag, onRemove }: any) => (
   <div className="tag" onClick={() => onRemove(tag)}>
@@ -16,8 +17,8 @@ const TagItem = memo(({ tag, onRemove }: any) => (
 const TagList = memo(({ tags, onRemove }: any) => {
   return (
     <div className="tag-list-block">
-      {tags.map(({ content }: { content: string }, index: number) => (
-        <TagItem key={index} tag={content} onRemove={onRemove} />
+      {tags.map((tag: Tag, index: number) => (
+        <TagItem key={index} tag={tag.content} onRemove={onRemove} />
       ))}
     </div>
   );
@@ -25,13 +26,13 @@ const TagList = memo(({ tags, onRemove }: any) => {
 
 const TagBox = ({ tags, onChangeTags }: any) => {
   const [input, setInput] = useState<string>("");
-  const [localTags, setLocalTags] = useState<Object[]>([]);
+  const [localTags, setLocalTags] = useState<Tag[]>([]);
 
   const insertTag = useCallback(
-    (tag: string) => {
-      if (!tag) return;
-      if (localTags.includes(tag)) return;
-      const nextTags = [...localTags, { content: tag }];
+    (content: string) => {
+      if (!content) return;
+      if (localTags.some((tag) => tag.content === content)) return;
+      const nextTags = [...localTags, { content }];
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },
@@ -40,7 +41,8 @@ const TagBox = ({ tags, onChangeTags }: any) => {
 
   const removeTag = useCallback(
     (tag: string) => {
-      const nextTags = localTags.filter((item) => item !== tag);
+      const nextTags = localTags.filter((item: Tag) => item.content !== tag);
+      console.log("remove", tag, nextTags);
       setLocalTags(nextTags);
       onChangeTags(nextTags);
     },

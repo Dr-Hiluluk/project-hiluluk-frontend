@@ -16,7 +16,7 @@ const Editor = ({ onChangeField, title, body }: editorType) => {
 
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
-      theme: "bubble",
+      theme: "snow",
       placeholder: "내용을 입력하세요...",
       modules: {
         toolbar: {
