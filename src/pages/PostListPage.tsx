@@ -9,7 +9,7 @@ const PostListPage = () => {
   return (
     <>
       <HeaderContainer />
-      <CategoryTab />
+      {/* <CategoryTab /> */}
       <PostListContainer />
       <PaginationContainer />
     </>
