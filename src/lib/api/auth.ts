@@ -1,5 +1,4 @@
 import client from "./client";
-client.initHttp();
 class AuthApi {
   static login = ({ email, password }: { email: string; password: string }) =>
     client.post("/api/auth/login", { email, password });
