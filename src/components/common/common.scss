@@ -52,42 +52,6 @@
   }
 }
 
-.header-block {
-  position: fixed;
-  width: 100%;
-  background: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
-}
-
-.wrapper {
-  @extend .block;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  height: 2em;
-}
-
-.right {
-  display: flex;
-  align-items: center;
-}
-
-.user-info {
-  font-weight: 800;
-  display: flex;
-  flex-direction: row;
-  margin-right: 1rem;
-}
-
-// 헤더가 fixed로 되어 있기 때문에 페이지 콘텐츠가 4rem 아래에 나타나도록 하는 div
-.spacer {
-  height: 4rem;
-}
-
 .sub-info_block {
   color: $oc-gray-7;
   span + span:before {
