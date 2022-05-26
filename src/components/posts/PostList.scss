@@ -46,7 +46,8 @@
   @media (max-width: 767px) {
     width: 95%;
   }
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid $oc-gray-2;
+  box-shadow: 0px 4px 4px $oc-gray-4;
   background: $oc-white;
 }
 

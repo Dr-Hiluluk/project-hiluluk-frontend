@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { Button } from "./Button/Button";
 import { Responsive } from "./Responsive";
 import { Link } from "react-router-dom";
@@ -13,6 +13,12 @@ interface headerType {
 }
 
 export const Header = ({ user, onLogout }: headerType) => {
+  const [style, setStyle] = useState({ display: "none" });
+
+  // const userProfileButtonClick = (e: boolean) => {
+  //   setUserProfileActive(!e);
+  // };
+
   return (
     <>
       <div className="header-block">
@@ -23,27 +29,68 @@ export const Header = ({ user, onLogout }: headerType) => {
           {user?.name ? (
             <div className="right">
               <div className="user-info">{user.nickname}</div>
-              <button className="user-profile">
-                <div className="user-profile-navi">
+              <button
+                className="user-profile"
+                onClick={(e) => setStyle({ display: "block" })}
+              >
+                <div className="user-profile-three">
                   <IoReorderThree />
                 </div>
                 <div className="user-profile-icon">
                   <IoPersonSharp />
                 </div>
+                <nav
+                  className="user-profile-nav"
+                  style={style}
+                  onMouseLeave={(e) => {
+                    setStyle({ display: "none" });
+                  }}
+                >
+                  <Button to="/" fullWidth>
+                    1. 123
+                  </Button>
+                  <Button to="/" cyan fullWidth>
+                    2. 456
+                  </Button>
+                  <Button to="/" fullWidth>
+                    3. 789
+                  </Button>
+                  <Button cyan fullWidth onClick={onLogout}>
+                    로그아웃
+                  </Button>
+                </nav>
               </button>
-              <div>
-                <Button cyan fullWidth onClick={onLogout}>
-                  로그아웃
-                </Button>
-              </div>
             </div>
           ) : (
             <div className="right">
-              {/* 닉네임 위치 임시 */}
-              <div className="user-info">Nick</div>
-              <Button to="/login" cyan fullWidth>
-                로그인
-              </Button>
+              <button
+                className="user-profile"
+                onClick={(e) => setStyle({ display: "block" })}
+              >
+                <div className="user-profile-three">
+                  <IoReorderThree />
+                </div>
+                <div className="user-profile-icon">
+                  <IoPersonSharp />
+                </div>
+                <nav
+                  className="user-profile-nav"
+                  style={style}
+                  onMouseLeave={(e) => {
+                    setStyle({ display: "none" });
+                  }}
+                >
+                  <Button to="/" cyan fullWidth>
+                    1. 123
+                  </Button>
+                  <Button to="/" fullWidth>
+                    2. 456
+                  </Button>
+                  <Button to="/login" cyan fullWidth>
+                    로그인
+                  </Button>
+                </nav>
+              </button>
             </div>
           )}
         </Responsive>

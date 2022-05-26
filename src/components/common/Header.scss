@@ -72,12 +72,13 @@
   color: $oc-cyan-6;
   background: $oc-white;
   &:hover {
+    cursor: pointer;
     box-shadow: 0.1rem 0.2rem 0.2rem $oc-gray-3,
       -0.1rem 0.2rem 0.2rem $oc-gray-3;
   }
 }
 
-.user-profile-navi {
+.user-profile-three {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,5 +97,20 @@
   height: 2.5rem;
   width: 2.5rem;
   border-radius: 100%;
+  background: $oc-gray-3;
+}
+
+.user-profile-nav {
+  position: absolute;
+  z-index: 1;
+
+  width: 10rem;
+  //height: 10rem;
+
+  top: 4rem;
+  margin-right: 4rem;
+
+  border: 1px solid $oc-black;
+
   background: $oc-gray-3;
 }
