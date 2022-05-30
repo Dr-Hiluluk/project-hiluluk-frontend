@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, useState } from "react";
 import { Button } from "./Button/Button";
+import { ButtonHeader } from "./Button/ButtonHeader";
 import { Responsive } from "./Responsive";
 import { Link } from "react-router-dom";
 import { userInitialStateType } from "../../modules/user.type";
@@ -14,10 +15,6 @@ interface headerType {
 
 export const Header = ({ user, onLogout }: headerType) => {
   const [style, setStyle] = useState({ display: "none" });
-
-  // const userProfileButtonClick = (e: boolean) => {
-  //   setUserProfileActive(!e);
-  // };
 
   return (
     <>
@@ -46,18 +43,14 @@ export const Header = ({ user, onLogout }: headerType) => {
                     setStyle({ display: "none" });
                   }}
                 >
-                  <Button to="/" fullWidth>
-                    1. 123
-                  </Button>
-                  <Button to="/" cyan fullWidth>
-                    2. 456
-                  </Button>
-                  <Button to="/" fullWidth>
-                    3. 789
-                  </Button>
-                  <Button cyan fullWidth onClick={onLogout}>
+                  <ButtonHeader to="/">내정보</ButtonHeader>
+                  <div className="user-profile-nav-line" />
+                  <ButtonHeader to="/write">글쓰기</ButtonHeader>
+                  <div className="user-profile-nav-line" />
+                  <ButtonHeader to="/">도움말</ButtonHeader>
+                  <ButtonHeader bold onClick={onLogout}>
                     로그아웃
-                  </Button>
+                  </ButtonHeader>
                 </nav>
               </button>
             </div>
@@ -80,15 +73,14 @@ export const Header = ({ user, onLogout }: headerType) => {
                     setStyle({ display: "none" });
                   }}
                 >
-                  <Button to="/" cyan fullWidth>
-                    1. 123
-                  </Button>
-                  <Button to="/" fullWidth>
-                    2. 456
-                  </Button>
-                  <Button to="/login" cyan fullWidth>
+                  <ButtonHeader to="/">123</ButtonHeader>
+                  <div className="user-profile-nav-line" />
+                  <ButtonHeader to="/">456</ButtonHeader>
+                  <div className="user-profile-nav-line" />
+                  <ButtonHeader to="/">도움말</ButtonHeader>
+                  <ButtonHeader to="/login" bold>
                     로그인
-                  </Button>
+                  </ButtonHeader>
                 </nav>
               </button>
             </div>

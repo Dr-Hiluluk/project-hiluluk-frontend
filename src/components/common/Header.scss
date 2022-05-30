@@ -58,8 +58,8 @@
   height: 3rem;
   width: 6rem;
 
-  margin-left: 1rem;
-  margin-right: 1rem;
+  //margin-left: 1rem;
+  //margin-right: 1rem;
 
   display: flex;
   flex-direction: row;
@@ -69,12 +69,13 @@
   border: 1px solid $oc-gray-5;
   border-radius: 1.3rem;
 
-  color: $oc-cyan-6;
+  color: $oc-cyan-7;
+
   background: $oc-white;
   &:hover {
     cursor: pointer;
-    box-shadow: 0.1rem 0.2rem 0.2rem $oc-gray-3,
-      -0.1rem 0.2rem 0.2rem $oc-gray-3;
+    box-shadow: 0.1rem 0.1rem 0.2rem $oc-gray-3,
+      -0.1rem 0.1rem 0.2rem $oc-gray-3;
   }
 }
 
@@ -83,7 +84,7 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .user-profile-icon {
@@ -101,16 +102,26 @@
 }
 
 .user-profile-nav {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   position: absolute;
   z-index: 1;
 
   width: 10rem;
-  //height: 10rem;
 
   top: 4rem;
   margin-right: 4rem;
 
-  border: 1px solid $oc-black;
+  border: none;
+  border-radius: 0.75rem;
+  background: $oc-white;
 
-  background: $oc-gray-3;
+  box-shadow: 0.1rem 0.1rem 0.2rem $oc-gray-2, -0.1rem 0.1rem 0.2rem $oc-gray-2,
+    0.1rem -0.1rem 0.2rem $oc-gray-2, -0.1rem -0.1rem 0.2rem $oc-gray-2;
+}
+
+.user-profile-nav-line {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-top: 1px solid $oc-gray-5;
 }
