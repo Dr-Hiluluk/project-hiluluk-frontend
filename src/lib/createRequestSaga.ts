@@ -26,7 +26,7 @@ export default function createRequestSaga(
       yield put({
         type: SUCCESS,
         payload: {
-          [reducerName]: response.data.data,
+          [reducerName]: response.data,
         },
         meta: response,
       });
