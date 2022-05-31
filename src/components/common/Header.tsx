@@ -1,6 +1,4 @@
 import React, { MouseEventHandler, useState } from "react";
-import { Button } from "./Button/Button";
-import { ButtonHeader } from "./Button/ButtonHeader";
 import { Responsive } from "./Responsive";
 import { Link } from "react-router-dom";
 import { userInitialStateType } from "../../modules/user.type";
@@ -43,14 +41,23 @@ export const Header = ({ user, onLogout }: headerType) => {
                     setStyle({ display: "none" });
                   }}
                 >
-                  <ButtonHeader to="/">내정보</ButtonHeader>
+                  <Link className="user-profile-nav-button" to="/">
+                    내정보
+                  </Link>
                   <div className="user-profile-nav-line" />
-                  <ButtonHeader to="/write">글쓰기</ButtonHeader>
+                  <Link className="user-profile-nav-button" to="/write">
+                    글쓰기
+                  </Link>
                   <div className="user-profile-nav-line" />
-                  <ButtonHeader to="/">도움말</ButtonHeader>
-                  <ButtonHeader bold onClick={onLogout}>
+                  <Link className="user-profile-nav-button" to="/">
+                    도움말
+                  </Link>
+                  <div
+                    className="user-profile-nav-button bold"
+                    onClick={onLogout}
+                  >
                     로그아웃
-                  </ButtonHeader>
+                  </div>
                 </nav>
               </button>
             </div>
@@ -73,14 +80,20 @@ export const Header = ({ user, onLogout }: headerType) => {
                     setStyle({ display: "none" });
                   }}
                 >
-                  <ButtonHeader to="/">123</ButtonHeader>
+                  <Link className="user-profile-nav-button" to="/">
+                    123
+                  </Link>
                   <div className="user-profile-nav-line" />
-                  <ButtonHeader to="/">456</ButtonHeader>
+                  <Link className="user-profile-nav-button" to="/">
+                    456
+                  </Link>
                   <div className="user-profile-nav-line" />
-                  <ButtonHeader to="/">도움말</ButtonHeader>
-                  <ButtonHeader to="/login" bold>
+                  <Link className="user-profile-nav-button" to="/">
+                    도움말
+                  </Link>
+                  <Link className="user-profile-nav-button bold" to="/login">
                     로그인
-                  </ButtonHeader>
+                  </Link>
                 </nav>
               </button>
             </div>
