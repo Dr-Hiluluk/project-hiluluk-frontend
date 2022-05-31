@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthReducerType } from "../../modules/auth";
-import { EMAIL_EXP, PASSWORD_EXP, USERNAME_EXP } from "../../utils/variables";
+import { EMAIL_EXP, PASSWORD_EXP, USERNAME_EXP } from "../../lib/variables";
 import { Button } from "../../components/common/Button/Button";
 import { FormError } from "../../components/common/FormError";
 import "./auth.scss";
