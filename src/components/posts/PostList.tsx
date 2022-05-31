@@ -42,7 +42,6 @@ const PostList = ({ postList, postListError, loading, isUser }: any) => {
           </Button>
         )}
       </div>
-
       {!loading && postList && (
         <div className="post-item_area">
           {postList.map((post: any) => (
