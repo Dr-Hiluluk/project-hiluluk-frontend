@@ -8,24 +8,35 @@ import { setOriginalPost } from "../../modules/write";
 import PostActionButtons from "../../components/post/PostActionButtons";
 import PostViewer from "../../components/post/PostViewer";
 import useNotFound from "../../lib/hooks/useNotFound";
+import PostComments from "../../components/post/PostComments";
+import { readCommentList } from "../../modules/comment";
 
 const PostViewerContainer = () => {
   const { postId } = useParams();
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const { showNotFound } = useNotFound();
-
-  const { read, readError, loading, user } = useSelector(
-    ({ loading, post, user }: ReducerType) => ({
-      read: post.read,
-      readError: post.readError,
-      loading: loading["post/READ_POST"],
-      user: user.user,
-    }),
-  );
+  const {
+    read,
+    readError,
+    loading,
+    user,
+    commentList,
+    commentListError,
+    childCommentListError,
+  } = useSelector(({ loading, post, user, comment }: ReducerType) => ({
+    read: post.read,
+    readError: post.readError,
+    loading: loading["post/READ_POST"],
+    user: user.user,
+    commentList: comment.commentList,
+    commentListError: comment.commentListError,
+    childCommentListError: comment.childCommentListError,
+  }));
 
   useEffect(() => {
     dispatch(readPost(Number(postId)));
+    dispatch(readCommentList(Number(postId)));
     return () => {
       dispatch(unloadPost());
     };
@@ -38,7 +49,20 @@ const PostViewerContainer = () => {
         return;
       }
     }
-  }, [dispatch, readError, showNotFound]);
+    // TODO: 400 에러 처리 하기
+    if (commentListError) {
+      console.error(commentListError);
+    }
+    if (childCommentListError) {
+      console.error(childCommentListError);
+    }
+  }, [
+    dispatch,
+    readError,
+    showNotFound,
+    commentListError,
+    childCommentListError,
+  ]);
 
   const onEdit = () => {
     dispatch(setOriginalPost({ post: read }));
@@ -57,14 +81,22 @@ const PostViewerContainer = () => {
   const ownPost = (user && user.id) === (read && read.user.id);
 
   return (
-    <PostViewer
-      post={read}
-      error={readError}
-      loading={loading}
-      actionButtons={
-        ownPost && <PostActionButtons onEdit={onEdit} onDelete={onDelete} />
-      }
-    />
+    <>
+      <PostViewer
+        post={read}
+        error={readError}
+        loading={loading}
+        actionButtons={
+          ownPost && <PostActionButtons onEdit={onEdit} onDelete={onDelete} />
+        }
+      />
+      <PostComments
+        loading={loading}
+        postId={Number(postId)}
+        comments={commentList}
+        count={read && read.comments_count}
+      />
+    </>
   );
 };
 
