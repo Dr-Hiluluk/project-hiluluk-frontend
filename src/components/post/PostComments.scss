@@ -1,0 +1,136 @@
+@import "../common/common.scss";
+@import "../../styles/utils.scss";
+
+.post-comments_block {
+  @extend .block;
+  margin-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.post-comment-write_block {
+}
+
+.post-comments_textarea {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem 0.5rem;
+  resize: none;
+  line-height: 2rem;
+}
+
+.post-comments_button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  span {
+    color: $oc-cyan-4;
+    margin-right: 1rem;
+    padding: 0.25rem 1rem;
+    &:hover {
+      cursor: pointer;
+      background-color: $oc-gray-3;
+      border-radius: 4px;
+    }
+  }
+}
+
+.post-comment-item_block {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  & + & {
+    border-top: 1px solid $oc-gray-3;
+  }
+  &.child {
+    padding-left: 2rem;
+  }
+}
+.post-comment_user-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-comment_profile {
+  display: flex;
+  align-items: center;
+  img {
+    width: 3rem;
+  }
+  span {
+    margin-left: 1rem;
+    display: row;
+    align-items: center;
+  }
+}
+
+.post-comment_actions {
+  span {
+    margin-left: 1rem;
+    font-weight: 500;
+    color: $oc-gray-5;
+    &:hover {
+      cursor: pointer;
+      color: $oc-gray-8;
+    }
+  }
+}
+
+.post-comment_comment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-comment_nickname {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.post-comment_updatedAt {
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+.toggler-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: $oc-cyan-8;
+}
+
+.toggler-container_add-toggle {
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid $oc-gray-3;
+  }
+}
+
+.reply-toggler_block {
+  margin-right: 1rem;
+  border-bottom: 1px solid transparent;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid $oc-gray-3;
+  }
+  span {
+    margin-left: 0.25rem;
+  }
+}
+.post-comment_content {
+  margin: 1.5rem 0 1.5rem 0.25rem;
+}
+
+.reply-toggler_block {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 0.25rem;
+    color: $oc-cyan-8;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.reply-toggler_content {
+  margin: 1.5rem 0 1.5rem 0.25rem;
+}

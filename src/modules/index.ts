@@ -7,6 +7,8 @@ import write, { writeSaga } from "./write";
 import post, { postSaga } from "./post";
 import postList, { postListSaga } from "./postList";
 import error from "./error";
+import comment, { commentSaga } from "./comment";
+
 const rootReducer = combineReducers({
   auth,
   loading,
@@ -15,10 +17,18 @@ const rootReducer = combineReducers({
   post,
   postList,
   error,
+  comment,
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), userSaga(), writeSaga(), postSaga(), postListSaga()]);
+  yield all([
+    authSaga(),
+    userSaga(),
+    writeSaga(),
+    postSaga(),
+    postListSaga(),
+    commentSaga(),
+  ]);
 }
 
 export type ReducerType = ReturnType<typeof rootReducer>;
