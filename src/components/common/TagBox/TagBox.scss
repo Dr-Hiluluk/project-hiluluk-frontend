@@ -16,7 +16,8 @@
   border-radius: 4px;
   overflow: hidden;
   display: flex;
-  width: 256px;
+  width: 20rem;
+  height: 3rem;
   input,
   button {
     // outline: none;
@@ -31,6 +32,7 @@
   }
 
   button {
+    width: 4rem;
     cursor: pointer;
     padding: 0 1rem;
     border: none;
