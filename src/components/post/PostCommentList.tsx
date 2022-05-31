@@ -36,12 +36,7 @@ const PostCommentList: React.FC<PostCommentListProps> = memo(
           let parent =
             parents &&
             parents?.find((parent: any) => parent.id === comment.parentId);
-          console.log(
-            comment.content,
-            userId === comment.userId,
-            userId,
-            comment.userId,
-          );
+
           return (
             <PostCommentItem
               key={comment.id}
