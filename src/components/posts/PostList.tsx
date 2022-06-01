@@ -35,13 +35,6 @@ const PostList = ({ postList, postListError, loading, isUser }: any) => {
   }
   return (
     <div className="post-list_block">
-      <div className="post-list_write-button-wrapper">
-        {isUser?.nickname && (
-          <Button cyan to="/write">
-            새 글 작성하기
-          </Button>
-        )}
-      </div>
       {!loading && postList && (
         <div className="post-item_area">
           {postList.map((post: any) => (
