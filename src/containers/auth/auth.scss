@@ -52,14 +52,14 @@
 
 .input-area {
   display: flex;
-  width: 100%;
-  height: 70px;
+  //width: 100%;
+  height: 4.5rem;
   flex-direction: column;
   justify-content: flex-start;
 }
 
 .input {
-  width: 100%;
+  //width: 100%;
   height: 40px;
   font-size: 1rem;
   border: none;
@@ -69,6 +69,20 @@
   &:focus {
     color: $oc-gray-8;
     border-bottom: 1px solid $oc-cyan-6;
+  }
+}
+.input-check {
+  position: absolute;
+  display: flex;
+
+  font-size: 1.5rem;
+  margin-top: 0.4rem;
+  margin-left: 23.5rem;
+
+  color: $oc-gray-3;
+
+  &.validated {
+    color: $oc-cyan-5;
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthReducerType } from "../../modules/auth";
@@ -7,6 +7,7 @@ import { Button } from "../../components/common/Button/Button";
 import { FormError } from "../../components/common/FormError";
 import "./auth.scss";
 import { googleLogin, kakaoLogin } from "../../static/svg";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 interface AuthFormType {
   type: string;
@@ -27,6 +28,8 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
       passwordConfirm: "",
     },
   });
+  const [style, setStyle] = useState({ display: "inline" });
+  useEffect(() => {});
 
   return (
     <div className="auth-form">
@@ -58,6 +61,13 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
               placeholder="이름"
               autoComplete="off"
             />
+            <div
+              className={`input-check ${
+                !getValues("name") || formState.errors.name ? "" : "validated"
+              }`}
+            >
+              <IoCheckmarkCircleOutline />
+            </div>
             <FormError message={formState.errors.name?.message} />
           </div>
         )}
@@ -80,6 +90,15 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
               placeholder="닉네임"
               autoComplete="off"
             />
+            <div
+              className={`input-check ${
+                !getValues("nickname") || formState.errors.nickname
+                  ? ""
+                  : "validated"
+              }`}
+            >
+              <IoCheckmarkCircleOutline />
+            </div>
             <FormError message={formState.errors.nickname?.message} />
           </div>
         )}
@@ -101,6 +120,13 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
             type="email"
             name="email"
           />
+          <div
+            className={`input-check ${
+              !getValues("email") || formState.errors.email ? "" : "validated"
+            }`}
+          >
+            <IoCheckmarkCircleOutline />
+          </div>
           <FormError message={formState.errors.email?.message} />
         </div>
         <div className="input-area">
@@ -120,6 +146,15 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
             placeholder="비밀번호"
             type="password"
           />
+          <div
+            className={`input-check ${
+              !getValues("password") || formState.errors.password
+                ? ""
+                : "validated"
+            }`}
+          >
+            <IoCheckmarkCircleOutline />
+          </div>
           <FormError message={formState.errors.password?.message} />
         </div>
         {type === "register" && (
@@ -146,6 +181,16 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
               placeholder="비밀번호확인"
               type="password"
             />
+            <div
+              className={`input-check ${
+                !getValues("passwordConfirm") ||
+                formState.errors.passwordConfirm
+                  ? ""
+                  : "validated"
+              }`}
+            >
+              <IoCheckmarkCircleOutline />
+            </div>
             <FormError message={formState.errors.passwordConfirm?.message} />
           </div>
         )}
