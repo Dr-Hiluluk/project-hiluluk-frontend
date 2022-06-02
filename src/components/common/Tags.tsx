@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./common.scss";
+import "./TagBox/TagBox.scss";
 
 export interface Tag {
   content: string;
@@ -9,10 +9,10 @@ export interface Tag {
 const Tags = ({ tags }: any) => {
   tags.sort((a: any, b: any) => a.content - b.content);
   return (
-    <div className="tags_block">
+    <div>
       {tags.map((tag: Tag, index: number) => (
         <Link key={index} to={`/?tag=${tag.content}`}>
-          <div className="tag">#{tag.content}</div>
+          <div className="tag">{tag.content}</div>
         </Link>
       ))}
     </div>

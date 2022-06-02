@@ -10,7 +10,7 @@ import { Tag } from "../Tags";
 import "./TagBox.scss";
 const TagItem = memo(({ tag, onRemove }: any) => (
   <div className="tag" onClick={() => onRemove(tag)}>
-    #{tag}
+    {tag}
   </div>
 ));
 
