@@ -29,10 +29,10 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
       <div className="post-head-wrapper">
         <h1>{title}</h1>
         <SubInfo nickname={user.nickname} createdAt={createdAt} />
+        {actionButtons}
         <div className="post-tag-container">
           <Tags tags={tags} />
         </div>
-        {actionButtons}
       </div>
       <div
         className="post-content"

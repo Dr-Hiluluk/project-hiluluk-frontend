@@ -61,16 +61,3 @@
     content: "\B7";
   }
 }
-
-.tags_block {
-  margin-top: 0.5rem;
-  .tag {
-    display: inline-block;
-    color: $oc-cyan-7;
-    text-decoration: none;
-    margin-right: 0.5rem;
-    &:hover {
-      color: $oc-cyan-6;
-    }
-  }
-}

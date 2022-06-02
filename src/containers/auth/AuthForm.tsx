@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthReducerType } from "../../modules/auth";
@@ -28,8 +28,6 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
       passwordConfirm: "",
     },
   });
-  const [style, setStyle] = useState({ display: "inline" });
-  useEffect(() => {});
 
   return (
     <div className="auth-form">
