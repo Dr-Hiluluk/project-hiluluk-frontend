@@ -16,23 +16,15 @@ const PostViewerContainer = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const { showNotFound } = useNotFound();
-  const {
-    read,
-    readError,
-    loading,
-    user,
-    commentList,
-    commentListError,
-    childCommentListError,
-  } = useSelector(({ loading, post, user, comment }: ReducerType) => ({
-    read: post.read,
-    readError: post.readError,
-    loading: loading["post/READ_POST"],
-    user: user.user,
-    commentList: comment.commentList,
-    commentListError: comment.commentListError,
-    childCommentListError: comment.childCommentListError,
-  }));
+  const { read, readError, loading, user, commentList, commentListError } =
+    useSelector(({ loading, post, user, comment }: ReducerType) => ({
+      read: post.read,
+      readError: post.readError,
+      loading: loading["post/READ_POST"],
+      user: user.user,
+      commentList: comment.commentList,
+      commentListError: comment.commentListError,
+    }));
 
   useEffect(() => {
     dispatch(readPost(Number(postId)));
@@ -53,16 +45,7 @@ const PostViewerContainer = () => {
     if (commentListError) {
       console.error(commentListError);
     }
-    if (childCommentListError) {
-      console.error(childCommentListError);
-    }
-  }, [
-    dispatch,
-    readError,
-    showNotFound,
-    commentListError,
-    childCommentListError,
-  ]);
+  }, [dispatch, readError, showNotFound, commentListError]);
 
   const onEdit = () => {
     dispatch(setOriginalPost({ post: read }));

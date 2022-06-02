@@ -15,35 +15,36 @@ export interface comment {
   createdAt: Date;
   updatedAt: Date;
   children?: comment[];
-  path: number[] | null;
+  path: number[];
   isDeleted: boolean;
   count: number;
 }
 
 interface PostCommentListProps {
   userId: number | null;
-  parents?: any[];
   comments: comment[];
   onDelete: (id: number) => void;
-  onToggleChildren: (id: number) => void;
 }
 
 const PostCommentList: React.FC<PostCommentListProps> = memo(
-  ({ userId, comments, parents, onDelete, onToggleChildren }) => {
+  ({ userId, comments, onDelete }) => {
+    let parents: any[] = [],
+      replies: any[] = [];
+    comments.forEach((comment: any) =>
+      comment.parentId ? replies.push(comment) : parents.push(comment),
+    );
     return (
       <div>
-        {comments.map((comment: comment) => {
-          let parent =
-            parents &&
-            parents?.find((parent: any) => parent.id === comment.parentId);
-
+        {parents.map((comment: comment) => {
+          const commentReplies = replies.filter(
+            (reply: any) => reply.path[0] === comment.id,
+          );
           return (
             <PostCommentItem
               key={comment.id}
               comment={comment}
-              parent={parent}
+              replies={commentReplies}
               onDelete={onDelete}
-              onToggleChildren={onToggleChildren}
               ownComment={userId === comment.userId}
             />
           );
