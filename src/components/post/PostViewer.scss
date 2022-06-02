@@ -9,8 +9,8 @@
 }
 
 .post-head-wrapper {
-  margin-bottom: 2rem;
-  border-bottom: 1px solid $oc-cyan-2;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $oc-cyan-5;
   h1 {
     font-size: 3rem;
     line-height: 1.5;
@@ -19,22 +19,18 @@
 
     word-break: break-word;
   }
-
-  // background: $oc-grape-0;
 }
 
 .post-tag-container {
   min-height: 2rem;
   margin-top: 1rem;
   display: flex;
-
-  // background: $oc-grape-0;
 }
 
 .post-content {
   min-height: 20rem;
-  margin-top: 3rem;
-  margin-bottom: 1.3125rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   font-size: 1.3125rem;
   color: $oc-gray-8;
 
