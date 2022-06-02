@@ -1,29 +1,35 @@
 import React from "react";
 import useUser from "../../lib/hooks/useUser";
-import PostCommentList from "./PostCommentList";
+import PostCommentItem from "./PostCommentItem";
+import { comment } from "./PostCommentList";
 
 interface PostRepliesProps {
-  parents: any[];
-  comments: any;
+  Ancestor: comment;
+  comments: comment[];
   onDelete: (id: number) => void;
-  onToggleChildren: (id: number) => void;
 }
 
 const PostReplies: React.FC<PostRepliesProps> = ({
   comments,
-  parents,
+  Ancestor,
   onDelete,
-  onToggleChildren,
 }) => {
   const user = useUser();
   return (
-    <PostCommentList
-      userId={user.id}
-      comments={comments}
-      parents={parents}
-      onDelete={onDelete}
-      onToggleChildren={onToggleChildren}
-    />
+    <div>
+      {comments.map((comment) => {
+        const parent = comments.find((item) => item.id === comment.parentId);
+        return (
+          <PostCommentItem
+            key={comment.id}
+            comment={comment}
+            parent={parent || Ancestor}
+            onDelete={onDelete}
+            ownComment={user.id === comment.userId}
+          />
+        );
+      })}
+    </div>
   );
 };
 

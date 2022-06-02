@@ -68,7 +68,7 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
   );
 };
 
-export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
+const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
   return (
     <>
       <div className="header-block">
@@ -83,3 +83,5 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
     </>
   );
 };
+
+export default Header;

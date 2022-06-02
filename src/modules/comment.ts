@@ -10,9 +10,6 @@ import {
   CREATE_COMMENT_SUCCESS,
   DELETE_COMMENT,
   DELETE_COMMENT_SUCCESS,
-  READ_CHILD_COMMENT_LIST,
-  READ_CHILD_COMMENT_LIST_FAILURE,
-  READ_CHILD_COMMENT_LIST_SUCCESS,
   READ_COMMENT_LIST,
   READ_COMMENT_LIST_FAILURE,
   READ_COMMENT_LIST_SUCCESS,
@@ -24,13 +21,6 @@ export const readCommentList = (postId: number) => ({
   type: READ_COMMENT_LIST,
   payload: {
     postId,
-  },
-});
-
-export const readChildCommentList = (commentId: number) => ({
-  type: READ_CHILD_COMMENT_LIST,
-  payload: {
-    commentId,
   },
 });
 
@@ -64,21 +54,21 @@ export const updateComment = (commentId: number, content: string) => ({
   },
 });
 
+const createCommentSaga = createRequestSaga(
+  CREATE_COMMENT,
+  CommentApi.createComment,
+  "comment",
+);
+
 const readCommentListSaga = createRequestSaga(
   READ_COMMENT_LIST,
   CommentApi.readCommentList,
   "commentList",
 );
 
-const readChildCommentListSaga = createRequestSaga(
-  READ_CHILD_COMMENT_LIST,
-  CommentApi.readChildCommentList,
-  "childCommentList",
-);
-
-const createCommentSaga = createRequestSaga(
-  CREATE_COMMENT,
-  CommentApi.createComment,
+const updateCommentSaga = createRequestSaga(
+  UPDATE_COMMENT,
+  CommentApi.updateComment,
   "comment",
 );
 
@@ -88,18 +78,11 @@ const deleteCommentSaga = createRequestSaga(
   "comment",
 );
 
-const updateCommentSaga = createRequestSaga(
-  UPDATE_COMMENT,
-  CommentApi.updateComment,
-  "comment",
-);
-
 export function* commentSaga() {
-  yield takeLatest(READ_COMMENT_LIST, readCommentListSaga);
-  yield takeLatest(READ_CHILD_COMMENT_LIST, readChildCommentListSaga);
   yield takeLatest(CREATE_COMMENT, createCommentSaga);
-  yield takeLatest(DELETE_COMMENT, deleteCommentSaga);
+  yield takeLatest(READ_COMMENT_LIST, readCommentListSaga);
   yield takeLatest(UPDATE_COMMENT, updateCommentSaga);
+  yield takeLatest(DELETE_COMMENT, deleteCommentSaga);
 }
 
 const initialState: commentInitialState = {
@@ -107,8 +90,6 @@ const initialState: commentInitialState = {
   commentError: null,
   commentList: [],
   commentListError: null,
-  childCommentList: [],
-  childCommentListError: null,
 };
 
 const comment = (
@@ -116,6 +97,36 @@ const comment = (
   action: CommentDispatchType,
 ) => {
   switch (action.type) {
+    case CREATE_COMMENT_SUCCESS:
+      return produce<commentInitialState>(state, (draft) => {
+        draft.comment = action.payload.comment;
+        if (action.payload.comment.parentId) {
+          let parent = draft.commentList.find(
+            (comment) => comment.id === action.payload.comment.path[0],
+          );
+          if (parent) {
+            parent.count++;
+            let spliceIndex = -1;
+            draft.commentList.forEach((comment, index: number) => {
+              if (comment.path[0] === action.payload.comment.path[0]) {
+                spliceIndex = index;
+              }
+            });
+            draft.commentList.splice(
+              spliceIndex + 1,
+              0,
+              action.payload.comment,
+            );
+          }
+        } else {
+          draft.commentList.push(action.payload.comment);
+        }
+      });
+    case CREATE_COMMENT_FAILURE:
+      return {
+        ...state,
+        commentError: action.payload.commentError,
+      };
     case READ_COMMENT_LIST_SUCCESS:
       return {
         ...state,
@@ -126,84 +137,47 @@ const comment = (
         ...state,
         commentListError: action.payload.commentListError,
       };
-    case READ_CHILD_COMMENT_LIST_SUCCESS:
-      return produce(state, (draft: any) => {
-        const parent = draft.commentList.find(
-          (comment: any) =>
-            comment.id === action.payload.childCommentList[0].parentId,
+    case UPDATE_COMMENT_SUCCESS:
+      return produce<commentInitialState>(state, (draft) => {
+        let updateComment = draft.commentList.find(
+          (comment) => comment.id === action.payload.comment.id,
         );
-        if (parent.children.length === 0) {
-          parent.children.push(...action.payload.childCommentList);
+        if (updateComment) {
+          updateComment.content = action.payload.comment.content;
+          updateComment.updatedAt = action.payload.comment.updatedAt;
         }
       });
-    case READ_CHILD_COMMENT_LIST_FAILURE:
-      return {
-        ...state,
-        childCommentListError: action.payload.childCommentListError,
-      };
-    case CREATE_COMMENT_SUCCESS:
-      return produce(state, (draft: any) => {
-        draft.comment = action.payload.comment;
-        if (action.payload.comment.parentId) {
-          let parent = draft.commentList.find(
-            (comment: any) => comment.id === action.payload.comment.path[0],
-          );
-          parent.count++;
-          parent.children.push(action.payload.comment);
-        } else {
-          draft.commentList.push(action.payload.comment);
-        }
-      });
-    case CREATE_COMMENT_FAILURE:
-      return {
-        ...state,
-        commentError: action.payload.commentError,
-      };
     case DELETE_COMMENT_SUCCESS:
-      return produce(state, (draft: any) => {
-        // 대댓글에대한 댓글을 삭제할때
+      return produce<commentInitialState>(state, (draft) => {
+        // 삭제할 댓글이 대댓글인 경우
         if (action.payload.comment.parentId) {
           let parent = draft.commentList.find(
-            (comment: any) => comment.id === action.payload.comment.path[0],
+            (comment) => comment.id === action.payload.comment.path[0],
           );
-
-          const newCommentList = parent.children.filter(
-            (comment: any) => comment.id !== action.payload.comment.id,
+          let filteredComments = draft.commentList.filter(
+            (comment) => comment.id !== action.payload.comment.id,
           );
-          parent.count--;
-          parent.children = [...newCommentList];
+          if (parent) {
+            parent.count--;
+          }
+          draft.commentList = [...filteredComments];
 
-          // 부모댓글에대한 댓글을 삭제할때
+          // 삭제할 댓글에 대댓글이 있을 경우, 내용 삭제로 바꾸고 isDeleted 값 true로 변경
         } else if (action.payload.comment.children.length > 0) {
           const deletedComment = draft.commentList.find(
-            (comment: any) => comment.id === action.payload.comment.id,
+            (comment) => comment.id === action.payload.comment.id,
           );
-          deletedComment.content = action.payload.comment.content;
-          deletedComment.isDeleted = action.payload.comment.isDeleted;
+          if (deletedComment) {
+            deletedComment.content = action.payload.comment.content;
+            deletedComment.isDeleted = action.payload.comment.isDeleted;
+          }
+
+          // 삭제할 댓글에 대댓글이 없는 경우, 바로 삭제
         } else {
           let filteredCommentList = draft.commentList.filter(
-            (comment: any) => comment.id !== action.payload.comment.id,
+            (comment) => comment.id !== action.payload.comment.id,
           );
           draft.commentList = [...filteredCommentList];
-        }
-      });
-    case UPDATE_COMMENT_SUCCESS:
-      return produce(state, (draft: any) => {
-        let path = action.payload.comment.path;
-        if (action.payload.comment.parentId) {
-          let parent = draft.commentList.find(
-            (comment: any) => comment.id === path[0],
-          );
-          let newChild = parent.children.find(
-            (comment: any) => comment.id === action.payload.comment.id,
-          );
-          newChild.content = action.payload.comment.content;
-        } else {
-          draft.commentList.forEach((comment: any) => {
-            if (comment.id === action.payload.comment.id) {
-              comment.content = action.payload.comment.content;
-            }
-          });
         }
       });
     default:

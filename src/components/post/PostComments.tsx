@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import PostCommentWriteContainer from "../../containers/write/PostCommentWriteContainer";
 import useBooleanToggle from "../../lib/hooks/useBooleanToggle";
 import useUser from "../../lib/hooks/useUser";
-import { deleteComment, readChildCommentList } from "../../modules/comment";
+import { deleteComment } from "../../modules/comment";
 import AskModal from "../common/AskModal/AskModal";
 import PostCommentList from "./PostCommentList";
 import "./PostComments.scss";
@@ -27,12 +27,6 @@ const PostComments: React.FC<PostCommentsProps> = ({
 
   const dispatch = useDispatch();
   const user = useUser();
-  const onToggleChildren = useCallback(
-    (id: number) => {
-      dispatch(readChildCommentList(id));
-    },
-    [dispatch],
-  );
 
   const onDelete = useCallback(
     (id: number) => {
@@ -65,7 +59,6 @@ const PostComments: React.FC<PostCommentsProps> = ({
           userId={user && user.id}
           onDelete={onDelete}
           comments={comments}
-          onToggleChildren={onToggleChildren}
         />
       )}
       {askRemove && (

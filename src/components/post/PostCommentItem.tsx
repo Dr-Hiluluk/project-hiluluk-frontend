@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import useBooleanToggle from "../../lib/hooks/useBooleanToggle";
 import { formatDate } from "../../lib/utils";
 import { defaultThumbnail } from "../../static/svg";
@@ -11,21 +11,16 @@ import ReplyToggler from "../comment/ReplyToggler";
 interface PostCommentItemProps {
   comment: comment;
   parent?: comment;
+  replies?: comment[];
   ownComment: boolean;
   onDelete: (id: number) => void;
-  onToggleChildren: (id: number) => void;
 }
 
 const PostCommentItem: React.FC<PostCommentItemProps> = memo(
-  ({ comment, parent, ownComment, onDelete, onToggleChildren }) => {
+  ({ comment, parent, replies, ownComment, onDelete }) => {
     const [open, onOpenToggle] = useBooleanToggle(false);
     const [add, onAddToggle] = useBooleanToggle(false);
     const [edit, onEditToggle] = useBooleanToggle(false);
-
-    const onToggle = useCallback(() => {
-      onToggleChildren(comment.id);
-      onOpenToggle();
-    }, [comment.id, onOpenToggle, onToggleChildren]);
 
     return (
       <div
@@ -43,7 +38,9 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
                 {comment.user.nickname}
               </span>
               <span className="post-comment_updatedAt">
-                {formatDate(comment.updatedAt)}
+                {comment.createdAt === comment.updatedAt
+                  ? formatDate(comment.updatedAt)
+                  : `${formatDate(comment.updatedAt)}(수정됨)`}
               </span>
             </div>
           </div>
@@ -85,7 +82,7 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
             <ReplyToggler
               count={comment.count}
               open={open}
-              onToggle={onToggle}
+              onToggle={onOpenToggle}
             />
           )}
           <span className="toggler-container_add-toggle" onClick={onAddToggle}>
@@ -101,11 +98,10 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
           />
         )}
 
-        {open && comment && comment.children && (
+        {open && replies && (
           <PostReplies
-            onToggleChildren={() => onToggleChildren(comment.id)}
-            parents={[comment, ...comment.children]}
-            comments={comment.children}
+            Ancestor={comment}
+            comments={replies}
             onDelete={onDelete}
           />
         )}

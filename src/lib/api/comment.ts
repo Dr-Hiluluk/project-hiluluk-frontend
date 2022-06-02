@@ -5,10 +5,6 @@ class CommentApi {
     return client.get(`/api/comment?postId=${postId}`);
   }
 
-  static readChildCommentList({ commentId }: { commentId: number }) {
-    return client.get(`/api/comment/${commentId}`);
-  }
-
   static createComment({
     userId,
     postId,
