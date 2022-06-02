@@ -17,7 +17,7 @@
   overflow: hidden;
   display: flex;
   width: 20rem;
-  
+
   input,
   button {
     // outline: none;
@@ -45,17 +45,29 @@
   }
 }
 
-.tag {
-  margin-right: 1rem;
-  padding: 0.25rem 0;
-  color: $oc-cyan-6;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.5;
-  }
-}
-
 .tag-list-block {
   display: flex;
   margin-top: 0.5rem;
+}
+
+// .tags-block {
+//   margin-left: -0.5rem;
+// }
+
+.tag {
+  display: inline-flex;
+
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.25rem 0.5rem 0.25rem 0rem;
+  padding: 0.3rem 1rem;
+
+  color: $oc-cyan-6;
+  background: $oc-gray-1;
+  border-radius: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: $oc-cyan-4;
+    background: $oc-gray-0;
+  }
 }
