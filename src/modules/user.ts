@@ -45,8 +45,12 @@ export function* userSaga() {
   yield takeLatest(LOGOUT, logoutSaga);
 }
 
-const initialState: userInitialStateType = {
-  user: null,
+const initialState = {
+  user: {
+    id: 0,
+    name: "",
+    nickname: "",
+  },
   userError: null,
 };
 

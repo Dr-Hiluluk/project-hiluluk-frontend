@@ -25,7 +25,7 @@ const PostReplies: React.FC<PostRepliesProps> = ({
             comment={comment}
             parent={parent || Ancestor}
             onDelete={onDelete}
-            ownComment={!!(user && user.id === comment.userId)}
+            ownComment={user.id === comment.userId}
           />
         );
       })}

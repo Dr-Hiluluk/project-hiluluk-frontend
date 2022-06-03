@@ -33,13 +33,16 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
           style={style}
           onMouseLeave={onChangeDisplay}
         >
-          <Link className="user-profile-nav-button" to={user ? "/" : "/login"}>
+          <Link
+            className="user-profile-nav-button"
+            to={user?.name ? "/" : "/login"}
+          >
             내정보
           </Link>
           <div className="user-profile-nav-line" />
           <Link
             className="user-profile-nav-button"
-            to={user ? "/write" : "/login"}
+            to={user?.name ? "/write" : "/login"}
           >
             글쓰기
           </Link>
@@ -50,14 +53,14 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
           <div
             className="user-profile-nav-button bold"
             onClick={
-              user
+              user?.name
                 ? onLogout
                 : () => {
                     navigation("/login");
                   }
             }
           >
-            {user ? "로그아웃" : "로그인"}
+            {user?.name ? "로그아웃" : "로그인"}
           </div>
         </nav>
       </button>
