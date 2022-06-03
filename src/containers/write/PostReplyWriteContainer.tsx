@@ -24,8 +24,10 @@ const PostReplyWriteContainer: React.FC<PostReplyWriteContainerProps> = ({
   }));
   const dispatch = useDispatch();
   const onCreate = () => {
-    dispatch(createComment(user.id, post.id, parentId, comment));
-    onAddToggle();
+    if (user) {
+      dispatch(createComment(user.id, post.id, parentId, comment));
+      onAddToggle();
+    }
   };
 
   return (

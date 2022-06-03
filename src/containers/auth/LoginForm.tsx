@@ -45,7 +45,7 @@ export const LoginForm = () => {
 
   // 로그인 상태 유지
   useEffect(() => {
-    if (user?.name) {
+    if (user) {
       navigation("/");
       try {
         localStorage.setItem("user", JSON.stringify(user));
