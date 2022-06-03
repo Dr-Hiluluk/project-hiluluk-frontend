@@ -49,6 +49,7 @@ const Editor = ({ onChangeField, title, body }: editorType) => {
     onChangeField({ key: "title", value: e.target.value });
   };
 
+  const handleImage = () => {};
   return (
     <div className="editor-block">
       <input
