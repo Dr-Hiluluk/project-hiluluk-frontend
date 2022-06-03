@@ -21,8 +21,10 @@ const PostCommentWriteContainer: React.FC<PostCommentWriteProps> = ({
   const user = useUser();
 
   const onCreateComment = () => {
-    dispatch(createComment(user.id, Number(postId), null, comment));
-    onReset();
+    if (user) {
+      dispatch(createComment(user.id, Number(postId), null, comment));
+      onReset();
+    }
   };
 
   return (
