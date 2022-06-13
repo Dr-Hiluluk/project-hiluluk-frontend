@@ -67,7 +67,7 @@ const TagBox = ({ tags, onChangeTags }: any) => {
   }, [tags]);
 
   return (
-    <div className="tag-box-block">
+    <div className="tag-box_block">
       <h4>태그</h4>
       <form className="tag-form" onSubmit={onSubmit}>
         <input

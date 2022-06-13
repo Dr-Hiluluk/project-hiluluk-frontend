@@ -11,18 +11,41 @@
   outline: none;
   padding-bottom: 0.5rem;
   border: none;
-  border-bottom: 1px solid $oc-cyan-4;
+  border-bottom: 3px solid $oc-cyan-2;
   margin-bottom: 2rem;
   width: 100%;
 }
 
 .quill-wrapper {
+  // header가 화면 앞단에 나타나도록 quill-editor z-index 조절
+  z-index: 0;
   // 최소 크기 지정 및 padding 제거
   .ql-toolbar {
+    position: sticky;
+    width: 100%;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
     border: none;
+    border-bottom: 3px solid $oc-cyan-2;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    // border: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    button {
+      display: flex;
+      justify-content: space-evenly;
+      height: 2rem;
+      width: inherit;
+    }
   }
+
   .ql-container {
+    position: relative;
+    overflow-y: auto;
+    z-index: 0;
     border: none;
   }
   .ql-editor {
