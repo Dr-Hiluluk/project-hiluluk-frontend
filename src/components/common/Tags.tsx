@@ -7,7 +7,6 @@ export interface Tag {
 }
 
 const Tags = ({ tags }: any) => {
-  tags.sort((a: any, b: any) => a.content - b.content);
   return (
     <div>
       {tags.map((tag: Tag, index: number) => (
