@@ -1,0 +1,11 @@
+@import "../../styles/utils.scss";
+
+.editor-footer_block {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  padding-left: 2rem;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  border-top: 3px solid $oc-cyan-2;
+}

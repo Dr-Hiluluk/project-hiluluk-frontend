@@ -1,8 +1,9 @@
 @import "../../../styles/utils.scss";
 
-.tag-box-block {
+.tag-box_block {
+  position: sticky;
+  bottom: 0;
   width: 100%;
-  border-top: 1px solid $oc-cyan-2;
   padding-top: 2rem;
   h4 {
     color: $oc-cyan-8;

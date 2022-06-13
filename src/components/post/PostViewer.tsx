@@ -31,7 +31,7 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
         <SubInfo nickname={user.nickname} createdAt={createdAt} />
         {actionButtons}
         <div className="post-tag-container">
-          <Tags tags={tags} />
+          {tags.length > 0 && <Tags tags={tags} />}
         </div>
       </div>
       <div
