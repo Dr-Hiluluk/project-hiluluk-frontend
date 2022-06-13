@@ -30,7 +30,7 @@ const PostViewerContainer = () => {
     dispatch(readPost(Number(postId)));
     dispatch(readCommentList(Number(postId)));
     return () => {
-      dispatch(unloadPost());
+      // dispatch(unloadPost());
     };
   }, [dispatch, postId]);
 
