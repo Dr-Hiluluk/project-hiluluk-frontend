@@ -1,29 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { RatioImage } from "../common/RatioImage";
 import SubInfo from "../common/SubInfo";
 import "./PostList.scss";
+import { formatDate } from "../../lib/utils";
+import { defaultThumbnail } from "../../static/svg";
 
 const PostItem = ({ post }: any) => {
   return (
     <div className="post-item_block">
-      <div className="post-item_block-body">
-        <div className="post-item_block-head">
-          <Link to={`/@${post.user.nickname}/${post.id}`}>
-            <h2>{post.title}</h2>
-          </Link>
+      {post.thumbnail && (
+        <Link className="styled-link" to={`/@${post.user.nickname}/${post.id}`}>
+          <RatioImage src={post.thumbnail} widthRatio={1.916} heightRatio={1} />
+        </Link>
+      )}
+      <div className="post-item_content">
+        <span className="post-item_category-name">Category Name</span>
+        <Link className="styled-link" to={`/@${post.user.nickname}/${post.id}`}>
+          <h4>{post.title}</h4>
+          <div className="post-item_description">
+            <p>{post.body}</p>
+          </div>
+        </Link>
+        <div className="post-item_sub-info">
+          <span>{formatDate(post.createdAt)}</span>
+          <span className="separator">·</span>
+          <span>{post.comments_count}개의 댓글</span>
         </div>
-
-        <p>{post.body}</p>
       </div>
-
-      <div className="post-item_block-tail">
-        <div className="post-item_block-tail-userInfo">
-          <SubInfo
-            nickname={post.user.nickname}
-            createdAt={new Date(post.createdAt)}
+      <footer className="post-item_footer">
+        <Link className="user-info" to={`/@${post.user.nickname}`}>
+          <img
+            src={post.user.thumbnail || defaultThumbnail}
+            alt={`user thumbnail of ${post.user.nickname}`}
           />
-        </div>
-      </div>
+          <span>
+            <b>{post.user.nickname}</b>
+          </span>
+        </Link>
+      </footer>
     </div>
   );
 };
@@ -34,13 +49,9 @@ const PostList = ({ postList, postListError, loading, isUser }: any) => {
   }
   return (
     <div className="post-list_block">
-      {!loading && postList && (
-        <div className="post-item_area">
-          {postList.map((post: any) => (
-            <PostItem post={post} key={post.id} />
-          ))}
-        </div>
-      )}
+      {!loading &&
+        postList &&
+        postList.map((post: any) => <PostItem post={post} key={post.id} />)}
     </div>
   );
 };
