@@ -4,8 +4,7 @@
 .post-viewer-block {
   @extend .block;
   margin-top: 4rem;
-
-  padding-bottom: 5rem;
+  padding: 0 2rem;
 }
 
 .post-head-wrapper {
@@ -33,9 +32,13 @@
   margin-bottom: 2rem;
   font-size: 1.3125rem;
   color: $oc-gray-8;
-
-  word-break: break-word;
-  // background: $oc-grape-1;
+  // word-break: break-word;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  // 이미지삽입시 생기는 margin 초기화
+  p {
+    margin: 0;
+  }
 }
 
 .post-scrolltotop {

@@ -6,6 +6,7 @@ import {
   CHANGE_FIELD,
   INITIALIZE,
   SET_ORIGINAL_POST,
+  SET_THUMBNAIL,
   updatePostDispatch,
   UPDATE_POST,
   UPDATE_POST_FAILURE,
@@ -26,20 +27,28 @@ export const changeField = ({
   value: string[];
 }) => ({ type: CHANGE_FIELD, payload: { key, value } });
 
+export const setThumbnail = (thumbnail: string) => ({
+  type: SET_THUMBNAIL,
+  payload: { thumbnail },
+});
+
 export const writePost = ({
   title,
   body,
   tags,
+  thumbnail,
 }: {
   title: string;
   body: string;
   tags: string[];
+  thumbnail?: string;
 }) => ({
   type: WRITE_POST,
   payload: {
     title,
     body,
     tags,
+    thumbnail,
   },
 });
 
@@ -55,11 +64,13 @@ export const updatePost = ({
   title,
   body,
   tags,
+  thumbnail,
 }: {
   postId: number;
   title: string;
   body: string;
   tags: string[];
+  thumbnail?: string;
 }): updatePostDispatch => ({
   type: UPDATE_POST,
   payload: {
@@ -67,6 +78,7 @@ export const updatePost = ({
     body,
     title,
     tags,
+    thumbnail,
   },
 });
 
@@ -86,6 +98,7 @@ const initialState: writeInitialStateType = {
   title: "",
   body: "",
   tags: [],
+  thumbnail: undefined,
   post: null,
   postError: null,
   originalPostId: null,
@@ -102,6 +115,11 @@ const write = (
       return produce(state, (draft: any) => {
         draft[action.payload.key] = action.payload.value;
       });
+    case SET_THUMBNAIL:
+      return {
+        ...state,
+        thumbnail: action.payload.thumbnail,
+      };
     case WRITE_POST_SUCCESS:
       return {
         ...state,

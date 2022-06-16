@@ -8,6 +8,7 @@ export interface userInitialStateType {
     id: number;
     name: string;
     nickname: string;
+    thumbnail?: string;
   } | null;
   userError: null;
 }

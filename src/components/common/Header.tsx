@@ -2,9 +2,9 @@ import React, { MouseEventHandler, useState } from "react";
 import { Responsive } from "./Responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { userInitialStateType } from "../../modules/user.type";
-import { logo } from "../../static/svg";
+import { defaultThumbnail, logo } from "../../static/svg";
 import "./Header.scss";
-import { IoPersonSharp, IoReorderThree } from "react-icons/io5";
+import { IoReorderThree } from "react-icons/io5";
 
 interface HeaderProps {
   user?: userInitialStateType["user"];
@@ -20,13 +20,16 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
   };
   return (
     <div className="right">
-      <div className="user-info">{user && user.nickname}</div>
+      {/* <div className="user-info">{user && user.nickname}</div> */}
       <button className="user-profile" onClick={onChangeDisplay}>
         <div className="user-profile-three">
           <IoReorderThree />
         </div>
         <div className="user-profile-icon">
-          <IoPersonSharp />
+          <img
+            alt="user thumbnail"
+            src={user?.thumbnail ? user.thumbnail : defaultThumbnail}
+          />
         </div>
         <nav
           className="user-profile-nav"

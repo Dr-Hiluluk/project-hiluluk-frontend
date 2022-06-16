@@ -1,20 +1,24 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducerType } from "../../modules";
-import { changeField, initialize } from "../../modules/write";
+import { changeField, initialize, setThumbnail } from "../../modules/write";
 import Editor from "../../components/write/Editor";
 import useUpload from "../../lib/hooks/useUpload";
 import { useCFUpload } from "../../lib/hooks/useCFUpload";
 import DragDropUpload from "../../components/common/DragDropUpload";
 import PasteUpload from "../../components/common/PasteUpload";
+import { usePrevious } from "react-use";
 
 const EditorContainer = () => {
   const dispatch = useDispatch();
-  const { title, body, read } = useSelector(({ write, post }: ReducerType) => ({
-    title: write.title,
-    body: write.body,
-    read: post.read,
-  }));
+  const { title, body, read, thumbnail } = useSelector(
+    ({ write, post }: ReducerType) => ({
+      title: write.title,
+      body: write.body,
+      read: post.read,
+      thumbnail: write.thumbnail,
+    }),
+  );
 
   const onChangeField = useCallback(
     (paylaod) => dispatch(changeField(paylaod)),
@@ -24,6 +28,7 @@ const EditorContainer = () => {
   const [upload, file] = useUpload();
   const [CFUpload, image] = useCFUpload();
   const [imageBlobUrl, setImageBlobUrl] = useState<string | null>(null);
+  const prevThumbnail = usePrevious(image);
 
   const uploadWithPostId = useCallback(
     async (file: File, postId: number) => {
@@ -37,9 +42,7 @@ const EditorContainer = () => {
 
   const onDragDropUpload = useCallback(
     (file: File) => {
-      if (read) {
-        uploadWithPostId(file, read.id);
-      }
+      uploadWithPostId(file, read.id);
     },
     [read, uploadWithPostId],
   );
@@ -58,6 +61,12 @@ const EditorContainer = () => {
     }
   }, [file, read, uploadWithPostId]);
 
+  useEffect(() => {
+    if (prevThumbnail !== image && !thumbnail && image) {
+      dispatch(setThumbnail(image));
+    }
+  }, [dispatch, image, prevThumbnail, thumbnail]);
+
   return (
     <>
       <Editor
@@ -65,7 +74,7 @@ const EditorContainer = () => {
         onChangeField={onChangeField}
         title={title}
         body={body}
-        image={image || imageBlobUrl}
+        image={image}
       />
       <DragDropUpload onUpload={onDragDropUpload} />
       <PasteUpload onUpload={onDragDropUpload} />

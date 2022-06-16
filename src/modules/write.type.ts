@@ -7,10 +7,12 @@ export const SET_ORIGINAL_POST = "write/SET_ORIGINAL_POST" as const;
 export const UPDATE_POST = "write/UPDATE_POST" as const;
 export const UPDATE_POST_SUCCESS = "write/UPDATE_POST_SUCCESS" as const;
 export const UPDATE_POST_FAILURE = "write/UPDATE_POST_FAILURE" as const;
+export const SET_THUMBNAIL = "write/SET_THUMBNAIL" as const;
 export interface writeInitialStateType {
   title: string;
   body: string;
   tags: string[];
+  thumbnail?: string;
   post: any;
   postError: any;
   originalPostId: number | null;
@@ -26,6 +28,13 @@ export interface changeFieldDispatch {
   payload: {
     key: string;
     value: string;
+  };
+}
+
+export interface setThumbnailDispatch {
+  type: typeof SET_THUMBNAIL;
+  payload: {
+    thumbnail?: string;
   };
 }
 
@@ -65,6 +74,7 @@ export interface updatePostDispatch {
     title: string;
     body: string;
     tags: string[];
+    thumbnail?: string;
   };
 }
 
@@ -85,6 +95,7 @@ export interface updatePostFailureDispatch {
 export type WriteDispatchType =
   | initializeDispatch
   | changeFieldDispatch
+  | setThumbnailDispatch
   | writePostDispatch
   | writePostSuccessDispatch
   | writePostFailureDispatch

@@ -24,6 +24,11 @@ a {
   box-sizing: inherit;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 input,
 button,
 textarea {
