@@ -5,11 +5,13 @@ class PostApi {
     title,
     body,
     tags,
+    thumbnail,
   }: {
     title: string;
     body: string;
     tags: string[];
-  }) => client.post("/api/post", { title, body, tags });
+    thumbnail?: string;
+  }) => client.post("/api/post", { title, body, tags, thumbnail });
 
   static readPost = ({ id }: any) => {
     return client.get(`/api/post/${id}`);
@@ -37,16 +39,19 @@ class PostApi {
     title,
     body,
     tags,
+    thumbnail,
   }: {
     postId: number;
     title: string;
     body: string;
     tags: string[];
+    thumbnail?: string;
   }) =>
     client.patch(`/api/post/${postId}`, {
       title,
       body,
       tags,
+      thumbnail,
     });
 
   static deletePost = ({ postId }: { postId: number }) =>

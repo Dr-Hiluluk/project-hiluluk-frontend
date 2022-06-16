@@ -8,23 +8,25 @@ import WriteActionButtons from "../../components/write/WriteActionButtons";
 const WriteActionButtonsContainer = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
-  const { title, body, tags, post, postError, originalPostId } = useSelector(
-    ({ write }: ReducerType) => ({
+  const { title, body, tags, thumbnail, post, postError, originalPostId } =
+    useSelector(({ write }: ReducerType) => ({
       title: write.title,
       body: write.body,
       tags: write.tags,
+      thumbnail: write.thumbnail,
       post: write.post,
       postError: write.postError,
       originalPostId: write.originalPostId,
-    }),
-  );
+    }));
 
   const onPublish = () => {
     if (originalPostId) {
-      dispatch(updatePost({ postId: originalPostId, title, body, tags }));
+      dispatch(
+        updatePost({ postId: originalPostId, title, body, tags, thumbnail }),
+      );
       return;
     }
-    dispatch(writePost({ title, body, tags }));
+    dispatch(writePost({ title, body, tags, thumbnail }));
   };
 
   const onCancel = () => {
