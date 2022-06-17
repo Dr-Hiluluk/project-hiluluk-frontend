@@ -5,6 +5,7 @@ import { createComment } from "../../modules/comment";
 import PostCommentWrite from "../../components/post/PostCommentWrite";
 import useUser from "../../lib/hooks/useUser";
 import { ReducerType } from "../../modules";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface PostReplyWriteContainerProps {
   parentId: number;
@@ -23,11 +24,14 @@ const PostReplyWriteContainer: React.FC<PostReplyWriteContainerProps> = ({
     post: post.read,
   }));
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+  const location = useLocation();
   const onCreate = () => {
-    if (user) {
-      dispatch(createComment(user.id, post.id, parentId, comment));
-      onAddToggle();
+    if (!user) {
+      return navigation("/login", { state: location.pathname });
     }
+    dispatch(createComment(user.id, post.id, parentId, comment));
+    onAddToggle();
   };
 
   return (
