@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ReducerType } from "../../modules";
 import { changeField, initializeForm, login } from "../../modules/auth";
 import { check } from "../../modules/user";
@@ -10,6 +10,8 @@ import AuthForm from "./AuthForm";
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
+  const location = useLocation();
+
   const { form, auth, authError, user } = useSelector(
     ({ auth, user }: ReducerType) => ({
       form: auth.login,
@@ -46,14 +48,18 @@ export const LoginForm = () => {
   // 로그인 상태 유지
   useEffect(() => {
     if (user) {
-      navigation("/");
+      if (location.state) {
+        navigation(`${location.state}`);
+      } else {
+        navigation("/");
+      }
       try {
         localStorage.setItem("user", JSON.stringify(user));
       } catch (e) {
         console.log("localStorage is not working.");
       }
     }
-  }, [user, navigation]);
+  }, [user, navigation, location.state]);
 
   return (
     <AuthForm
