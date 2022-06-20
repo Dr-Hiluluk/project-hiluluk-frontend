@@ -1,0 +1,54 @@
+@import "../../styles/utils.scss";
+
+.memo-viewer_block {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $oc-gray-4;
+  border-radius: 4px;
+  height: 100%;
+  box-shadow: 0 30px 15px 0 $oc-gray-4;
+  padding: 1rem;
+  .memo-viwer_content {
+    color: $oc-gray-7;
+    font-size: 1.1rem;
+    line-height: 1rem;
+    padding-top: 0.5rem;
+    font-weight: 400;
+  }
+}
+
+.memo-viewer_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  span {
+    color: $oc-gray-6;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    &:hover {
+      border-radius: 4px;
+      background-color: $oc-gray-4;
+    }
+  }
+  button + button {
+    margin-left: 0.5rem;
+  }
+}
+
+.memo-viewer_textarea {
+  font-size: 1.1rem;
+  height: inherit;
+  border: none;
+  border-top: 1px solid $oc-cyan-5;
+  padding: 0.5rem 0 0 0;
+  resize: none;
+  line-height: 1rem;
+}
+
+.button-wrapper {
+}
