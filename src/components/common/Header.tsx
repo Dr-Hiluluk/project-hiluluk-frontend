@@ -3,8 +3,8 @@ import { Responsive } from "./Responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { userInitialStateType } from "../../modules/user.type";
 import { defaultThumbnail, logo } from "../../static/svg";
-import "./Header.scss";
 import { IoReorderThree } from "react-icons/io5";
+import "./Header.scss";
 
 interface HeaderProps {
   user?: userInitialStateType["user"];
@@ -26,17 +26,17 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
           <IoReorderThree />
         </div>
         <div className="user-profile-icon">
-          <img
-            alt="user thumbnail"
-            src={user?.thumbnail ? user.thumbnail : defaultThumbnail}
-          />
+          <img alt="user thumbnail" src={user?.thumbnail || defaultThumbnail} />
         </div>
         <nav
           className="user-profile-nav"
           style={style}
           onMouseLeave={onChangeDisplay}
         >
-          <Link className="user-profile-nav-button" to={user ? "/" : "/login"}>
+          <Link
+            className="user-profile-nav-button"
+            to={user ? `/@${user.nickname}` : "/login"}
+          >
             내정보
           </Link>
           <div className="user-profile-nav-line" />
