@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./common.scss";
 interface responsiveType extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }

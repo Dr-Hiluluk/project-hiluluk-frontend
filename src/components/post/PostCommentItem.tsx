@@ -30,7 +30,7 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
           <div className="post-comment_profile">
             <img
               className="post-comment_thumbnail"
-              src={defaultThumbnail}
+              src={comment.user.thumbnail || defaultThumbnail}
               alt="user-thumbnail"
             />
             <div className="post-comment_comment-info">

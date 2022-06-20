@@ -9,6 +9,7 @@ import PostPage from "./pages/PostPage";
 import { Helmet } from "react-helmet-async";
 import NotFoundPage from "./pages/NotFoundPage";
 import ErrorBoundary from "./components/error/ErrorBoundary";
+import UserPage from "./pages/UserPage";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<PostListPage />} />
-          <Route path="/@:nickname" element={<PostListPage />} />
+          <Route path="/@:nickname" element={<UserPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/write" element={<WritePage />} />

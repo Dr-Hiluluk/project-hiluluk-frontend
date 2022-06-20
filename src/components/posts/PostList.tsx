@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RatioImage } from "../common/RatioImage";
-import SubInfo from "../common/SubInfo";
 import "./PostList.scss";
 import { formatDate } from "../../lib/utils";
 import { defaultThumbnail } from "../../static/svg";
@@ -47,6 +46,7 @@ const PostList = ({ postList, postListError, loading, isUser }: any) => {
   if (postListError) {
     return <div className="post-list_block">게시글을 불러오지 못했습니다.</div>;
   }
+
   return (
     <div className="post-list_block">
       {!loading &&
