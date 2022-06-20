@@ -1,7 +1,7 @@
 import React from "react";
 import SubInfo from "../common/SubInfo";
 import Tags from "../common/Tags";
-import "../post/PostViewer.scss";
+import "./PostViewer.scss";
 import { IoCaretUpOutline } from "react-icons/io5";
 import { Helmet } from "react-helmet-async";
 
