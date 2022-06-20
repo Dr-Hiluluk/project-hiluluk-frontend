@@ -6,3 +6,7 @@ export { default as crashScreenLogo } from "./undraw_page_crash.svg";
 export { default as defaultThumbnail } from "./undraw_male_avatar.svg";
 export { default as addIcon } from "./add_icon.svg";
 export { default as subtractIcon } from "./subtract_icon.svg";
+export { default as editIcon } from "./memo_edit_icon.svg";
+export { default as removeIcon } from "./memo_remove_icon.svg";
+export { default as dismissIcon } from "./dismiss_icon.svg";
+export { default as saveIcon } from "./save_icon.svg";
