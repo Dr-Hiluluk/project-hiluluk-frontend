@@ -1,6 +1,7 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import MemoViewer from "../../components/memo/MemoViewer";
-import { useUserId } from "../../lib/hooks/useUser";
+import useUser, { useUserId } from "../../lib/hooks/useUser";
 
 export interface MemoViewerContainerProps {
   memo: any;
@@ -15,8 +16,9 @@ const MemoViewerContainer: React.FC<MemoViewerContainerProps> = ({
   onRemove,
   onEdit,
 }) => {
-  const userId = useUserId();
-  const isMine = memo?.userId === userId;
+  const user = useUser();
+  const { nickname } = useParams();
+  const isMine = nickname === user?.nickname;
 
   return (
     <MemoViewer
