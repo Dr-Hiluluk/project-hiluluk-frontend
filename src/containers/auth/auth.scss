@@ -1,4 +1,4 @@
-@import "~open-color/open-color";
+@import "../../styles/utils.scss";
 
 .template {
   position: absolute;
@@ -68,7 +68,7 @@
   outline: none;
   &:focus {
     color: $oc-gray-8;
-    border-bottom: 1px solid $oc-cyan-6;
+    border-bottom: 1px solid $main-color;
   }
 }
 .input-check {
@@ -82,7 +82,7 @@
   color: $oc-gray-3;
 
   &.validated {
-    color: $oc-cyan-5;
+    color: $sub1-color;
   }
 }
 

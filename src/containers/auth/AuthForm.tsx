@@ -200,7 +200,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
         )}
         <Button
           className="button"
-          cyan
+          teal
           fullWidth
           disabled={!formState.isDirty || !formState.isValid}
         >

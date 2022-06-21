@@ -25,7 +25,7 @@
   align-items: center;
   margin-top: 1rem;
   span {
-    color: $oc-cyan-4;
+    color: $sub1-color;
     margin-right: 1rem;
     padding: 0.25rem 1rem;
     &:hover {
@@ -54,8 +54,14 @@
 .post-comment_profile {
   display: flex;
   align-items: center;
+  .thumbnail {
+    margin: 0 auto;
+  }
   img {
+    object-fit: cover;
+    border-radius: 50%;
     width: 3rem;
+    display: block;
   }
   span {
     margin-left: 1rem;
@@ -94,7 +100,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: $oc-cyan-8;
+  color: $main-color;
 }
 
 .toggler-container_add-toggle {
@@ -126,7 +132,7 @@
   align-items: center;
   span {
     margin-left: 0.25rem;
-    color: $oc-cyan-8;
+    color: $main-color;
   }
   &:hover {
     cursor: pointer;
