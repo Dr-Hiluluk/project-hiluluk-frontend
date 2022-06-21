@@ -15,7 +15,7 @@ const WriteActionButtons = ({
 }: writeActionButtonsType) => {
   return (
     <div className="write-action-button-block">
-      <Button onClick={onPublish} cyan>
+      <Button onClick={onPublish} teal>
         게시글 {isEdit ? "수정" : "등록"}
       </Button>
       <Button onClick={onCancel}>취소</Button>

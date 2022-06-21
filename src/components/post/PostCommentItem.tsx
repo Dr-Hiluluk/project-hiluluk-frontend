@@ -7,6 +7,8 @@ import PostReplies from "./PostReplies";
 import PostReplyWriteContainer from "../../containers/write/PostReplyWriteContainer";
 import PostCommentEdit from "./PostCommentEdit";
 import ReplyToggler from "../comment/ReplyToggler";
+import { RatioImage } from "../common/RatioImage";
+import { Link } from "react-router-dom";
 
 interface PostCommentItemProps {
   comment: comment;
@@ -28,15 +30,18 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
       >
         <div className="post-comment_user-info">
           <div className="post-comment_profile">
-            <img
-              className="post-comment_thumbnail"
-              src={comment.user.thumbnail || defaultThumbnail}
-              alt="user-thumbnail"
-            />
+            <Link className="thumbnail" to={`/@${comment.user.nickname}`}>
+              <img
+                src={comment.user.thumbnail || defaultThumbnail}
+                alt={`user thumbnail of ${comment.user.nickname}`}
+              />
+            </Link>
             <div className="post-comment_comment-info">
-              <span className="post-comment_nickname">
-                {comment.user.nickname}
-              </span>
+              <Link to={`/@${comment.user.nickname}`}>
+                <span className="post-comment_nickname">
+                  {comment.user.nickname}
+                </span>
+              </Link>
               <span className="post-comment_updatedAt">
                 {comment.createdAt === comment.updatedAt
                   ? formatDate(comment.updatedAt)

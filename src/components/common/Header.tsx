@@ -48,7 +48,7 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
           </Link>
           <div className="user-profile-nav-line" />
           <Link className="user-profile-nav-button" to="/">
-            도움말
+            설정
           </Link>
           <div
             className="user-profile-nav-button bold"

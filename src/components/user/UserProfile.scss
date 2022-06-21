@@ -27,7 +27,7 @@
     .nickname {
       font-size: 2rem;
       font-weight: bold;
-      color: $oc-cyan-5;
+      color: $sub1-color;
     }
 
     .description {
@@ -45,7 +45,7 @@
     span {
       font-size: 2rem;
       font-weight: bold;
-      color: $oc-cyan-5;
+      color: $sub1-color;
     }
     ul {
       // text-align: center;
@@ -62,7 +62,7 @@
         width: 100%;
         transition: all 0.5s linear;
         cursor: pointer;
-        background-color: $oc-cyan-3;
+        background-color: $sub2-color;
         color: white;
       }
     }

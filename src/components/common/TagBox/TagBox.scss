@@ -6,14 +6,14 @@
   width: 100%;
   padding-top: 2rem;
   h4 {
-    color: $oc-cyan-8;
+    color: $main-color;
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
 }
 
 .tag-form {
-  border: 1px solid $oc-cyan-8;
+  border: 1px solid $main-color;
   border-radius: 4px;
   overflow: hidden;
   display: flex;
@@ -37,11 +37,11 @@
     cursor: pointer;
     padding: 0 1rem;
     border: none;
-    background: $oc-cyan-8;
+    background: $main-color;
     color: white;
     font-weight: bold;
     &:hover {
-      background: $oc-cyan-6;
+      background: $sub1-color;
     }
   }
 }
@@ -63,12 +63,12 @@
   margin: 0.25rem 0.5rem 0.25rem 0rem;
   padding: 0.3rem 1rem;
 
-  color: $oc-cyan-6;
+  color: $main-color;
   background: $oc-gray-1;
   border-radius: 2rem;
   cursor: pointer;
   &:hover {
-    color: $oc-cyan-4;
+    color: $sub1-color;
     background: $oc-gray-0;
   }
 }

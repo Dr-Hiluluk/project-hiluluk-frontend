@@ -9,7 +9,7 @@ interface customButtonProps
   > {
   to?: string;
   fullWidth?: boolean;
-  cyan?: boolean;
+  teal?: boolean;
 }
 
 export const Button = (props: customButtonProps) => {
@@ -26,7 +26,7 @@ export const Button = (props: customButtonProps) => {
   return (
     <button
       className={`button ${props.fullWidth ? "fullWidth" : ""} ${
-        props.cyan ? "cyan" : ""
+        props.teal ? "teal" : ""
       }`}
       disabled={props.disabled}
       onClick={onClick}

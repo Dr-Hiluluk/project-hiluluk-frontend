@@ -44,9 +44,9 @@
     }
   }
   &.confirm {
-    background-color: $oc-cyan-5;
+    background-color: $main-color;
     &:hover {
-      background-color: $oc-cyan-3;
+      background-color: $sub2-color;
     }
   }
   & + & {

@@ -20,11 +20,11 @@
     font-size: 1.125rem;
     min-width: 6.5rem;
   }
-  &.cyan {
-    background: $oc-cyan-6;
+  &.teal {
+    background: $main-color;
   }
   &:disabled {
-    background: $oc-cyan-2;
+    background: $sub1-color;
     cursor: not-allowed;
     //opacity: 50%;
   }

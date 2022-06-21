@@ -32,7 +32,7 @@
   transition: 0.25s box-shadow ease-in, 0.25s transform ease-in;
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 12px 20px 0 $oc-cyan-1;
+    box-shadow: 0 12px 20px 0 $sub2-color;
   }
 }
 
@@ -56,7 +56,7 @@
     font-size: 0.8rem;
     padding-bottom: 0.5rem;
     font-weight: bold;
-    color: $oc-cyan-6;
+    color: $main-color;
   }
 
   h4 {

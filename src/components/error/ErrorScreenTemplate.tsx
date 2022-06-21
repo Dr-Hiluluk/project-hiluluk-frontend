@@ -20,7 +20,7 @@ const ErrorScreenTemplate = ({
       <div className="error-screen-template_message">{message}</div>
       {buttonText && (
         <div className="error-screen-template_button-wrapper">
-          <Button cyan onClick={onButtonClick}>
+          <Button teal onClick={onButtonClick}>
             {buttonText}
           </Button>
         </div>

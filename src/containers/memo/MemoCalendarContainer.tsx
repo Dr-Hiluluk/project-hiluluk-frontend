@@ -47,7 +47,6 @@ const MemoCalendarContainer = () => {
 
   const curMemo =
     memoList && memoList.find((memo: any) => memo.refDate === refDate);
-  console.log("curMemo:", curMemo);
   return (
     <>
       <div className="user-profile_calendar">
