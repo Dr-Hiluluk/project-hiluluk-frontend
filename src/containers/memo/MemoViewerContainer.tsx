@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import MemoViewer from "../../components/memo/MemoViewer";
-import useUser, { useUserId } from "../../lib/hooks/useUser";
+import useUser from "../../lib/hooks/useUser";
 
 export interface MemoViewerContainerProps {
   memo: any;
