@@ -1,3 +1,4 @@
+import produce from "immer";
 import { call, takeLatest } from "redux-saga/effects";
 import { AuthApi } from "../lib/api/auth";
 import UserApi from "../lib/api/user";
@@ -10,7 +11,6 @@ import {
   GET_USER_PROFILE_FAILURE,
   GET_USER_PROFILE_SUCCESS,
   LOGOUT,
-  TEMP_SET_USER,
   UPDATE_USER_PROFILE,
   UPDATE_USER_PROFILE_FAILURE,
   UPDATE_USER_PROFILE_SUCCESS,
@@ -18,12 +18,6 @@ import {
   userInitialStateType,
 } from "./user.type";
 
-export const tempSetUser = (user: any) => ({
-  type: TEMP_SET_USER,
-  payload: {
-    user,
-  },
-});
 export const check = () => ({ type: CHECK });
 export const logout = () => ({ type: LOGOUT });
 
@@ -103,11 +97,6 @@ const user = (
   action: UserDispatchType,
 ): userInitialStateType => {
   switch (action.type) {
-    case TEMP_SET_USER:
-      return {
-        ...state,
-        user: action.payload.user,
-      };
     case CHECK_SUCCESS:
       return {
         ...state,
@@ -133,13 +122,14 @@ const user = (
     case GET_USER_PROFILE_FAILURE:
       return {
         ...state,
-        userProfileError: action.payload.userProfileError,
+        userError: action.payload.userProfileError,
       };
     case UPDATE_USER_PROFILE_SUCCESS:
-      return {
-        ...state,
-        user: action.payload.user,
-      };
+      return produce<userInitialStateType>(state, (draft) => {
+        draft.user = action.payload.user;
+        draft.userProfile.thumbnail = action.payload.user?.thumbnail;
+        draft.userProfile.description = action.payload.user?.description;
+      });
     case UPDATE_USER_PROFILE_FAILURE:
       return {
         ...state,

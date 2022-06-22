@@ -9,7 +9,7 @@ import rootReducer, { rootSaga } from "./modules";
 import { applyMiddleware, createStore, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
-import { check, tempSetUser } from "./modules/user";
+import { check } from "./modules/user";
 import { HelmetProvider } from "react-helmet-async";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -23,7 +23,6 @@ function loadUser() {
   try {
     const user = localStorage.getItem("user");
     if (!user) return;
-    store.dispatch(tempSetUser(JSON.parse(user)));
     store.dispatch(check());
   } catch (e) {
     console.log("localStorage is not working.");
