@@ -19,5 +19,5 @@ export const useCFUpload = () => {
     [],
   );
 
-  return [upload, image] as [typeof upload, typeof image];
+  return [upload, image, error] as [typeof upload, typeof image, typeof error];
 };

@@ -1,4 +1,3 @@
-export const TEMP_SET_USER = "user/TEMP_SET_USER" as const;
 export const CHECK = "user/CHECK" as const;
 export const CHECK_SUCCESS = "user/CHECK_SUCCESS" as const;
 export const CHECK_FAILURE = "user/CHECK_FAILURE" as const;
@@ -25,18 +24,6 @@ export interface userInitialStateType {
   userProfile: any;
   userProfileError: any;
 }
-
-export interface tempSetUserDispatch {
-  type: typeof TEMP_SET_USER;
-  payload: {
-    user: {
-      id: number;
-      name: string;
-      nickname: string;
-    };
-  };
-}
-
 export interface checkSuccessDispatch {
   type: typeof CHECK_SUCCESS;
   payload: {
@@ -44,6 +31,8 @@ export interface checkSuccessDispatch {
       id: number;
       name: string;
       nickname: string;
+      thumbnail?: string;
+      description?: string;
     };
   };
 }
@@ -62,6 +51,8 @@ export interface logoutDispatch {
       id: number;
       name: string;
       nickname: string;
+      thumbnail?: string;
+      description?: string;
     };
   };
 }
@@ -94,7 +85,6 @@ export interface updateUserProfileFailureDispatch {
 }
 
 export type UserDispatchType =
-  | tempSetUserDispatch
   | checkSuccessDispatch
   | checkFailureDispatch
   | logoutDispatch
