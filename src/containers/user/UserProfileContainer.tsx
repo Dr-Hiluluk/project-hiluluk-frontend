@@ -28,7 +28,7 @@ const UserProfileContainer = () => {
   const [imageBlobUrl, setImageBlobUrl] = React.useState<string | null>(null);
   const [uploadLoading, setUploadLoading] = useState(false);
 
-  const onChangeThumbnail = useCallback(async () => {
+  const onChangeThumbnail = async () => {
     if (userId !== userProfile?.id) return;
     const file = await upload();
     if (!file || !userId) return;
@@ -38,8 +38,7 @@ const UserProfileContainer = () => {
     setUploadLoading(false);
     if (!image) return;
     dispatch(updateUserProfile({ userId, thumbnail: image }));
-    upload();
-  }, [CFUpload, dispatch, upload, userId, userProfile?.id]);
+  };
 
   useEffect(() => {
     if (nickname) {
@@ -55,7 +54,6 @@ const UserProfileContainer = () => {
 
   // 나중에 skeleton UI 형태로 보이기
   if (!userProfile || userProfileError) return null;
-
   return (
     <UserProfile
       user={userProfile}
