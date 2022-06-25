@@ -10,6 +10,10 @@ export const UPDATE_MEMO = "memo/UPDATE_MEMO" as const;
 export const UPDATE_MEMO_SUCCESS = "memo/UPDATE_MEMO_SUCCESS" as const;
 export const UPDATE_MEMO_FAILURE = "memo/UPDATE_MEMO_FAILURE" as const;
 
+export const DELETE_MEMO = "memo/DELETE_MEMO" as const;
+export const DELETE_MEMO_SUCCESS = "memo/DELETE_MEMO_SUCCESS" as const;
+export const DELETE_MEMO_FAILURE = "memo/DELETE_MEMO_FAILURE" as const;
+
 export interface memoInitialStateType {
   memoList: any;
   memoListError: any;
@@ -59,10 +63,26 @@ export interface updateMemoFailureDispatch {
   };
 }
 
+export interface deleteMemoSuccessDispatch {
+  type: typeof DELETE_MEMO_SUCCESS;
+  payload: {
+    memo: any;
+  };
+}
+
+export interface deleteMemoFailureDispatch {
+  type: typeof DELETE_MEMO_FAILURE;
+  payload: {
+    memoError: any;
+  };
+}
+
 export type memoDispatchType =
   | createMemoSuccessDispatch
   | createMemoFailureDispatch
   | readMemoListSuccessDispatch
   | readMemoListFailureDispatch
   | updateMemoSuccessDispatch
-  | updateMemoFailureDispatch;
+  | updateMemoFailureDispatch
+  | deleteMemoSuccessDispatch
+  | deleteMemoFailureDispatch;

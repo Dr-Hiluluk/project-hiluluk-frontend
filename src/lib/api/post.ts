@@ -34,6 +34,11 @@ class PostApi {
     return client.get(`/api/post?${queryString}`);
   };
 
+  static searchPostList = ({ page, word }: { page: number; word: string }) => {
+    const queryString = qs.stringify({ page, word });
+    return client.get(`api/post/search?${queryString}`);
+  };
+
   static updatePost = ({
     postId,
     title,

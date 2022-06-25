@@ -5,6 +5,7 @@
   margin: 5px 0px 10px 0px;
   font-size: 12px;
   font-weight: 600;
+  white-space: pre-wrap;
 }
 
 // /*css-icon-component
@@ -44,6 +45,14 @@
   }
   @media (max-width: 1024px) {
     width: 100%;
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: $oc-gray-5;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0;
   }
 }
 

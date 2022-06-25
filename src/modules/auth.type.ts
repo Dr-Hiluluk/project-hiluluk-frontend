@@ -20,7 +20,7 @@ export interface AuthInitialStateType {
     password: string;
   };
   auth: any;
-  authError: any;
+  authError?: string;
 }
 
 export interface changeFieldDispatch {
@@ -42,7 +42,7 @@ export interface initializeFormDispatch {
 export interface registerFailDispatch {
   type: typeof REGISTER_FAILURE;
   payload: {
-    authError: any;
+    authError?: string;
   };
 }
 
@@ -55,7 +55,7 @@ export interface registerSuccessDispatch {
 export interface loginFailDispatch {
   type: typeof LOGIN_FAILURE;
   payload: {
-    authError: any;
+    authError?: string;
   };
 }
 

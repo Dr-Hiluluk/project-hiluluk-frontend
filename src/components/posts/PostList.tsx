@@ -4,6 +4,7 @@ import { RatioImage } from "../common/RatioImage";
 import "./PostList.scss";
 import { formatDate } from "../../lib/utils";
 import { defaultThumbnail } from "../../static/svg";
+import { categoryIndex } from "../user/UserProfile";
 
 const PostItem = ({ post }: any) => {
   return (
@@ -14,7 +15,9 @@ const PostItem = ({ post }: any) => {
         </Link>
       )}
       <div className="post-item_content">
-        <span className="post-item_category-name">Category Name</span>
+        <span className="post-item_category-name">
+          {categoryIndex[post.categoryId].label}
+        </span>
         <Link className="styled-link" to={`/@${post.user.nickname}/${post.id}`}>
           <h4>{post.title}</h4>
           <div className="post-item_description">

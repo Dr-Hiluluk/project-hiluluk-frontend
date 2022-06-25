@@ -6,6 +6,9 @@ import {
   CREATE_MEMO,
   CREATE_MEMO_FAILURE,
   CREATE_MEMO_SUCCESS,
+  DELETE_MEMO,
+  DELETE_MEMO_FAILURE,
+  DELETE_MEMO_SUCCESS,
   memoDispatchType,
   memoInitialStateType,
   READ_MEMO_LIST,
@@ -61,6 +64,11 @@ export const updateMemo = ({
   },
 });
 
+export const deleteMemo = ({ memoId }: { memoId: number }) => ({
+  type: DELETE_MEMO,
+  payload: { memoId },
+});
+
 const createMemoSaga = createRequestSaga(
   CREATE_MEMO,
   MemoApi.createMemo,
@@ -76,11 +84,17 @@ const updateMemoSaga = createRequestSaga(
   MemoApi.updateMemo,
   "memo",
 );
+const deleteMemoSaga = createRequestSaga(
+  DELETE_MEMO,
+  MemoApi.deleteMemo,
+  "memo",
+);
 
 export function* memoSaga() {
   yield takeLatest(CREATE_MEMO, createMemoSaga);
   yield takeLatest(READ_MEMO_LIST, readMemoSaga);
   yield takeLatest(UPDATE_MEMO, updateMemoSaga);
+  yield takeLatest(DELETE_MEMO, deleteMemoSaga);
 }
 
 const initialState: memoInitialStateType = {
@@ -119,6 +133,17 @@ const memo = (state = initialState, action: memoDispatchType) => {
         memo.content = action.payload.memo.content;
       });
     case UPDATE_MEMO_FAILURE:
+      return {
+        ...state,
+        memoError: action.payload.memoError,
+      };
+    case DELETE_MEMO_SUCCESS:
+      return produce<memoInitialStateType>(state, (draft) => {
+        draft.memoList = draft.memoList.filter(
+          (memo: any) => memo.id !== action.payload.memo.id,
+        );
+      });
+    case DELETE_MEMO_FAILURE:
       return {
         ...state,
         memoError: action.payload.memoError,

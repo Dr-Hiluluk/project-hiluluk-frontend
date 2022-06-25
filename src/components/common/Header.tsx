@@ -1,10 +1,10 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { Responsive } from "./Responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { userInitialStateType } from "../../modules/user.type";
-import { defaultThumbnail, logo } from "../../static/svg";
-import { IoReorderThree } from "react-icons/io5";
+import { alignIcon, defaultThumbnail, logo } from "../../static/svg";
 import "./Header.scss";
+import SearchBoxContainer from "../../containers/search/SearchBoxContainer";
 
 interface HeaderProps {
   user?: userInitialStateType["user"];
@@ -14,19 +14,35 @@ interface HeaderProps {
 const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
   const [style, setStyle] = useState({ display: "none" });
   const navigation = useNavigate();
-
+  const ref = useRef<HTMLDivElement>(null);
   const onChangeDisplay = () => {
     setStyle({ display: style.display === "none" ? "block" : "none" });
   };
+
+  const checkOutside = (e: any) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setStyle({ display: "none" });
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", checkOutside);
+    return () => {
+      document.removeEventListener("click", checkOutside);
+    };
+  }, [style]);
+
   return (
-    <div className="right">
+    <div ref={ref} className="right">
       {/* <div className="user-info">{user && user.nickname}</div> */}
       <button className="user-profile" onClick={onChangeDisplay}>
-        <div className="user-profile-three">
-          <IoReorderThree />
-        </div>
         <div className="user-profile-icon">
-          <img alt="user thumbnail" src={user?.thumbnail || defaultThumbnail} />
+          <img className="user-profile_align" alt="align" src={alignIcon} />
+          <img
+            className="user-profile_thumbnail"
+            alt="user thumbnail"
+            src={user?.thumbnail || defaultThumbnail}
+          />
         </div>
         <nav
           className="user-profile-nav"
@@ -76,7 +92,10 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
           <Link to="/">
             <img className="logo" src={logo} alt="logo" />
           </Link>
-          <UserInfoButton user={user} onLogout={onLogout} />
+          <div className="search-user_wrapper">
+            <SearchBoxContainer />
+            <UserInfoButton user={user} onLogout={onLogout} />
+          </div>
         </Responsive>
       </div>
       <div className="spacer" />

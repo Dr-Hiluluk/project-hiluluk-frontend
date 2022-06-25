@@ -4,6 +4,7 @@ import Tags from "../common/Tags";
 import "./PostViewer.scss";
 import { IoCaretUpOutline } from "react-icons/io5";
 import { Helmet } from "react-helmet-async";
+import { categoryIndex } from "../user/UserProfile";
 
 const PostViewer = ({ post, error, loading, actionButtons }: any) => {
   // if (error) {
@@ -19,7 +20,7 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
     return null;
   }
 
-  const { title, body, user, createdAt, tags } = post;
+  const { title, body, user, createdAt, tags, categoryId } = post;
 
   return (
     <div className="post-viewer-block">
@@ -27,6 +28,7 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
         <title>{title}</title>
       </Helmet>
       <div className="post-head-wrapper">
+        <h2>{categoryIndex[categoryId].label}</h2>
         <h1>{title}</h1>
         <SubInfo nickname={user.nickname} createdAt={createdAt} />
         {actionButtons}

@@ -1,0 +1,39 @@
+@import "../../../styles/utils.scss";
+
+.category_block {
+  padding-top: 3rem;
+  display: flex;
+  position: relative;
+
+  .select {
+    z-index: 3;
+
+    border: 2px solid $sub2-color;
+    border-radius: 8px;
+    outline: none;
+    .css-1s2u09g-control {
+      border: none;
+    }
+  }
+}
+
+.category_label {
+  color: $oc-gray-7;
+  font-size: 2rem;
+  padding-right: 1rem;
+}
+
+#category-select {
+  width: max-content;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid $sub1-color;
+  padding: 5px 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  ul {
+    list-style: none;
+  }
+}

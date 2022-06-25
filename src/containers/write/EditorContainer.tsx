@@ -8,6 +8,7 @@ import { useCFUpload } from "../../lib/hooks/useCFUpload";
 import DragDropUpload from "../../components/common/DragDropUpload";
 import PasteUpload from "../../components/common/PasteUpload";
 import { usePrevious } from "react-use";
+import Category from "../../components/common/Category/Category";
 
 const EditorContainer = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ const EditorContainer = () => {
 
   return (
     <>
+      <Category onChangeField={onChangeField} />
       <Editor
         onUpload={upload}
         onChangeField={onChangeField}

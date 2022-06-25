@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet-async";
 import NotFoundPage from "./pages/NotFoundPage";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import UserPage from "./pages/UserPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/write" element={<WritePage />} />
           <Route path="/@:nickname/:postId" element={<PostPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </ErrorBoundary>

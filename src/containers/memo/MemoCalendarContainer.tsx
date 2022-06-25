@@ -2,10 +2,9 @@ import { format } from "date-fns";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import MemoApi from "../../lib/api/memo";
 import useBooleanToggle from "../../lib/hooks/useBooleanToggle";
 import { ReducerType } from "../../modules";
-import { readMemoList } from "../../modules/memo";
+import { deleteMemo, readMemoList } from "../../modules/memo";
 import CalendarContainer from "../user/CalendarContainer";
 import MemoWriteContainer from "../write/MemoWriteContainer";
 import MemoViewerContainer from "./MemoViewerContainer";
@@ -29,9 +28,12 @@ const MemoCalendarContainer = () => {
     onToggleEdit();
   };
 
-  const onRemove = useCallback((memoId: number) => {
-    MemoApi.removeMemo({ memoId });
-  }, []);
+  const onRemove = useCallback(
+    (memoId: number) => {
+      dispatch(deleteMemo({ memoId }));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (nickname) {

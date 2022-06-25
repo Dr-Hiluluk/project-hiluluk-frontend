@@ -13,6 +13,7 @@ export interface writeInitialStateType {
   body: string;
   tags: string[];
   thumbnail?: string;
+  categoryId: number;
   post: any;
   postError: any;
   originalPostId: number | null;

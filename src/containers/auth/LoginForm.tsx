@@ -35,13 +35,7 @@ export const LoginForm = () => {
 
   useEffect(() => {
     if (auth) {
-      console.log("로그인 성공");
-      console.log(auth);
       dispatch(check());
-    }
-    if (authError) {
-      console.log("로그인 에러");
-      console.log(authError);
     }
   }, [auth, authError, navigation, dispatch]);
 
@@ -67,6 +61,7 @@ export const LoginForm = () => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      authError={authError}
     />
   );
 };

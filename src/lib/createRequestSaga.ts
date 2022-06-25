@@ -17,12 +17,15 @@ export default function createRequestSaga(
 
   return function* (action: any): any {
     yield put(startLoaidng(type)); // 로딩 시작
-    let error = "";
+    let errorMessage = "";
     try {
       const response = yield call(request, action.payload);
-      error = response;
+      if (response.data.error) {
+        errorMessage = response.data.error;
+        throw new Error(response.data.error);
+      }
       console.log("sagaAction:", action);
-      console.log("sagaResponse:", response);
+      console.log("sagaResponse:", response.data);
       yield put({
         type: SUCCESS,
         payload: {
@@ -31,11 +34,11 @@ export default function createRequestSaga(
         meta: response,
       });
     } catch (e) {
-      console.error("sagaError:", e);
+      console.error("sagaError:", e, errorMessage);
       yield put({
         type: FAILURE,
         payload: {
-          [`${stateName}Error`]: error,
+          [`${stateName}Error`]: errorMessage,
         },
         error: true,
       });

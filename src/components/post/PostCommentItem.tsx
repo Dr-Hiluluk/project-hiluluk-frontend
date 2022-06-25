@@ -7,7 +7,6 @@ import PostReplies from "./PostReplies";
 import PostReplyWriteContainer from "../../containers/write/PostReplyWriteContainer";
 import PostCommentEdit from "./PostCommentEdit";
 import ReplyToggler from "../comment/ReplyToggler";
-import { RatioImage } from "../common/RatioImage";
 import { Link } from "react-router-dom";
 
 interface PostCommentItemProps {

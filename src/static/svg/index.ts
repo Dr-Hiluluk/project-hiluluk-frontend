@@ -10,3 +10,5 @@ export { default as editIcon } from "./memo_edit_icon.svg";
 export { default as removeIcon } from "./memo_remove_icon.svg";
 export { default as dismissIcon } from "./dismiss_icon.svg";
 export { default as saveIcon } from "./save_icon.svg";
+export { default as searchIcon } from "./search_icon.svg";
+export { default as alignIcon } from "./align_icon.svg";

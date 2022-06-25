@@ -24,7 +24,9 @@ const PostListContainer = () => {
     const { tag, page }: queryStringType = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(readPostList({ tag, nickname, page }));
+    if (!location.search.includes("word")) {
+      dispatch(readPostList({ tag, nickname, page }));
+    }
   }, [dispatch, location.search, match]);
 
   return (

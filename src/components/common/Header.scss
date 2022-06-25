@@ -16,9 +16,14 @@
   align-items: center;
   justify-content: space-between;
 }
+.search-user_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
 .logo {
-  height: 2em;
+  height: 2rem;
 }
 
 .right {
@@ -40,7 +45,7 @@
 
 .user-profile {
   height: 3rem;
-  width: 6rem;
+  // width: 6rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -58,27 +63,16 @@
   }
 }
 
-.user-profile-three {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 1.8rem;
-}
-
 .user-profile-icon {
-  overflow: hidden;
-
+  // overflow: hidden;
   display: flex;
-  align-items: stretch;
+  // align-items: stretch;
   justify-content: center;
-
   font-size: 3rem;
-  height: 2.5rem;
-  width: 2.5rem;
   border-radius: 100%;
-  background: $oc-gray-3;
-  img {
+  .user-profile_thumbnail {
+    margin-left: 0.5rem;
+    width: 2.5rem;
     object-fit: cover;
   }
 }

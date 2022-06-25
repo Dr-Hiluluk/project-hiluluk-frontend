@@ -14,9 +14,16 @@ interface AuthFormType {
   form: AuthReducerType["login"] | AuthReducerType["register"];
   onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   onSubmit: any;
+  authError?: string;
 }
 
-const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
+const AuthForm = ({
+  type,
+  form,
+  onChange,
+  onSubmit,
+  authError,
+}: AuthFormType) => {
   const text = type === "login" ? "로그인" : "회원가입";
   const { handleSubmit, formState, getValues, register } = useForm({
     mode: "onChange",
@@ -153,7 +160,10 @@ const AuthForm = ({ type, form, onChange, onSubmit }: AuthFormType) => {
           >
             <IoCheckmarkCircleOutline />
           </div>
-          <FormError message={formState.errors.password?.message} />
+
+          <FormError
+            message={authError || formState.errors.password?.message}
+          />
         </div>
         {type === "register" && (
           <div className="input-area">
