@@ -1,0 +1,50 @@
+@import "../../../styles/utils.scss";
+
+.search-box_block {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 8px;
+  border: none;
+  background-color: white;
+  margin-right: 1rem;
+  height: 90%;
+  cursor: pointer;
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
+  form {
+    display: flex;
+    width: 100%;
+  }
+  input {
+    line-height: 1rem;
+    border: none;
+    width: 100%;
+    display: none;
+  }
+  transition: all 0.3s ease;
+  transform: scale(1);
+  @media (max-width: 768px) {
+    transition: none;
+    transform: none;
+  }
+  &.active {
+    transition: all 0.3s ease;
+    transform: translateX(-20%) scale(1.3);
+    border: 4px solid $main-color;
+    box-shadow: 5px 5px 5px 0 $oc-gray-5;
+    input {
+      display: block;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      transition: all 0.3s ease;
+      position: absolute;
+      left: 0.025rem;
+      width: 100%;
+      transform: translateY(3rem);
+    }
+  }
+}
