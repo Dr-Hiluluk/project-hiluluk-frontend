@@ -99,6 +99,7 @@ const initialState: writeInitialStateType = {
   body: "",
   tags: [],
   thumbnail: undefined,
+  categoryId: 0,
   post: null,
   postError: null,
   originalPostId: null,
