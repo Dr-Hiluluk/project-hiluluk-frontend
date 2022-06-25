@@ -42,7 +42,7 @@ class CustomAxios {
   private handleError(error: AxiosError | any) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    return Promise.resolve(error);
+    return Promise.resolve(error.response);
   }
 
   private handleBeforeRequesting(
