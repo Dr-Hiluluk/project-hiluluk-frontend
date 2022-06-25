@@ -8,7 +8,7 @@
   img {
     width: 20rem;
     height: auto;
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       width: 12rem;
     }
   }
@@ -21,7 +21,7 @@
   font-size: 2rem;
   line-height: 1.5;
   margin-top: 2rem;
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     font-size: 1.5rem;
     margin-top: 1rem;
   }
@@ -29,7 +29,7 @@
 
 .error-screen-template_button-wrapper {
   margin-top: 2rem;
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     margin-top: 1rem;
   }
 }
