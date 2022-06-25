@@ -33,7 +33,7 @@ class MemoApi {
     const queryString = qs.stringify({ memoId, content });
     return client.patch(`/api/memo?${queryString}`);
   }
-  static async removeMemo({ memoId }: { memoId: number }) {
+  static async deleteMemo({ memoId }: { memoId: number }) {
     return client.delete(`/api/memo/${memoId}`);
   }
 }
