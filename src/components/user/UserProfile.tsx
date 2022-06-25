@@ -13,6 +13,21 @@ interface UserProfileProps {
   onChangeThumbnail: () => any;
 }
 
+export const categoryIndex = [
+  { value: 0, label: "전신" },
+  { value: 1, label: "머리" },
+  { value: 2, label: "정신" },
+  { value: 3, label: "얼굴" },
+  { value: 4, label: "목" },
+  { value: 5, label: "가슴/등" },
+  { value: 6, label: "복부" },
+  { value: 7, label: "비뇨기" },
+  { value: 8, label: "팔과 손" },
+  { value: 9, label: "다리와 발" },
+  { value: 10, label: "뼈/근육" },
+  { value: 11, label: "피부" },
+];
+
 const UserProfile: React.FC<UserProfileProps> = ({
   user,
   postList,
@@ -20,20 +35,6 @@ const UserProfile: React.FC<UserProfileProps> = ({
   loading,
   onChangeThumbnail,
 }) => {
-  const array = [
-    "전신",
-    "머리",
-    "얼굴",
-    "목",
-    "가슴/등",
-    "복부",
-    "비뇨기",
-    "팔과 손",
-    "다리와 발",
-    "뼈/근육",
-    "피부",
-  ];
-
   return (
     <div className="user-profile_block">
       <div className="user-profile_left">
@@ -52,8 +53,8 @@ const UserProfile: React.FC<UserProfileProps> = ({
         <div className="user-profile_category">
           <span>카테고리</span>
           <ul>
-            {array.map((item, index) => (
-              <li key={index}>{item}</li>
+            {categoryIndex.map((item) => (
+              <li key={item.value}>{item.label}</li>
             ))}
           </ul>
         </div>
