@@ -101,7 +101,7 @@ const initialState: AuthInitialStateType = {
     password: "",
   },
   auth: null,
-  authError: null,
+  authError: undefined,
 };
 
 export type AuthReducerType = ReturnType<typeof auth>;
@@ -123,7 +123,7 @@ const auth = (
     case REGISTER_SUCCESS:
       return {
         ...state,
-        authError: null,
+        authError: undefined,
         auth: action.payload.auth,
       };
     case REGISTER_FAILURE:
@@ -134,7 +134,6 @@ const auth = (
     case LOGIN_SUCCESS:
       return {
         ...state,
-        authError: null,
         auth: action.payload.auth,
       };
     case LOGIN_FAILURE:
