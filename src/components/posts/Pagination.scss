@@ -1,3 +1,5 @@
+@import "../../styles/utils.scss";
+
 .pagination_area {
   width: 100%;
   display: flex;
@@ -8,18 +10,22 @@
 }
 
 .pagination_block {
-  width: 16rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 .pagination_page-number {
-  width: 3rem;
   font-size: 1.2rem;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 0 1rem;
+  color: $sub2-color;
+  &:hover {
+    color: $main-color;
+  }
+  &.active {
+    color: $main-color;
+  }
 }
