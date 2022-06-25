@@ -18,6 +18,12 @@
 
     word-break: break-word;
   }
+  h2 {
+    font-size: 1.5rem;
+    color: $main-color;
+    font-weight: bold;
+    margin: 0;
+  }
 }
 
 .post-tag-container {
