@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# Dr.Hiluluk
+## 투병정보 커뮤니티
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Component 1](https://user-images.githubusercontent.com/41137887/175962200-318d9b9d-2a97-4c04-8c60-555ace839b9a.svg)
+## 📜 서비스 내용
 
-## Available Scripts
+투병인들을 위한 투병정보 공유 사이트 입니다.
 
-In the project directory, you can run:
+투병인들을 위해 만들어진 커뮤니티 형식 사이트의 부재로 만들게 되었습니다.
 
-### `yarn start`
+실제 대부분의 투병인들은 몸의 한부분만 아픈 경우는 드물고, 대게 복합적으로 통증을 느껴 다양한 분야에서의 정보가 필요합니다. 그러나 대부분의 정보 공유사이트는 특정 병과 관련된 주제만 다루게 되어있어 정보 취합에 있어 사용자에게 한계가 있었고 여러가지 사이트를 방문해야하는 피로함을 느끼게 했습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+사이트의 주요 기능은 다음과 같습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. 글쓰기: 카테고리별 블로그 형태의 글쓰기를 제공합니다.
+2. 댓글: 공개, 비공개 여부를 설정이 가능합니다.
+3. 메모: 글쓰기와 다르게 개인 기록을 남길 수 있는 기능입니다. 달력과 연계하여 일정을 관리할 수 있으며 자신외의 사람에게 공개할지 말지 결정 할 수 있습니다.
 
-### `yarn test`
+## 🛠 기술 스택
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Front-end: React, Redux, Redux-Saga
+- Back-end: Nodejs, Prisma, Postgresql, AWS S3
 
-### `yarn build`
+## 🖥 개발 내용
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 화면 설계
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. 홈화면
+    1. 게시글 리스트 표시
+2. 글쓰기 화면
+    1. quill editor 기반 글쓰기 제공
+    2. 카테고리, 제목, 내용, 태그 순으로 글 작성
+3. 게시글 화면
+    1. 게시글 및 댓글창 표시
+4. 내정보 화면
+    1. 유저 정보(썸네일, 소개글)
+    2. 달력과 연동된 메모장
+    3. 작성글 리스트
+5. 설정 화면 - 미 구현
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 💡 성장 경험
 
-### `yarn eject`
+### 반응형 UI 설계
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+미디어 쿼리와 구성 대부분 요소들의 너비와 높이를 %로 지정하여 브라우저의 크기에  반응하여 UI가 변할 수 있도록 구성했습니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎆 서비스 화면
+- ### 홈화면
+![스크린샷 2022-06-27 오후 11 17 29](https://user-images.githubusercontent.com/41137887/175964799-d683a8c1-6bea-4315-ae36-772549e0ba4b.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- ### 내정보 화면
+![스크린샷 2022-06-27 오후 10 21 23](https://user-images.githubusercontent.com/41137887/175964341-96069850-cb9c-4b94-974d-dcebce5e3e27.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- ### 검색 결과 화면
+![스크린샷 2022-06-27 오후 11 19 27](https://user-images.githubusercontent.com/41137887/175964853-e7418317-fcb0-4b85-b438-7230cabbe038.png)
 
-## Learn More
+- ### 게시글 작성 화면
+![스크린샷 2022-06-27 오후 11 26 51](https://user-images.githubusercontent.com/41137887/175964950-80306459-178c-488e-984e-55d9a0d923ae.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ### 게시글 화면
+![스크린샷 2022-06-27 오후 11 18 01](https://user-images.githubusercontent.com/41137887/175964828-6fde2153-6abd-4a35-8f01-a352f9284e90.png)
