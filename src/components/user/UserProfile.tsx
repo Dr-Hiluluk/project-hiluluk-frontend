@@ -11,6 +11,8 @@ interface UserProfileProps {
   postListError: any;
   loading: any;
   onChangeThumbnail: () => any;
+  categoryId: number | null;
+  onChangeCategory: any;
 }
 
 export const categoryIndex = [
@@ -33,7 +35,9 @@ const UserProfile: React.FC<UserProfileProps> = ({
   postList,
   postListError,
   loading,
+  categoryId,
   onChangeThumbnail,
+  onChangeCategory,
 }) => {
   return (
     <div className="user-profile_block">
@@ -51,10 +55,18 @@ const UserProfile: React.FC<UserProfileProps> = ({
           <span className="description">{user?.description}</span>
         </div>
         <div className="user-profile_category">
-          <span>카테고리</span>
+          <span onClick={() => onChangeCategory(null)}>카테고리</span>
           <ul>
             {categoryIndex.map((item) => (
-              <li key={item.value}>{item.label}</li>
+              <li
+                className={`${categoryId === item.value ? "active" : ""}`}
+                key={item.value}
+                onClick={() => {
+                  onChangeCategory(item.value);
+                }}
+              >
+                {item.label}
+              </li>
             ))}
           </ul>
         </div>
