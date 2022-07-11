@@ -10,7 +10,7 @@ const PostCommentsTemplate: React.FC<PostCommentsTemplateProps> = ({
 }) => {
   return (
     <div className="post-comments_template-block">
-      <h4>{count}개의 댓글</h4>
+      <span>{count}개의 댓글</span>
       <div>{children}</div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../Button/Button";
 import "./AskModal.scss";
 interface askModalProps {
   visible: boolean;
@@ -8,6 +9,7 @@ interface askModalProps {
   confirmText?: string;
   onCancel: React.MouseEventHandler<HTMLButtonElement> | undefined;
   onConfirm: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  color?: string;
 }
 
 const AskModal = ({
@@ -18,6 +20,7 @@ const AskModal = ({
   confirmText = "확인",
   onCancel,
   onConfirm,
+  color,
 }: askModalProps) => {
   if (!visible) return null;
   return (
@@ -26,12 +29,14 @@ const AskModal = ({
         <h2>{title}</h2>
         <p>{description}</p>
         <div className="ask-modal_button-wrapper">
-          <button className="ask-modal_button cancel" onClick={onCancel}>
-            {cancelText}
-          </button>
-          <button className="ask-modal_button confirm" onClick={onConfirm}>
+          <Button onClick={onCancel}>{cancelText}</Button>
+          <Button
+            red={color === "red" ? true : false}
+            teal={color === "teal" ? true : false}
+            onClick={onConfirm}
+          >
             {confirmText}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

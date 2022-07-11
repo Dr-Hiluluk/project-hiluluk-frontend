@@ -13,16 +13,25 @@ const WriteActionButtonsContainer = () => {
   const dispatch = useDispatch();
   const user = useUser();
   const location = useLocation();
-  const { title, body, tags, thumbnail, post, postError, originalPostId } =
-    useSelector(({ write, user }: ReducerType) => ({
-      title: write.title,
-      body: write.body,
-      tags: write.tags,
-      thumbnail: write.thumbnail,
-      post: write.post,
-      postError: write.postError,
-      originalPostId: write.originalPostId,
-    }));
+  const {
+    categoryId,
+    title,
+    body,
+    tags,
+    thumbnail,
+    post,
+    postError,
+    originalPostId,
+  } = useSelector(({ write, user }: ReducerType) => ({
+    categoryId: write.categoryId,
+    title: write.title,
+    body: write.body,
+    tags: write.tags,
+    thumbnail: write.thumbnail,
+    post: write.post,
+    postError: write.postError,
+    originalPostId: write.originalPostId,
+  }));
 
   const onPublish = () => {
     if (!user) {
@@ -31,11 +40,18 @@ const WriteActionButtonsContainer = () => {
     }
     if (originalPostId) {
       dispatch(
-        updatePost({ postId: originalPostId, title, body, tags, thumbnail }),
+        updatePost({
+          categoryId,
+          postId: originalPostId,
+          title,
+          body,
+          tags,
+          thumbnail,
+        }),
       );
       return;
     }
-    dispatch(writePost({ title, body, tags, thumbnail }));
+    dispatch(writePost({ categoryId, title, body, tags, thumbnail }));
   };
 
   const onCancel = () => {

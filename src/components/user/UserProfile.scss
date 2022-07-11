@@ -43,6 +43,7 @@
 
   .user-profile_category {
     span {
+      cursor: pointer;
       font-size: 2rem;
       font-weight: bold;
       color: $sub1-color;
@@ -54,10 +55,11 @@
     }
     li {
       color: $oc-gray-6;
-      width: 50%;
+      width: 100%;
       padding: 0.5rem;
       border-radius: 4px;
       margin-bottom: 1rem;
+      &.active,
       &:hover {
         width: 100%;
         transition: all 0.5s linear;

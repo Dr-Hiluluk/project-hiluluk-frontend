@@ -33,11 +33,13 @@ export const setThumbnail = (thumbnail: string) => ({
 });
 
 export const writePost = ({
+  categoryId,
   title,
   body,
   tags,
   thumbnail,
 }: {
+  categoryId: number;
   title: string;
   body: string;
   tags: string[];
@@ -45,6 +47,7 @@ export const writePost = ({
 }) => ({
   type: WRITE_POST,
   payload: {
+    categoryId,
     title,
     body,
     tags,
@@ -60,12 +63,14 @@ export const setOriginalPost = ({ post }: any) => ({
 });
 
 export const updatePost = ({
+  categoryId,
   postId,
   title,
   body,
   tags,
   thumbnail,
 }: {
+  categoryId: number;
   postId: number;
   title: string;
   body: string;
@@ -74,6 +79,7 @@ export const updatePost = ({
 }): updatePostDispatch => ({
   type: UPDATE_POST,
   payload: {
+    categoryId,
     postId,
     body,
     title,
@@ -134,6 +140,7 @@ const write = (
     case SET_ORIGINAL_POST:
       return {
         ...state,
+        categoryId: action.payload.post.categoryId,
         title: action.payload.post.title,
         body: action.payload.post.body,
         tags: action.payload.post.tags,

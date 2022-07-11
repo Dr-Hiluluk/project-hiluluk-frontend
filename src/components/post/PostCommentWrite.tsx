@@ -31,7 +31,7 @@ const PostCommentWrite: React.FC<PostCommentWriteProps> = ({
       <div className="post-comments_button-wrapper">
         {add && onAddToggle && <span onClick={onAddToggle}>취소</span>}
         {edit && onEditToggle && <span onClick={onEditToggle}>취소</span>}
-        <Button onClick={() => onCreate()}>
+        <Button teal onClick={() => onCreate()}>
           댓글 {edit ? "수정" : "작성"}
         </Button>
       </div>

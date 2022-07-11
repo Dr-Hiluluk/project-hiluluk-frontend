@@ -22,23 +22,25 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
     const [open, onOpenToggle] = useBooleanToggle(false);
     const [add, onAddToggle] = useBooleanToggle(false);
     const [edit, onEditToggle] = useBooleanToggle(false);
-
     return (
       <div
         className={`post-comment-item_block ${comment.parentId ? "child" : ""}`}
       >
         <div className="post-comment_user-info">
           <div className="post-comment_profile">
-            <Link className="thumbnail" to={`/@${comment.user.nickname}`}>
+            <Link
+              className="thumbnail"
+              to={comment.user ? `/@${comment.user.nickname}` : ""}
+            >
               <img
-                src={comment.user.thumbnail || defaultThumbnail}
-                alt={`user thumbnail of ${comment.user.nickname}`}
+                src={comment.user?.thumbnail || defaultThumbnail}
+                alt={`user thumbnail of ${comment.user?.nickname}`}
               />
             </Link>
             <div className="post-comment_comment-info">
-              <Link to={`/@${comment.user.nickname}`}>
+              <Link to={comment.user ? `/@${comment.user.nickname}` : ""}>
                 <span className="post-comment_nickname">
-                  {comment.user.nickname}
+                  {comment.user ? comment.user.nickname : "탈퇴한 유저"}
                 </span>
               </Link>
               <span className="post-comment_updatedAt">
@@ -76,7 +78,7 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
           />
         ) : (
           <div className="post-comment_content">
-            {parent && `@${parent.user.nickname} `}
+            {parent && parent.userId && `@${parent.user?.nickname} `}
             {comment.content}
           </div>
         )}
@@ -90,7 +92,7 @@ const PostCommentItem: React.FC<PostCommentItemProps> = memo(
             />
           )}
           <span className="toggler-container_add-toggle" onClick={onAddToggle}>
-            {add || "댓글 작성"}
+            {add || !comment.user || "댓글 작성"}
           </span>
         </div>
 

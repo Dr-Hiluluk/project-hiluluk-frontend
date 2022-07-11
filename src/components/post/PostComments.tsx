@@ -68,6 +68,7 @@ const PostComments: React.FC<PostCommentsProps> = ({
           visible={askRemove}
           onCancel={onCancelModal}
           onConfirm={() => onConfirmDeleteComment()}
+          color="red"
         />
       )}
     </div>

@@ -33,6 +33,10 @@ abbr[title] {
 /* .react-calendar__month-view__days__day--weekend {
   color: #d10000;
  } */
+
+.react-calendar__tile {
+  // TODO: 높이 조절 하기
+}
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   color: $sub1-color;

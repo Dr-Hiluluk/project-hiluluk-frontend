@@ -63,9 +63,11 @@ const UserInfoButton: React.FC<HeaderProps> = ({ user, onLogout }) => {
             글쓰기
           </Link>
           <div className="user-profile-nav-line" />
-          <Link className="user-profile-nav-button" to="/">
-            설정
-          </Link>
+          {user && (
+            <Link className="user-profile-nav-button" to="/setting">
+              설정
+            </Link>
+          )}
           <div
             className="user-profile-nav-button bold"
             onClick={

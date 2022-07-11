@@ -127,8 +127,11 @@ const user = (
     case UPDATE_USER_PROFILE_SUCCESS:
       return produce<userInitialStateType>(state, (draft) => {
         draft.user = action.payload.user;
-        draft.userProfile.thumbnail = action.payload.user?.thumbnail;
-        draft.userProfile.description = action.payload.user?.description;
+        draft.user!.description = action.payload.user?.description;
+        if (draft.userProfile) {
+          draft.userProfile.thumbnail = action.payload.user!.thumbnail;
+          draft.userProfile.description = action.payload.user!.description;
+        }
       });
     case UPDATE_USER_PROFILE_FAILURE:
       return {

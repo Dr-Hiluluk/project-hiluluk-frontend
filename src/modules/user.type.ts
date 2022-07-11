@@ -21,7 +21,16 @@ export interface userInitialStateType {
     description?: string;
   } | null;
   userError: null;
-  userProfile: any;
+  userProfile: {
+    id: number;
+    name: string;
+    nickname: string;
+    thumbnail?: string;
+    description?: string;
+    posts?: any;
+    memos?: any;
+    password?: string;
+  } | null;
   userProfileError: any;
 }
 export interface checkSuccessDispatch {

@@ -25,7 +25,9 @@
     margin-bottom: 1rem;
   }
   p {
+    color: $red2-color;
     margin-bottom: 3rem;
+    white-space: pre-wrap;
   }
   .ask-modal_button-wrapper {
     display: flex;
@@ -41,12 +43,6 @@
     color: $oc-gray-6;
     &:hover {
       background: $oc-gray-1;
-    }
-  }
-  &.confirm {
-    background-color: $main-color;
-    &:hover {
-      background-color: $sub2-color;
     }
   }
   & + & {

@@ -27,5 +27,6 @@
   }
   &.active {
     color: $main-color;
+    border-bottom: 2px solid $main-color;
   }
 }

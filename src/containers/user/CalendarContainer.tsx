@@ -7,12 +7,14 @@ import "./CustomCalendar.scss";
 export interface CalendarContainerprops {
   date: Date;
   onChange: any;
+  onChangeMonth: any;
   memoList: any;
 }
 
 const CalendarContainer: React.FC<CalendarContainerprops> = ({
   date,
   onChange,
+  onChangeMonth,
   memoList,
 }) => {
   return (
@@ -22,6 +24,7 @@ const CalendarContainer: React.FC<CalendarContainerprops> = ({
       calendarType="US"
       locale="ko"
       formatDay={(locale, date) => format(date, "d")}
+      onActiveStartDateChange={onChangeMonth}
       tileContent={({ date, view }) => {
         const refDate = format(date, "yyyyMMdd");
         const isExist =
