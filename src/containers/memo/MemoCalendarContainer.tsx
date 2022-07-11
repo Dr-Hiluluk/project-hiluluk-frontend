@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import React, { useCallback, useEffect, useState } from "react";
+import { ViewCallbackProperties } from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import useBooleanToggle from "../../lib/hooks/useBooleanToggle";
@@ -14,7 +15,8 @@ const MemoCalendarContainer = () => {
   const [edit, onToggleEdit] = useBooleanToggle(false);
   const [memoId, setMemoId] = useState<any>(null);
   const refDate = format(date, "yyyyMMdd");
-  const yearMonth = refDate.slice(0, 6);
+  const [yearMonth, setYearMonth] = useState(refDate.slice(0, 6));
+  // const yearMonth = refDate.slice(0, 6);
   const dispatch = useDispatch();
   const { nickname } = useParams();
 
@@ -35,6 +37,16 @@ const MemoCalendarContainer = () => {
     [dispatch],
   );
 
+  const onChangeMonth = ({
+    action,
+    activeStartDate,
+    value,
+    view,
+  }: ViewCallbackProperties) => {
+    const activeYearMonth = format(activeStartDate, "yyyyMMdd").slice(0, 6);
+    setYearMonth(activeYearMonth);
+  };
+
   useEffect(() => {
     if (nickname) {
       dispatch(readMemoList({ nickname, yearMonth }));
@@ -52,7 +64,12 @@ const MemoCalendarContainer = () => {
   return (
     <>
       <div className="user-profile_calendar">
-        <CalendarContainer memoList={memoList} date={date} onChange={setDate} />
+        <CalendarContainer
+          onChangeMonth={onChangeMonth}
+          memoList={memoList}
+          date={date}
+          onChange={setDate}
+        />
       </div>
       <div className="user-profile_memo">
         {edit ? (

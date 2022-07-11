@@ -19,7 +19,8 @@ const UserProfileContainer = () => {
       postListError: postList.postListError,
     }),
   );
-
+  const [categoryId, setCategoryId] = useState(null);
+  const [categoryPostList, setCategoryPostList] = useState(userProfile?.posts);
   const dispatch = useDispatch();
   const { nickname } = useParams();
   const userId = useUserId();
@@ -28,7 +29,7 @@ const UserProfileContainer = () => {
   const [imageBlobUrl, setImageBlobUrl] = React.useState<string | null>(null);
   const [uploadLoading, setUploadLoading] = useState(false);
 
-  const onChangeThumbnail = async () => {
+  const onChangeThumbnail = useCallback(async () => {
     if (userId !== userProfile?.id) return;
     const file = await upload();
     if (!file || !userId) return;
@@ -38,7 +39,7 @@ const UserProfileContainer = () => {
     setUploadLoading(false);
     if (!image) return;
     dispatch(updateUserProfile({ userId, thumbnail: image }));
-  };
+  }, [CFUpload, dispatch, upload, userId, userProfile?.id]);
 
   useEffect(() => {
     if (nickname) {
@@ -49,17 +50,32 @@ const UserProfileContainer = () => {
   useEffect(() => {
     if (userProfile) {
       dispatch(readPostList({ nickname: nickname, page: 1, tag: "" }));
+      setCategoryPostList(userProfile.posts);
     }
   }, [dispatch, nickname, userProfile]);
 
+  useEffect(() => {
+    if (categoryId !== null) {
+      const tempPostList = userProfile?.posts.filter(
+        (post: any) => post.categoryId === categoryId,
+      );
+      setCategoryPostList(tempPostList);
+    } else {
+      setCategoryPostList(userProfile?.posts);
+    }
+  }, [categoryId, userProfile]);
+
   // 나중에 skeleton UI 형태로 보이기
   if (!userProfile || userProfileError) return null;
+
   return (
     <UserProfile
+      categoryId={categoryId}
       user={userProfile}
       loading={loading}
-      postList={userProfile.posts}
+      postList={categoryPostList}
       postListError={userProfileError}
+      onChangeCategory={setCategoryId}
       onChangeThumbnail={onChangeThumbnail}
     />
   );
