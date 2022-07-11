@@ -71,6 +71,7 @@ export interface setOriginalPostDispatch {
 export interface updatePostDispatch {
   type: typeof UPDATE_POST;
   payload: {
+    categoryId: number;
     postId: number;
     title: string;
     body: string;

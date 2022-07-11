@@ -2,16 +2,18 @@ import client from "./client";
 import qs from "qs";
 class PostApi {
   static createPost = ({
+    categoryId,
     title,
     body,
     tags,
     thumbnail,
   }: {
+    categoryId: number;
     title: string;
     body: string;
     tags: string[];
     thumbnail?: string;
-  }) => client.post("/api/post", { title, body, tags, thumbnail });
+  }) => client.post("/api/post", { categoryId, title, body, tags, thumbnail });
 
   static readPost = ({ id }: any) => {
     return client.get(`/api/post/${id}`);
@@ -40,12 +42,14 @@ class PostApi {
   };
 
   static updatePost = ({
+    categoryId,
     postId,
     title,
     body,
     tags,
     thumbnail,
   }: {
+    categoryId: number;
     postId: number;
     title: string;
     body: string;
@@ -53,6 +57,7 @@ class PostApi {
     thumbnail?: string;
   }) =>
     client.patch(`/api/post/${postId}`, {
+      categoryId,
       title,
       body,
       tags,
