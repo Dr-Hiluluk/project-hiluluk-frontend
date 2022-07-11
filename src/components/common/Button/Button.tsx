@@ -10,6 +10,7 @@ interface customButtonProps
   to?: string;
   fullWidth?: boolean;
   teal?: boolean;
+  red?: boolean;
 }
 
 export const Button = (props: customButtonProps) => {
@@ -27,7 +28,7 @@ export const Button = (props: customButtonProps) => {
     <button
       className={`button ${props.fullWidth ? "fullWidth" : ""} ${
         props.teal ? "teal" : ""
-      }`}
+      } ${props.red ? "red" : ""}`}
       disabled={props.disabled}
       onClick={onClick}
     >

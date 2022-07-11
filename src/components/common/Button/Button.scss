@@ -9,9 +9,12 @@
   color: white;
   outline: none;
   cursor: pointer;
-  background-color: $oc-gray-8;
+  & + & {
+    margin-left: 1rem;
+  }
+  background: $oc-gray-6;
   &:hover {
-    background-color: $oc-gray-6;
+    background: $oc-gray-8;
   }
   &.fullWidth {
     padding-top: 0.75rem;
@@ -22,7 +25,18 @@
   }
   &.teal {
     background: $main-color;
+    &:hover {
+      background: $sub2-color;
+    }
   }
+
+  &.red {
+    background: $red1-color;
+    &:hover {
+      background: $red2-color;
+    }
+  }
+
   &:disabled {
     background: $sub2-color;
     cursor: not-allowed;
