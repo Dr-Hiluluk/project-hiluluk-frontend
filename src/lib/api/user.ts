@@ -23,7 +23,11 @@ class UserApi {
       thumbnail,
       password,
     });
-    return client.patch(`api/user?${queryString}`);
+    return client.patch(`/api/user?${queryString}`);
+  }
+
+  static deleteUser({ userId }: { userId: number }) {
+    return client.delete(`/api/user/${userId}`);
   }
 }
 
