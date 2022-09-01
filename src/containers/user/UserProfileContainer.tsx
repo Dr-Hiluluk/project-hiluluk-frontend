@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import UserProfile from "../../components/user/UserProfile";
 import { useCFUpload } from "../../lib/hooks/useCFUpload";
 import useUpload from "../../lib/hooks/useUpload";
-import { useUserId } from "../../lib/hooks/useUser";
+import useUser, { useUserId } from "../../lib/hooks/useUser";
 import { ReducerType } from "../../modules";
 import { readPostList } from "../../modules/postList";
 import { getUserProfile, updateUserProfile } from "../../modules/user";
@@ -28,6 +28,8 @@ const UserProfileContainer = () => {
   const [CFUpload] = useCFUpload();
   const [imageBlobUrl, setImageBlobUrl] = React.useState<string | null>(null);
   const [uploadLoading, setUploadLoading] = useState(false);
+  const user = useUser();
+  const isMine = nickname === user?.nickname;
 
   const onChangeThumbnail = useCallback(async () => {
     if (userId !== userProfile?.id) return;
@@ -55,15 +57,23 @@ const UserProfileContainer = () => {
   }, [dispatch, nickname, userProfile]);
 
   useEffect(() => {
-    if (categoryId !== null) {
+    if (isMine && categoryId === -1) {
       const tempPostList = userProfile?.posts.filter(
-        (post: any) => post.categoryId === categoryId,
+        (post: any) => post.is_temp === true,
       );
       setCategoryPostList(tempPostList);
+    } else if (categoryId !== null) {
+      const postListByCategory = userProfile?.posts.filter(
+        (post: any) => post.categoryId === categoryId && post.is_temp !== true,
+      );
+      setCategoryPostList(postListByCategory);
     } else {
-      setCategoryPostList(userProfile?.posts);
+      const postList = userProfile?.posts.filter(
+        (post: any) => post.is_temp !== true,
+      );
+      setCategoryPostList(postList);
     }
-  }, [categoryId, userProfile]);
+  }, [categoryId, userProfile, isMine]);
 
   // 나중에 skeleton UI 형태로 보이기
   if (!userProfile || userProfileError) return null;
