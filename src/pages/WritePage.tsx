@@ -12,7 +12,7 @@ const WritePage = () => {
           <title>글 작성하기 - Dr.Hiluluk</title>
         </Helmet>
         <EditorContainer />
-        <EditorFooter />
+        {/* <EditorFooter /> */}
       </Responsive>
     </>
   );
