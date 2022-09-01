@@ -49,7 +49,6 @@ const PostViewerContainer = () => {
 
   const onEdit = () => {
     dispatch(setOriginalPost({ post: read }));
-    dispatch(setTempPostId({ id: read.id }));
     navigation("/write");
   };
 
