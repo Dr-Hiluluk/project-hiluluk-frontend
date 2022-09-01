@@ -116,7 +116,7 @@ export function* writeSaga() {
 }
 
 const initialState: writeInitialStateType = {
-  id: undefined,
+  id: null,
   title: "",
   body: "",
   tags: [],
@@ -124,7 +124,6 @@ const initialState: writeInitialStateType = {
   categoryId: 0,
   post: null,
   postError: null,
-  originalPostId: null,
   isTemp: false,
 };
 
@@ -161,7 +160,7 @@ const write = (
         title: action.payload.post.title,
         body: action.payload.post.body,
         tags: action.payload.post.tags,
-        originalPostId: action.payload.post.id,
+        id: action.payload.post.id,
       };
     case SET_TEMP_POST_ID:
       return {

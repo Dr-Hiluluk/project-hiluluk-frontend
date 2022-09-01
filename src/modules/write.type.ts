@@ -11,7 +11,7 @@ export const SET_THUMBNAIL = "write/SET_THUMBNAIL" as const;
 export const SET_TEMP_POST_ID = "write/SET_TEMP_POST_ID" as const;
 
 export interface writeInitialStateType {
-  id?: number;
+  id: number | null;
   title: string;
   body: string;
   tags: string[];
@@ -19,7 +19,6 @@ export interface writeInitialStateType {
   categoryId: number;
   post: any;
   postError: any;
-  originalPostId: number | null;
   isTemp: boolean;
 }
 
