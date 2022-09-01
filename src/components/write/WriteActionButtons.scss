@@ -13,3 +13,13 @@
     // margin-left: 0.5rem;
   }
 }
+
+.temp-save-button {
+  cursor: pointer;
+  margin-right: 5rem;
+  font-weight: bold;
+  color: $main-color;
+  &:hover {
+    color: $sub2-color;
+  }
+}
