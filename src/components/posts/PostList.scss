@@ -55,11 +55,23 @@
   // overflow-y: hidden;
   background: $oc-white;
 
+  .post-item_nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .post-item_category-name {
     font-size: 0.8rem;
     padding-bottom: 0.5rem;
     font-weight: bold;
     color: $main-color;
+  }
+
+  .post-item_is-temp {
+    font-size: 0.8rem;
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+    color: $sub1-color;
   }
 
   h4 {
