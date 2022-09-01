@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PostApi from "../../lib/api/post";
 import { ReducerType } from "../../modules";
 import { readPost, unloadPost } from "../../modules/post";
-import { setOriginalPost } from "../../modules/write";
+import { setOriginalPost, setTempPostId } from "../../modules/write";
 import PostActionButtons from "../../components/post/PostActionButtons";
 import PostViewer from "../../components/post/PostViewer";
 import useNotFound from "../../lib/hooks/useNotFound";
@@ -49,6 +49,7 @@ const PostViewerContainer = () => {
 
   const onEdit = () => {
     dispatch(setOriginalPost({ post: read }));
+    dispatch(setTempPostId({ id: read.id }));
     navigation("/write");
   };
 

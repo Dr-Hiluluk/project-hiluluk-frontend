@@ -8,7 +8,10 @@ export const UPDATE_POST = "write/UPDATE_POST" as const;
 export const UPDATE_POST_SUCCESS = "write/UPDATE_POST_SUCCESS" as const;
 export const UPDATE_POST_FAILURE = "write/UPDATE_POST_FAILURE" as const;
 export const SET_THUMBNAIL = "write/SET_THUMBNAIL" as const;
+export const SET_TEMP_POST_ID = "write/SET_TEMP_POST_ID" as const;
+
 export interface writeInitialStateType {
+  id?: number;
   title: string;
   body: string;
   tags: string[];
@@ -17,6 +20,7 @@ export interface writeInitialStateType {
   post: any;
   postError: any;
   originalPostId: number | null;
+  isTemp: boolean;
 }
 
 export interface initializeDispatch {
@@ -68,6 +72,13 @@ export interface setOriginalPostDispatch {
   };
 }
 
+export interface setTempPostIdDispatch {
+  type: typeof SET_TEMP_POST_ID;
+  payload: {
+    id: number;
+  };
+}
+
 export interface updatePostDispatch {
   type: typeof UPDATE_POST;
   payload: {
@@ -77,6 +88,7 @@ export interface updatePostDispatch {
     body: string;
     tags: string[];
     thumbnail?: string;
+    isTemp: boolean;
   };
 }
 
@@ -103,4 +115,5 @@ export type WriteDispatchType =
   | writePostFailureDispatch
   | setOriginalPostDispatch
   | updatePostSuccessDispatch
-  | updatePostFailureDispatch;
+  | updatePostFailureDispatch
+  | setTempPostIdDispatch;
