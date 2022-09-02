@@ -4,7 +4,7 @@ import "./WriteActionButtons.scss";
 
 interface writeActionButtonsType {
   onCancel: React.MouseEventHandler<HTMLButtonElement> | undefined;
-  onPublish: (isTemp?: boolean) => void;
+  onPublish: (is_temp?: boolean) => void;
   isEdit: boolean;
 }
 

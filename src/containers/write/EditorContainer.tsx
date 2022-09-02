@@ -18,14 +18,14 @@ import PostApi from "../../lib/api/post";
 
 const EditorContainer = () => {
   const dispatch = useDispatch();
-  const { categoryId, title, body, read, thumbnail, isTemp, id } = useSelector(
+  const { categoryId, title, body, read, thumbnail, is_temp, id } = useSelector(
     ({ write, post }: ReducerType) => ({
       categoryId: write.categoryId,
       title: write.title,
       body: write.body,
       read: post.read,
       thumbnail: write.thumbnail,
-      isTemp: write.isTemp,
+      is_temp: write.is_temp,
       id: write.id,
     }),
   );
@@ -56,7 +56,7 @@ const EditorContainer = () => {
           body: tempBody,
           tags: [],
           thumbnail: thumbnail,
-          isTemp: true,
+          is_temp: true,
         };
         const response = await PostApi.createPost(variables);
         if (!response || !response.data) return;
@@ -93,7 +93,7 @@ const EditorContainer = () => {
       body,
       tags: [],
       thumbnail: thumbnail,
-      isTemp: true,
+      is_temp: true,
     };
 
     if (!id) {
@@ -101,12 +101,12 @@ const EditorContainer = () => {
       if (!response || !response.data) return;
       dispatch(setTempPostId({ id: response.data.id }));
     }
-    if (isTemp && id) {
+    if (is_temp && id) {
       await PostApi.updatePost({ postId: id, ...variables });
     }
     if (shallowEqual(lastSavedPost, { title, body })) return;
     setLastSavedPost({ title, body });
-  }, [body, dispatch, isTemp, lastSavedPost, id, title, thumbnail]);
+  }, [body, dispatch, is_temp, lastSavedPost, id, title, thumbnail]);
 
   // componentDidUnmount 시 초기화
   useEffect(() => {

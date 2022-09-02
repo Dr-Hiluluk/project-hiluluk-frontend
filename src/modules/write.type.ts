@@ -19,7 +19,7 @@ export interface writeInitialStateType {
   categoryId: number;
   post: any;
   postError: any;
-  isTemp: boolean;
+  is_temp: boolean;
 }
 
 export interface initializeDispatch {
@@ -87,7 +87,7 @@ export interface updatePostDispatch {
     body: string;
     tags: string[];
     thumbnail?: string;
-    isTemp: boolean;
+    is_temp: boolean;
   };
 }
 

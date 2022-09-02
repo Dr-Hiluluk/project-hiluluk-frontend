@@ -39,14 +39,14 @@ export const writePost = ({
   body,
   tags,
   thumbnail,
-  isTemp,
+  is_temp,
 }: {
   categoryId: number;
   title: string;
   body: string;
   tags: string[];
   thumbnail?: string;
-  isTemp: boolean;
+  is_temp: boolean;
 }) => ({
   type: WRITE_POST,
   payload: {
@@ -55,7 +55,7 @@ export const writePost = ({
     body,
     tags,
     thumbnail,
-    isTemp,
+    is_temp,
   },
 });
 
@@ -80,7 +80,7 @@ export const updatePost = ({
   body,
   tags,
   thumbnail,
-  isTemp,
+  is_temp,
 }: {
   categoryId: number;
   postId: number;
@@ -88,7 +88,7 @@ export const updatePost = ({
   body: string;
   tags: string[];
   thumbnail?: string;
-  isTemp: boolean;
+  is_temp: boolean;
 }): updatePostDispatch => ({
   type: UPDATE_POST,
   payload: {
@@ -98,7 +98,7 @@ export const updatePost = ({
     title,
     tags,
     thumbnail,
-    isTemp,
+    is_temp,
   },
 });
 
@@ -124,7 +124,7 @@ const initialState: writeInitialStateType = {
   categoryId: 0,
   post: null,
   postError: null,
-  isTemp: false,
+  is_temp: false,
 };
 
 const write = (
@@ -166,7 +166,7 @@ const write = (
       return {
         ...state,
         id: action.payload.id,
-        isTemp: true,
+        is_temp: true,
       };
     case UPDATE_POST_SUCCESS:
       return {

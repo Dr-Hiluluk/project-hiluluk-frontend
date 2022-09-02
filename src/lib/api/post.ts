@@ -8,14 +8,14 @@ class PostApi {
     body,
     tags,
     thumbnail,
-    isTemp,
+    is_temp,
   }: {
     categoryId: number;
     title: string;
     body: string;
     tags: string[];
     thumbnail?: string;
-    isTemp?: boolean;
+    is_temp?: boolean;
   }) =>
     axios.post("/api/post", {
       categoryId,
@@ -23,7 +23,7 @@ class PostApi {
       body,
       tags,
       thumbnail,
-      isTemp,
+      is_temp,
     });
 
   static readPost = ({ id }: any) => {
@@ -59,7 +59,7 @@ class PostApi {
     body,
     tags,
     thumbnail,
-    isTemp,
+    is_temp,
   }: {
     categoryId: number;
     postId: number;
@@ -67,7 +67,7 @@ class PostApi {
     body: string;
     tags: string[];
     thumbnail?: string;
-    isTemp: boolean;
+    is_temp: boolean;
   }) =>
     client.patch(`/api/post/${postId}`, {
       categoryId,
@@ -75,7 +75,7 @@ class PostApi {
       body,
       tags,
       thumbnail,
-      isTemp,
+      is_temp,
     });
 
   static deletePost = ({ postId }: { postId: number }) =>

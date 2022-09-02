@@ -25,7 +25,7 @@ const WriteActionButtonsContainer = () => {
       postId: write.id,
     }));
 
-  const onPublish = (isTemp = false) => {
+  const onPublish = (is_temp = false) => {
     if (!user) {
       setModal(true);
       return;
@@ -39,12 +39,12 @@ const WriteActionButtonsContainer = () => {
           body,
           tags,
           thumbnail,
-          isTemp,
+          is_temp,
         }),
       );
       return;
     }
-    dispatch(writePost({ categoryId, title, body, tags, thumbnail, isTemp }));
+    dispatch(writePost({ categoryId, title, body, tags, thumbnail, is_temp }));
   };
 
   const onCancel = () => {
