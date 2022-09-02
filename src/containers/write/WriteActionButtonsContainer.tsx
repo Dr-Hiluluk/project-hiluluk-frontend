@@ -13,45 +13,38 @@ const WriteActionButtonsContainer = () => {
   const dispatch = useDispatch();
   const user = useUser();
   const location = useLocation();
-  const {
-    categoryId,
-    title,
-    body,
-    tags,
-    thumbnail,
-    post,
-    postError,
-    originalPostId,
-  } = useSelector(({ write, user }: ReducerType) => ({
-    categoryId: write.categoryId,
-    title: write.title,
-    body: write.body,
-    tags: write.tags,
-    thumbnail: write.thumbnail,
-    post: write.post,
-    postError: write.postError,
-    originalPostId: write.originalPostId,
-  }));
+  const { categoryId, title, body, tags, thumbnail, post, postError, postId } =
+    useSelector(({ write }: ReducerType) => ({
+      categoryId: write.categoryId,
+      title: write.title,
+      body: write.body,
+      tags: write.tags,
+      thumbnail: write.thumbnail,
+      post: write.post,
+      postError: write.postError,
+      postId: write.id,
+    }));
 
-  const onPublish = () => {
+  const onPublish = (isTemp = false) => {
     if (!user) {
       setModal(true);
       return;
     }
-    if (originalPostId) {
+    if (postId) {
       dispatch(
         updatePost({
           categoryId,
-          postId: originalPostId,
+          postId,
           title,
           body,
           tags,
           thumbnail,
+          isTemp,
         }),
       );
       return;
     }
-    dispatch(writePost({ categoryId, title, body, tags, thumbnail }));
+    dispatch(writePost({ categoryId, title, body, tags, thumbnail, isTemp }));
   };
 
   const onCancel = () => {
@@ -73,7 +66,7 @@ const WriteActionButtonsContainer = () => {
       <WriteActionButtons
         onPublish={onPublish}
         onCancel={onCancel}
-        isEdit={!!originalPostId}
+        isEdit={!!postId}
       />
       {modal && (
         <AskModal
