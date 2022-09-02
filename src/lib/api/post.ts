@@ -1,5 +1,6 @@
 import client from "./client";
 import qs from "qs";
+import axios from "axios";
 class PostApi {
   static createPost = ({
     categoryId,
@@ -7,13 +8,23 @@ class PostApi {
     body,
     tags,
     thumbnail,
+    is_temp,
   }: {
     categoryId: number;
     title: string;
     body: string;
     tags: string[];
     thumbnail?: string;
-  }) => client.post("/api/post", { categoryId, title, body, tags, thumbnail });
+    is_temp?: boolean;
+  }) =>
+    axios.post("/api/post", {
+      categoryId,
+      title,
+      body,
+      tags,
+      thumbnail,
+      is_temp,
+    });
 
   static readPost = ({ id }: any) => {
     return client.get(`/api/post/${id}`);
@@ -48,6 +59,7 @@ class PostApi {
     body,
     tags,
     thumbnail,
+    is_temp,
   }: {
     categoryId: number;
     postId: number;
@@ -55,6 +67,7 @@ class PostApi {
     body: string;
     tags: string[];
     thumbnail?: string;
+    is_temp: boolean;
   }) =>
     client.patch(`/api/post/${postId}`, {
       categoryId,
@@ -62,6 +75,7 @@ class PostApi {
       body,
       tags,
       thumbnail,
+      is_temp,
     });
 
   static deletePost = ({ postId }: { postId: number }) =>

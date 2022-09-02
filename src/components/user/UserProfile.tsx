@@ -68,6 +68,14 @@ const UserProfile: React.FC<UserProfileProps> = ({
                 {item.label}
               </li>
             ))}
+            <li
+              className={`${categoryId === -1 ? "active" : ""}`}
+              onClick={() => {
+                onChangeCategory(-1);
+              }}
+            >
+              임시 글
+            </li>
           </ul>
         </div>
       </div>

@@ -3,6 +3,7 @@ import Quill from "quill";
 import "quill/dist/quill.bubble.css";
 import "quill/dist/quill.snow.css";
 import "../write/Editor.scss";
+import EditorFooter from "../common/EditorFooter";
 interface editorType {
   onChangeField: any;
   title: string;
@@ -75,17 +76,20 @@ const Editor = ({
   };
 
   return (
-    <div className="editor-block">
-      <input
-        type="text"
-        className="title-input"
-        placeholder="제목을 입력하세요."
-        onChange={onChangeTitle}
-        value={title}
-      />
-      <div className="quill-wrapper">
-        <div ref={quillElement}></div>
+    <div className="temp">
+      <div className="editor-block">
+        <input
+          type="text"
+          className="title-input"
+          placeholder="제목을 입력하세요."
+          onChange={onChangeTitle}
+          value={title}
+        />
+        <div className="quill-wrapper">
+          <div ref={quillElement}></div>
+        </div>
       </div>
+      <EditorFooter />
     </div>
   );
 };

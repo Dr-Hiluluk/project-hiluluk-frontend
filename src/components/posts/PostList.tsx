@@ -15,9 +15,13 @@ const PostItem = ({ post }: any) => {
         </Link>
       )}
       <div className="post-item_content">
-        <span className="post-item_category-name">
-          {categoryIndex[post.categoryId].label}
-        </span>
+        <div className="post-item_nav">
+          <span className="post-item_category-name">
+            {categoryIndex[post.categoryId].label}
+          </span>
+          {post?.is_temp && <span className="post-item_is-temp">임시 글</span>}
+        </div>
+
         <Link className="styled-link" to={`/@${post.user.nickname}/${post.id}`}>
           <h4>{post.title}</h4>
           <div className="post-item_description">

@@ -28,7 +28,10 @@ const PostViewer = ({ post, error, loading, actionButtons }: any) => {
         <title>{title}</title>
       </Helmet>
       <div className="post-head-wrapper">
-        <h2>{categoryIndex[categoryId].label}</h2>
+        <div className="post-head-wrapper_nav">
+          <h2>{categoryIndex[categoryId].label}</h2>
+          {post?.is_temp && <h2 className="temp">임시 글</h2>}
+        </div>
         <h1>{title}</h1>
         <SubInfo nickname={user.nickname} createdAt={createdAt} />
         {actionButtons}

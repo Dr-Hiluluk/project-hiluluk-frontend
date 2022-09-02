@@ -6,6 +6,7 @@ import {
   CHANGE_FIELD,
   INITIALIZE,
   SET_ORIGINAL_POST,
+  SET_TEMP_POST_ID,
   SET_THUMBNAIL,
   updatePostDispatch,
   UPDATE_POST,
@@ -38,12 +39,14 @@ export const writePost = ({
   body,
   tags,
   thumbnail,
+  is_temp,
 }: {
   categoryId: number;
   title: string;
   body: string;
   tags: string[];
   thumbnail?: string;
+  is_temp: boolean;
 }) => ({
   type: WRITE_POST,
   payload: {
@@ -52,6 +55,7 @@ export const writePost = ({
     body,
     tags,
     thumbnail,
+    is_temp,
   },
 });
 
@@ -62,6 +66,13 @@ export const setOriginalPost = ({ post }: any) => ({
   },
 });
 
+export const setTempPostId = ({ id }: { id: number }) => ({
+  type: SET_TEMP_POST_ID,
+  payload: {
+    id,
+  },
+});
+
 export const updatePost = ({
   categoryId,
   postId,
@@ -69,6 +80,7 @@ export const updatePost = ({
   body,
   tags,
   thumbnail,
+  is_temp,
 }: {
   categoryId: number;
   postId: number;
@@ -76,6 +88,7 @@ export const updatePost = ({
   body: string;
   tags: string[];
   thumbnail?: string;
+  is_temp: boolean;
 }): updatePostDispatch => ({
   type: UPDATE_POST,
   payload: {
@@ -85,6 +98,7 @@ export const updatePost = ({
     title,
     tags,
     thumbnail,
+    is_temp,
   },
 });
 
@@ -95,12 +109,14 @@ const updatePostSaga = createRequestSaga(
   PostApi.updatePost,
   "post",
 );
+
 export function* writeSaga() {
   yield takeLatest(WRITE_POST, writePostSaga);
   yield takeLatest(UPDATE_POST, updatePostSaga);
 }
 
 const initialState: writeInitialStateType = {
+  id: null,
   title: "",
   body: "",
   tags: [],
@@ -108,7 +124,7 @@ const initialState: writeInitialStateType = {
   categoryId: 0,
   post: null,
   postError: null,
-  originalPostId: null,
+  is_temp: false,
 };
 
 const write = (
@@ -144,7 +160,13 @@ const write = (
         title: action.payload.post.title,
         body: action.payload.post.body,
         tags: action.payload.post.tags,
-        originalPostId: action.payload.post.id,
+        id: action.payload.post.id,
+      };
+    case SET_TEMP_POST_ID:
+      return {
+        ...state,
+        id: action.payload.id,
+        is_temp: true,
       };
     case UPDATE_POST_SUCCESS:
       return {
