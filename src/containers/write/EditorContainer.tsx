@@ -1,7 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ReducerType } from "../../modules";
-import { changeField, initialize, setThumbnail } from "../../modules/write";
+import {
+  changeField,
+  initialize,
+  setTempPostId,
+  setThumbnail,
+} from "../../modules/write";
 import Editor from "../../components/write/Editor";
 import useUpload from "../../lib/hooks/useUpload";
 import { useCFUpload } from "../../lib/hooks/useCFUpload";
@@ -9,15 +14,19 @@ import DragDropUpload from "../../components/common/DragDropUpload";
 import PasteUpload from "../../components/common/PasteUpload";
 import { usePrevious } from "react-use";
 import Category from "../../components/common/Category/Category";
+import PostApi from "../../lib/api/post";
 
 const EditorContainer = () => {
   const dispatch = useDispatch();
-  const { title, body, read, thumbnail } = useSelector(
+  const { categoryId, title, body, read, thumbnail, isTemp, id } = useSelector(
     ({ write, post }: ReducerType) => ({
+      categoryId: write.categoryId,
       title: write.title,
       body: write.body,
       read: post.read,
       thumbnail: write.thumbnail,
+      isTemp: write.isTemp,
+      id: write.id,
     }),
   );
 
@@ -30,23 +39,74 @@ const EditorContainer = () => {
   const [CFUpload, image] = useCFUpload();
   const [imageBlobUrl, setImageBlobUrl] = useState<string | null>(null);
   const prevThumbnail = usePrevious(image);
-
+  const [lastSavedPost, setLastSavedPost] = useState({
+    title: "",
+    body: "",
+  });
+  const postIdRef = useRef(id);
   const uploadWithPostId = useCallback(
-    async (file: File, postId: number) => {
-      if (!postId) return;
+    async (file: File) => {
+      let tempId = id;
+      if (!id) {
+        const tempTitle = title || "temp title";
+        const tempBody = body || "temp body";
+        const variables = {
+          categoryId: categoryId || 1,
+          title: tempTitle,
+          body: tempBody,
+          tags: [],
+          thumbnail: thumbnail,
+          isTemp: true,
+        };
+        const response = await PostApi.createPost(variables);
+        if (!response || !response.data) return;
+        tempId = response.data.id;
+        dispatch(setTempPostId({ id: response.data.id }));
+      }
+      if (!tempId) return;
+      // console.log("Uploading...");
+      // TODO: 이미지 업로드 되는동안, 업로드 중 이라는 표시 남기기
       const url = URL.createObjectURL(file);
       setImageBlobUrl(url);
-      CFUpload(file, { type: "post", refId: postId });
+      await CFUpload(file, { type: "post", refId: tempId });
     },
-    [CFUpload],
+    [CFUpload, body, categoryId, dispatch, id, thumbnail, title],
   );
 
   const onDragDropUpload = useCallback(
     (file: File) => {
-      uploadWithPostId(file, read.id);
+      uploadWithPostId(file);
     },
-    [read, uploadWithPostId],
+    [uploadWithPostId],
   );
+
+  // 임시저장
+  const onTempSave = useCallback(async () => {
+    // TODO: 제목, 내용 빈 경우 임시 저장 안되도록 하고 얼럿 추가하기
+    // if (!title || !body) {
+    //   alert("제목 또는 내용이 비어 있습니다.");
+    //   return;
+    // }
+    const variables = {
+      categoryId: 1,
+      title,
+      body,
+      tags: [],
+      thumbnail: thumbnail,
+      isTemp: true,
+    };
+
+    if (!id) {
+      const response = await PostApi.createPost(variables);
+      if (!response || !response.data) return;
+      dispatch(setTempPostId({ id: response.data.id }));
+    }
+    if (isTemp && id) {
+      await PostApi.updatePost({ postId: id, ...variables });
+    }
+    if (shallowEqual(lastSavedPost, { title, body })) return;
+    setLastSavedPost({ title, body });
+  }, [body, dispatch, isTemp, lastSavedPost, id, title, thumbnail]);
 
   // componentDidUnmount 시 초기화
   useEffect(() => {
@@ -57,16 +117,32 @@ const EditorContainer = () => {
 
   useEffect(() => {
     if (!file) return;
-    if (read) {
-      uploadWithPostId(file, read.id);
-    }
-  }, [file, read, uploadWithPostId]);
+    uploadWithPostId(file);
+  }, [file, uploadWithPostId]);
 
   useEffect(() => {
-    if (prevThumbnail !== image && !thumbnail && image) {
+    postIdRef.current = id;
+  }, [id]);
+
+  useEffect(() => {
+    if (prevThumbnail !== image && !read?.thumbnail && image) {
       dispatch(setThumbnail(image));
     }
-  }, [dispatch, image, prevThumbnail, thumbnail]);
+  }, [dispatch, image, prevThumbnail, read?.thumbnail]);
+
+  useEffect(() => {
+    const isChanged = !shallowEqual(lastSavedPost, { title, body });
+    if (isChanged) {
+      const timeId = setTimeout(() => {
+        if (!id && (!title || !body)) return;
+        onTempSave();
+      }, 10 * 1000);
+      return () => {
+        clearTimeout(timeId);
+      };
+    }
+  }, [body, id, lastSavedPost, onTempSave, title]);
+  // useSaveHotKey(() => onTempSave());
 
   return (
     <>
