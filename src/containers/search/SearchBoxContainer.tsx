@@ -8,9 +8,11 @@ const SearchBoxContainer = () => {
   const navigation = useNavigate();
   const onSubmit = (e: any) => {
     e.preventDefault();
+    let encodedText = text;
+    if (text[0] === "#") encodedText = "%23" + text.substring(1);
     if (text) {
       onReset();
-      navigation(`/search?word=${text}`);
+      navigation(`/search?word=${encodedText}`);
     }
   };
   return <SearchBox onSubmit={onSubmit} onChangeText={setText} />;

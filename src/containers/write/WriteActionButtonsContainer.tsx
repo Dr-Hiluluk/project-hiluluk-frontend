@@ -63,11 +63,7 @@ const WriteActionButtonsContainer = () => {
 
   return (
     <>
-      <WriteActionButtons
-        onPublish={onPublish}
-        onCancel={onCancel}
-        isEdit={!!postId}
-      />
+      <WriteActionButtons onPublish={onPublish} onCancel={onCancel} />
       {modal && (
         <AskModal
           title="로그인"

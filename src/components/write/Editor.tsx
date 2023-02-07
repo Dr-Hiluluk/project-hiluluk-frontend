@@ -35,6 +35,7 @@ const Editor = ({
     quill.setSelection(range.index + 2, 0);
     quill.focus();
   };
+
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
       theme: "snow",
