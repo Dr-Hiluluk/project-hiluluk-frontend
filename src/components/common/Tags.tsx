@@ -10,7 +10,7 @@ const Tags = ({ tags }: any) => {
   return (
     <div>
       {tags.map((tag: Tag, index: number) => (
-        <Link key={index} to={`/?tag=${tag.content}`}>
+        <Link key={index} to={`/search?word=%23${tag.content}`}>
           <div className="tag">{tag.content}</div>
         </Link>
       ))}
